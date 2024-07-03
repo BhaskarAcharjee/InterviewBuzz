@@ -1,59 +1,59 @@
 .sidebar {
-    width: 250px;
-    height: 100vh;
-    background: linear-gradient(135deg, #6D5BBA, #8D58BF, #DE67A3);
-    color: white;
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
+  width: 250px;
+  height: 100vh;
+  background: linear-gradient(135deg, #6d5bba, #8d58bf, #de67a3);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 }
 
 .sidebar h2 {
-    text-align: center;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 700;
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
-    color: #FFFFFF;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: #ffffff;
 }
 
 .sidebar nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .sidebar nav ul li {
-    margin: 15px 0;
+  margin: 15px 0;
 }
 
 .sidebar nav ul li a {
-    text-decoration: none;
-    color: #FFFFFF;
-    font-family: 'Poppins', sans-serif;
-    font-size: 1rem;
-    padding: 10px 20px;
-    display: block;
-    border-radius: 30px;
-    transition: all 0.3s ease;
+  text-decoration: none;
+  color: #ffffff;
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  padding: 10px 20px;
+  display: block;
+  border-radius: 30px;
+  transition: all 0.3s ease;
 }
 
 .sidebar nav ul li a:hover,
 .sidebar nav ul li a.active {
-    background: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  color: #ffffff;
 }
 
 .sidebar nav ul li a:hover::before,
 .sidebar nav ul li a.active::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    /* width: 3px; */
-    height: 100%;
-    background: #FFFFFF;
-    border-radius: 30px;
+  content: "";
+  position: absolute;
+  left: 0;
+  /* width: 3px; */
+  height: 100%;
+  background: #ffffff;
+  border-radius: 30px;
 }
