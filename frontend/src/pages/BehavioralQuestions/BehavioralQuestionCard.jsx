@@ -1,54 +1,44 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaHeart, FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { FaHeart, FaEdit } from "react-icons/fa";
 import "./BehavioralQuestions.css";
 
-const BehavioralQuestionCard = ({ question, answer }) => {
-  const [expanded, setExpanded] = useState(false);
-  const [isFavorite, setIsFavorite] = useState(false);
+const BehavioralQuestionCard = ({
+  id,
+  question,
+  answer,
+  isFavorite,
+  onEdit,
+  toggleFavorite,
+}) => {
   const navigate = useNavigate();
 
   const handleCardClick = () => {
-    setExpanded(!expanded);
-  };
-
-  const handleBackClick = () => {
-    setExpanded(false);
+    navigate(`/behavioral/${id}`);
   };
 
   const handleFavoriteClick = (e) => {
     e.stopPropagation();
-    setIsFavorite(!isFavorite);
+    toggleFavorite();
+  };
+
+  const handleEditClick = (e) => {
+    e.stopPropagation();
+    navigate(`/behavioral/edit/${id}`);
   };
 
   return (
-    <div
-      className={`card ${expanded ? "expanded" : ""}`}
-      onClick={!expanded ? handleCardClick : undefined}
-    >
+    <div className="card" onClick={handleCardClick}>
       <div className="card-header">
         <h3>{question}</h3>
-        <FaHeart
-          className={`favorite-icon ${isFavorite ? "active" : ""}`}
-          onClick={handleFavoriteClick}
-        />
+        <div className="card-icons">
+          <FaHeart
+            className={`favorite-icon ${isFavorite ? "active" : ""}`}
+            onClick={handleFavoriteClick}
+          />
+          <FaEdit className="edit-icon" onClick={handleEditClick} />
+        </div>
       </div>
-      {expanded && (
-        <>
-          <p>{answer}</p>
-          <div className="navigation">
-            <button className="nav-btn" onClick={handleBackClick}>
-              Back to Questions
-            </button>
-            <button className="nav-btn">
-              <FaArrowLeft />
-            </button>
-            <button className="nav-btn">
-              <FaArrowRight />
-            </button>
-          </div>
-        </>
-      )}
     </div>
   );
 };
