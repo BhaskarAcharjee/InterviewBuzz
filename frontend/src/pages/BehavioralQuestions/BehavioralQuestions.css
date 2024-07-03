@@ -1,16 +1,15 @@
-/* Main Page */
+/* Behavioral Page */
 
 .behavioral-questions-container {
   padding: 20px;
   max-width: 1200px;
   margin: 0 auto;
-  font-family: Arial, sans-serif;
 }
 
 .create-new-btn {
   padding: 10px 20px;
   font-size: 1rem;
-  background-color: #28a745;
+  background: linear-gradient(135deg, #28a745, #218838);
   color: white;
   border: none;
   border-radius: 5px;
@@ -20,11 +19,12 @@
 }
 
 .create-new-btn:hover {
-  background-color: #218838;
+  background-color: #1c7430;
 }
 
 .filter-options {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
@@ -34,7 +34,7 @@
   padding: 10px 20px;
   font-size: 1rem;
   cursor: pointer;
-  background-color: #007bff;
+  background: linear-gradient(135deg, #007bff, #0056b3);
   color: white;
   border: none;
   border-radius: 5px;
@@ -44,14 +44,14 @@
 
 .filter-tab:hover,
 .filter-tab.active {
-  background-color: #0056b3;
+  background-color: #004494;
 }
 
 .toggle-view-btn {
   padding: 10px 20px;
   font-size: 1rem;
   cursor: pointer;
-  background-color: #6c757d;
+  background: linear-gradient(135deg, #6c757d, #5a6268);
   color: white;
   border: none;
   border-radius: 5px;
@@ -59,7 +59,7 @@
 }
 
 .toggle-view-btn:hover {
-  background-color: #5a6268;
+  background-color: #495057;
 }
 
 .question-list {
@@ -89,6 +89,10 @@
   overflow: hidden;
 }
 
+.card:hover {
+  transform: scale(1.02);
+}
+
 .card-header {
   display: flex;
   justify-content: space-between;
@@ -100,53 +104,19 @@
   gap: 10px;
 }
 
-.edit-icon {
+.edit-icon,
+.favorite-icon {
   font-size: 1.5rem;
   cursor: pointer;
   transition: color 0.3s, transform 0.3s;
+}
+
+.edit-icon {
   color: #007bff;
 }
 
 .edit-icon:hover {
   color: #0056b3;
-}
-
-.navigation {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  margin-top: 20px;
-}
-
-.nav-btn {
-  padding: 10px 20px;
-  font-size: 1rem;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.nav-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.back-btn:hover {
-  background-color: #218838;
-}
-
-.card-icons {
-  display: flex;
-  gap: 10px;
-}
-
-.favorite-icon,
-.edit-icon {
-  font-size: 1.5rem;
-  cursor: pointer;
-  transition: color 0.3s, transform 0.3s;
 }
 
 .favorite-icon {
@@ -162,25 +132,43 @@
   color: #ff6666;
 }
 
-.edit-icon {
-  color: #007bff;
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 20px;
 }
 
-.edit-icon:hover {
-  color: #0056b3;
+.nav-btn {
+  padding: 10px 20px;
+  font-size: 1rem;
+  background: linear-gradient(135deg, #007bff, #0056b3);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.nav-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.nav-btn:hover {
+  background-color: #004494;
 }
 
 .question-detail-container {
   padding: 20px;
   max-width: 800px;
   margin: 0 auto;
-  font-family: Arial, sans-serif;
 }
 
 .back-btn {
   padding: 10px 20px;
   font-size: 1rem;
-  background-color: #28a745;
+  background: linear-gradient(135deg, #28a745, #218838);
   color: white;
   border: none;
   border-radius: 5px;
@@ -190,7 +178,7 @@
 }
 
 .back-btn:hover {
-  background-color: #218838;
+  background-color: #1c7430;
 }
 
 /* Create & Update */
@@ -198,7 +186,6 @@
   padding: 20px;
   max-width: 800px;
   margin: 0 auto;
-  font-family: Arial, sans-serif;
 }
 
 .input {
@@ -213,10 +200,36 @@
 .save-btn {
   padding: 10px 20px;
   font-size: 1rem;
-  background-color: #28a745;
+  background: linear-gradient(135deg, #28a745, #218838);
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   margin-top: 20px;
+}
+
+.save-btn:hover {
+  background-color: #1c7430;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .filter-options {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .question-list.grid .card {
+    width: calc(50% - 20px);
+  }
+
+  .question-list.list .card {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .question-list.grid .card {
+    width: 100%;
+  }
 }

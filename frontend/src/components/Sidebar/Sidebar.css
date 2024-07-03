@@ -47,13 +47,40 @@
   color: #ffffff;
 }
 
-.sidebar nav ul li a:hover::before,
-.sidebar nav ul li a.active::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  /* width: 3px; */
-  height: 100%;
-  background: #ffffff;
-  border-radius: 30px;
+.mobile-header {
+  display: none;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #6d5bba, #8d58bf, #de67a3);
+  color: white;
+}
+
+.menu-icon {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* Media Queries for Mobile Devices */
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    left: -350px;
+    top: 0;
+    width: 250px;
+    height: 100vh;
+    transition: left 0.3s ease;
+    z-index: 1000;
+  }
+
+  .sidebar.open {
+    left: 0;
+  }
+
+  .mobile-header {
+    display: flex;
+  }
 }

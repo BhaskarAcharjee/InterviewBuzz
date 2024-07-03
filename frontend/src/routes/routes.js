@@ -9,6 +9,7 @@ import ProjectQuestions from "../pages/ProjectQuestions/ProjectQuestions";
 import TechnicalQuestions from "../pages/TechnicalQuestions/TechnicalQuestions";
 import Flashcards from "../pages/Flashcards/Flashcards";
 import DreamCompany from "../pages/DreamCompany/DreamCompany";
+import InterviewExperiences from "../pages/InterviewExperiences/InterviewExperiences";
 
 const routes = (questions, addNewQuestion, editQuestion, toggleFavorite) => (
   <Routes>
@@ -41,6 +42,7 @@ const routes = (questions, addNewQuestion, editQuestion, toggleFavorite) => (
     <Route path="/technical" element={<TechnicalQuestions />} />
     <Route path="/flashcards" element={<Flashcards />} />
     <Route path="/dream-company" element={<DreamCompany />} />
+    <Route path="/interview-experiences" element={<InterviewExperiences />} />
   </Routes>
 );
 
