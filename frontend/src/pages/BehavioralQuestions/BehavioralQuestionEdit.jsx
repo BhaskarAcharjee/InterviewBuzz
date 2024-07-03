@@ -6,8 +6,8 @@ import "./BehavioralQuestions.css";
 const BehavioralQuestionEdit = ({ questions, onSave }) => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const questionToEdit = questions.find((q) => q.id === parseInt(id));
-  
+  const questionToEdit = questions.find((q) => q._id === id);
+
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
 
@@ -20,7 +20,7 @@ const BehavioralQuestionEdit = ({ questions, onSave }) => {
 
   const handleSave = () => {
     const updatedQuestion = {
-      id: parseInt(id),
+      _id: id,
       question,
       answer,
     };

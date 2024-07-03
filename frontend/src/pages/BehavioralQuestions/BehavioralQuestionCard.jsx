@@ -1,12 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { FaHeart, FaEdit } from "react-icons/fa";
 import "./BehavioralQuestions.css";
 
 const BehavioralQuestionCard = ({
-  id,
+  _id,
   question,
-  answer,
   isFavorite,
   onEdit,
   toggleFavorite,
@@ -14,7 +13,7 @@ const BehavioralQuestionCard = ({
   const navigate = useNavigate();
 
   const handleCardClick = () => {
-    navigate(`/behavioral/${id}`);
+    navigate(`/behavioral/${_id}`);
   };
 
   const handleFavoriteClick = (e) => {
@@ -24,7 +23,7 @@ const BehavioralQuestionCard = ({
 
   const handleEditClick = (e) => {
     e.stopPropagation();
-    navigate(`/behavioral/edit/${id}`);
+    navigate(`/behavioral/edit/${_id}`);
   };
 
   return (

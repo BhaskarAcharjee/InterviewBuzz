@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import BehavioralQuestionCard from "./BehavioralQuestionCard";
 import "./BehavioralQuestions.css";
 
 const BehavioralQuestionList = ({ questions, onEdit, toggleFavorite }) => {
-  const [view, setView] = useState("grid");
-  const [filter, setFilter] = useState("all");
+  const [view, setView] = React.useState("grid");
+  const [filter, setFilter] = React.useState("all");
   const navigate = useNavigate();
 
   const handleCreateNewClick = () => {
@@ -51,13 +51,12 @@ const BehavioralQuestionList = ({ questions, onEdit, toggleFavorite }) => {
       <div className={`question-list ${view}`}>
         {filteredQuestions.map((q) => (
           <BehavioralQuestionCard
-            key={q.id}
-            id={q.id}
+            key={q._id}
+            _id={q._id}
             question={q.question}
-            answer={q.answer}
             isFavorite={q.isFavorite}
             onEdit={() => onEdit(q)}
-            toggleFavorite={() => toggleFavorite(q.id)}
+            toggleFavorite={() => toggleFavorite(q._id)}
           />
         ))}
       </div>
