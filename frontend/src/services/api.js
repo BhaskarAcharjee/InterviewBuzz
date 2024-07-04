@@ -6,8 +6,8 @@ const API_URL =
 
 export const getQuestions = () => axios.get(API_URL);
 export const createQuestion = (data) => axios.post(API_URL, data);
-export const importQuestions = (data) => {
-  return axios.post(`${API_URL}/import`, { data });
+export const importQuestions = (questions) => {
+  return axios.post(`${API_URL}/import`, { questions });
 };
 export const getQuestion = (id) => axios.get(`${API_URL}/${id}`);
 export const updateQuestion = (id, data) =>

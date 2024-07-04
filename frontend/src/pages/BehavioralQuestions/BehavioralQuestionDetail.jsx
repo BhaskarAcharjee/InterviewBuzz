@@ -51,7 +51,7 @@ const BehavioralQuestionDetail = ({ questions, setQuestions }) => {
           Previous
         </button>
         <button className="back-btn" onClick={() => navigate("/behavioral")}>
-          Back to Questions
+          Back to Home
         </button>
         <button
           className="nav-btn"

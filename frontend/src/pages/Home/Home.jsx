@@ -17,7 +17,7 @@ const Home = () => {
 
   return (
     <div className="home-container">
-      <h2 className="title">Welcome to InterviewGenius!</h2>
+      <h2 className="title">Welcome to InterviewBuzz!</h2>
       <p className="subtitle">
         Prepare for your interviews with our comprehensive list of coding and
         technical questions.

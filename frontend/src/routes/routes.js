@@ -10,6 +10,8 @@ import TechnicalQuestions from "../pages/TechnicalQuestions/TechnicalQuestions";
 import Flashcards from "../pages/Flashcards/Flashcards";
 import DreamCompany from "../pages/DreamCompany/DreamCompany";
 import InterviewExperiences from "../pages/InterviewExperiences/InterviewExperiences";
+import ResumeBuilder from "../pages/ResumeBuilder/ResumeBuilder";
+import ProfilePage from "../pages/Profile/ProfilePage";
 
 const routes = (
   questions,
@@ -52,6 +54,8 @@ const routes = (
     <Route path="/flashcards" element={<Flashcards />} />
     <Route path="/dream-company" element={<DreamCompany />} />
     <Route path="/interview-experiences" element={<InterviewExperiences />} />
+    <Route path="/profile" element={<ProfilePage />} />
+    <Route path="/resume-builder" element={<ResumeBuilder />} />
   </Routes>
 );
 
