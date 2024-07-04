@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import "./BehavioralQuestions.css";
+import { deleteQuestion } from "../../services/api";
 
 const BehavioralQuestionDetail = ({ questions }) => {
   const { id } = useParams();
@@ -27,15 +28,29 @@ const BehavioralQuestionDetail = ({ questions }) => {
     }
   };
 
+  const handleDelete = async () => {
+    try {
+      await deleteQuestion(question._id);
+      navigate("/behavioral");
+    } catch (error) {
+      console.error("Error deleting question:", error); // Log detailed Axios error
+      // Handle error display or fallback as needed
+    }
+  };
+  
+
   return (
     <div className="question-detail-container">
       <div className="card">
         <div className="card-header">
           <h1>{question.question}</h1>
-          <div className="card-icons">
-            <Link to={`/behavioral/edit/${question._id}`}>
-              <i className="edit-icon fas fa-edit" title="Edit Question"></i>
+          <div className="card-buttons">
+            <Link to={`/behavioral/edit/${question._id}`} className="edit-button">
+              Edit
             </Link>
+            <button className="delete-button" onClick={handleDelete}>
+              Delete
+            </button>
           </div>
         </div>
         <p>{question.answer}</p>

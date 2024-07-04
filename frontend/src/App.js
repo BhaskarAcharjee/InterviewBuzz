@@ -61,7 +61,7 @@ const App = () => {
       <div className="App">
         <Sidebar />
         <main className="main-content">
-          {routes(questions, addNewQuestion, editQuestion, toggleFavorite)}
+          {routes(questions, addNewQuestion, editQuestion, deleteQuestionById, toggleFavorite)}
         </main>
       </div>
     </Router>

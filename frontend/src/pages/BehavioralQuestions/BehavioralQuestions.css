@@ -212,6 +212,28 @@
   background-color: #1c7430;
 }
 
+.edit-button,
+.delete-button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  background: linear-gradient(135deg, #007bff, #0056b3);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  text-decoration: none; /* Ensure link-style removal */
+}
+
+.edit-button:hover,
+.delete-button:hover {
+  background-color: #004494;
+}
+
+.delete-button {
+  margin-left: 10px;
+}
+
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
   .filter-options {

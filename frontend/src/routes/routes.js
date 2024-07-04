@@ -11,7 +11,13 @@ import Flashcards from "../pages/Flashcards/Flashcards";
 import DreamCompany from "../pages/DreamCompany/DreamCompany";
 import InterviewExperiences from "../pages/InterviewExperiences/InterviewExperiences";
 
-const routes = (questions, addNewQuestion, editQuestion, toggleFavorite) => (
+const routes = (
+  questions,
+  addNewQuestion,
+  editQuestion,
+  deleteQuestionById,
+  toggleFavorite
+) => (
   <Routes>
     <Route path="/" element={<Home />} />
     <Route
@@ -20,6 +26,7 @@ const routes = (questions, addNewQuestion, editQuestion, toggleFavorite) => (
         <BehavioralQuestionList
           questions={questions}
           onEdit={editQuestion}
+          onDelete={deleteQuestionById} 
           toggleFavorite={toggleFavorite}
         />
       }

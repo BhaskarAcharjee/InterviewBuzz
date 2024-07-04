@@ -53,13 +53,14 @@ router.patch("/:id", getQuestion, async (req, res) => {
   }
 });
 
-// Delete a question
+// Delete a question by ID
 router.delete("/:id", getQuestion, async (req, res) => {
   try {
     await res.question.remove();
-    res.json({ message: "Question deleted" });
+    res.json({ message: "Question deleted successfully" });
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    console.error("Error deleting question:", err); // Log detailed error message
+    res.status(500).json({ message: "Failed to delete question" }); // Return an error response
   }
 });
 
