@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import BehavioralQuestionCard from "./BehavioralQuestionCard";
 import "./BehavioralQuestions.css";
+import BehavioralQuestionModal from "../../components/Modal/BehavioralQuestionModal";
 
 const BehavioralQuestionList = ({
   questions,
@@ -11,7 +12,15 @@ const BehavioralQuestionList = ({
 }) => {
   const [view, setView] = useState("grid");
   const [filter, setFilter] = useState("all");
+  const [exportContent, setExportContent] = useState("");
+  const [isImportModalOpen, setIsImportModalOpen] = useState(false);
+
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Function to prepare export content
+    prepareExportContent();
+  }, [questions]);
 
   const handleCreateNewClick = () => {
     navigate("/behavioral/create");
@@ -29,14 +38,28 @@ const BehavioralQuestionList = ({
     (q) => filter === "all" || (filter === "favorites" && q.isFavorite)
   );
 
-  const handleImportQuestions = () => {
+  const prepareExportContent = () => {
+    const formattedContent = filteredQuestions
+      .map((q) => {
+        return `Q. ${q.question}\nAns. ${q.answer}\n\n`;
+      })
+      .join("");
+    setExportContent(formattedContent);
+  };
+
+  const handleImportQuestions = (importText) => {
     // Implement your import logic here
-    alert("Implement import functionality");
+    console.log(importText);
+    alert("Import functionality implementation coming soon...");
   };
 
   const handleExportQuestions = () => {
-    // Implement your export logic here
-    alert("Implement export functionality");
+    const element = document.createElement("a");
+    const file = new Blob([exportContent], { type: "text/plain" });
+    element.href = URL.createObjectURL(file);
+    element.download = "questions_export.txt";
+    document.body.appendChild(element);
+    element.click();
   };
 
   return (
@@ -48,7 +71,10 @@ const BehavioralQuestionList = ({
           Create New Question
         </button>
         <div className="import-export-buttons">
-          <button className="import-btn" onClick={handleImportQuestions}>
+          <button
+            className="import-btn"
+            onClick={() => setIsImportModalOpen(true)}
+          >
             Import
           </button>
           <button className="export-btn" onClick={handleExportQuestions}>
@@ -92,6 +118,11 @@ const BehavioralQuestionList = ({
           <div className="no-questions">Nothing to display</div>
         )}
       </div>
+      <BehavioralQuestionModal
+        isOpen={isImportModalOpen}
+        onClose={() => setIsImportModalOpen(false)}
+        onImport={handleImportQuestions}
+      />
     </div>
   );
 };

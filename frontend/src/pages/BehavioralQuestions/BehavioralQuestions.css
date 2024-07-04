@@ -219,10 +219,20 @@
   background-color: #004494;
 }
 
+/* Detail Page */
+
 .question-detail-container {
   padding: 20px;
   max-width: 800px;
   margin: 0 auto;
+}
+
+.question-detail-container .timestamps {
+  margin-top: 20px;
+  font-size: 0.6em;
+  color: #555;
+  display: flex;
+  justify-content: space-between;
 }
 
 .back-btn {
@@ -321,5 +331,19 @@
 
   .toggle-view-btn {
     display: none;
+  }
+
+  .create-new-btn {
+    padding: 2px 5px;
+    margin-right: 10px;
+  }
+
+  .nav-btn {
+    padding: 5px 10px;
+    height: 30px;
+  }
+
+  .back-btn {
+    margin-top: 0;
   }
 }

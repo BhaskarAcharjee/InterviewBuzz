@@ -27,6 +27,9 @@ const BehavioralQuestionDetail = ({ questions, setQuestions }) => {
     }
   };
 
+  const formattedCreatedAt = new Date(question.createdAt).toLocaleString();
+  const formattedUpdatedAt = new Date(question.updatedAt).toLocaleString();
+
   return (
     <div className="question-detail-container">
       <div className="card">
@@ -34,6 +37,10 @@ const BehavioralQuestionDetail = ({ questions, setQuestions }) => {
           <h1>{question.question}</h1>
         </div>
         <p>{question.answer}</p>
+        <div className="timestamps">
+          <p>Created at: {formattedCreatedAt}</p>
+          <p>Modified at: {formattedUpdatedAt}</p>
+        </div>
       </div>
       <div className="navigation">
         <button
