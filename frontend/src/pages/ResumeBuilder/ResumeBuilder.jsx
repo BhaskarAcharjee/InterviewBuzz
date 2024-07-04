@@ -1,213 +1,685 @@
-import React, { useState } from "react";
+import React from "react";
 import "./ResumeBuilder.css";
 
 const ResumeBuilder = () => {
-  const [formData, setFormData] = useState({
-    fullName: "",
-    email: "",
-    phone: "",
-    address: "",
-    education: [],
-    experience: [],
-    skills: "",
-    additionalInfo: "",
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+  // Function to preview uploaded image
+  const previewImage = () => {
+    // const reader = new FileReader();
+    // reader.readAsDataURL(imageElem.files[0]);
+    // reader.onload = function (event) {
+    //   document.getElementById('image_dsp').src = event.target.result;
+    // };
   };
 
-  const handleEducationChange = (index, e) => {
-    const { name, value } = e.target;
-    const updatedEducation = [...formData.education];
-    updatedEducation[index][name] = value;
-    setFormData({
-      ...formData,
-      education: updatedEducation,
-    });
+  // Function to generate CV
+  const generateCV = () => {
+    // const userData = getUserInputs();
+    // displayCV(userData);
   };
 
-  const handleExperienceChange = (index, e) => {
-    const { name, value } = e.target;
-    const updatedExperience = [...formData.experience];
-    updatedExperience[index][name] = value;
-    setFormData({
-      ...formData,
-      experience: updatedExperience,
-    });
+  // Function to print CV
+  const printCV = () => {
+    window.print();
   };
-
-  const handleAddEducation = () => {
-    setFormData({
-      ...formData,
-      education: [...formData.education, { institute: "", degree: "", year: "" }],
-    });
-  };
-
-  const handleAddExperience = () => {
-    setFormData({
-      ...formData,
-      experience: [...formData.experience, { position: "", company: "", year: "" }],
-    });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission logic here (e.g., send data to server, save to local storage)
-    console.log(formData);
-    // Reset form data after submission
-    setFormData({
-      fullName: "",
-      email: "",
-      phone: "",
-      address: "",
-      education: [],
-      experience: [],
-      skills: "",
-      additionalInfo: "",
-    });
-  };
-
   return (
-    <div className="resume-builder-container">
-      <h1>Resume Builder</h1>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="fullName">Full Name</label>
-          <input
-            type="text"
-            id="fullName"
-            name="fullName"
-            value={formData.fullName}
-            onChange={handleChange}
-            required
-          />
+    <div>
+      <section id="about-sc" class="">
+        <div class="container">
+          <div class="about-cnt">
+            <form action="" class="cv-form" id="cv-form">
+              <div class="cv-form-blk">
+                <div class="cv-form-row-title">
+                  <h3>about section</h3>
+                </div>
+                <div class="cv-form-row cv-form-row-about">
+                  <div class="cols-3">
+                    <div class="form-elem">
+                      <label for="" class="form-label">
+                        First Name
+                      </label>
+                      <input
+                        name="firstname"
+                        type="text"
+                        class="form-control firstname"
+                        id=""
+                        onChange={generateCV()}
+                        placeholder="e.g. John"
+                      />
+                      <span class="form-text"></span>
+                    </div>
+                    <div class="form-elem">
+                      <label for="" class="form-label">
+                        Middle Name <span class="opt-text">(optional)</span>
+                      </label>
+                      <input
+                        name="middlename"
+                        type="text"
+                        class="form-control middlename"
+                        id=""
+                        onChange={generateCV()}
+                        placeholder="e.g. Herbert"
+                      />
+                      <span class="form-text"></span>
+                    </div>
+                    <div class="form-elem">
+                      <label for="" class="form-label">
+                        Last Name
+                      </label>
+                      <input
+                        name="lastname"
+                        type="text"
+                        class="form-control lastname"
+                        id=""
+                        onChange={generateCV()}
+                        placeholder="e.g. Doe"
+                      />
+                      <span class="form-text"></span>
+                    </div>
+                  </div>
+
+                  <div class="cols-3">
+                    <div class="form-elem">
+                      <label for="" class="form-label">
+                        Your Image
+                      </label>
+                      <input
+                        name="image"
+                        type="file"
+                        class="form-control image"
+                        id=""
+                        accept="image/*"
+                        onchange={previewImage()}
+                      />
+                    </div>
+                    <div class="form-elem">
+                      <label for="" class="form-label">
+                        Designation
+                      </label>
+                      <input
+                        name="designation"
+                        type="text"
+                        class="form-control designation"
+                        id=""
+                        onChange={generateCV()}
+                        placeholder="e.g. Sr.Accountants"
+                      />
+                      <span class="form-text"></span>
+                    </div>
+                    <div class="form-elem">
+                      <label for="" class="form-label">
+                        Address
+                      </label>
+                      <input
+                        name="address"
+                        type="text"
+                        class="form-control address"
+                        id=""
+                        onChange={generateCV()}
+                        placeholder="e.g. Lake Street-23"
+                      />
+                      <span class="form-text"></span>
+                    </div>
+                  </div>
+
+                  <div class="cols-3">
+                    <div class="form-elem">
+                      <label for="" class="form-label">
+                        Email
+                      </label>
+                      <input
+                        name="email"
+                        type="text"
+                        class="form-control email"
+                        id=""
+                        onChange={generateCV()}
+                        placeholder="e.g. johndoe@gmail.com"
+                      />
+                      <span class="form-text"></span>
+                    </div>
+                    <div class="form-elem">
+                      <label for="" class="form-label">
+                        Phone No:
+                      </label>
+                      <input
+                        name="phoneno"
+                        type="text"
+                        class="form-control phoneno"
+                        id=""
+                        onChange={generateCV()}
+                        placeholder="e.g. 456-768-798, 567.654.002"
+                      />
+                      <span class="form-text"></span>
+                    </div>
+                    <div class="form-elem">
+                      <label for="" class="form-label">
+                        Summary
+                      </label>
+                      <input
+                        name="summary"
+                        type="text"
+                        class="form-control summary"
+                        id=""
+                        onChange={generateCV()}
+                        placeholder="e.g. Doe"
+                      />
+                      <span class="form-text"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="cv-form-blk">
+                <div class="cv-form-row-title">
+                  <h3>achievements</h3>
+                </div>
+
+                <div class="row-separator repeater">
+                  <div class="repeater" data-repeater-list="group-a">
+                    <div data-repeater-item>
+                      <div class="cv-form-row cv-form-row-achievement">
+                        <div class="cols-2">
+                          <div class="form-elem">
+                            <label for="" class="form-label">
+                              Title
+                            </label>
+                            <input
+                              name="achieve_title"
+                              type="text"
+                              class="form-control achieve_title"
+                              id=""
+                              onChange={generateCV()}
+                              placeholder="e.g. johndoe@gmail.com"
+                            />
+                            <span class="form-text"></span>
+                          </div>
+                          <div class="form-elem">
+                            <label for="" class="form-label">
+                              Description
+                            </label>
+                            <input
+                              name="achieve_description"
+                              type="text"
+                              class="form-control achieve_description"
+                              id=""
+                              onChange={generateCV()}
+                              placeholder="e.g. johndoe@gmail.com"
+                            />
+                            <span class="form-text"></span>
+                          </div>
+                        </div>
+                        <button
+                          data-repeater-delete
+                          type="button"
+                          class="repeater-remove-btn"
+                        >
+                          -
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <button
+                    type="button"
+                    data-repeater-create
+                    value="Add"
+                    class="repeater-add-btn"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+
+              <div class="cv-form-blk">
+                <div class="cv-form-row-title">
+                  <h3>experience</h3>
+                </div>
+
+                <div class="row-separator repeater">
+                  <div class="repeater" data-repeater-list="group-b">
+                    <div data-repeater-item>
+                      <div class="cv-form-row cv-form-row-experience">
+                        <div class="cols-3">
+                          <div class="form-elem">
+                            <label for="" class="form-label">
+                              Title
+                            </label>
+                            <input
+                              name="exp_title"
+                              type="text"
+                              class="form-control exp_title"
+                              id=""
+                              onChange={generateCV()}
+                            />
+                            <span class="form-text"></span>
+                          </div>
+                          <div class="form-elem">
+                            <label for="" class="form-label">
+                              Company / Organization
+                            </label>
+                            <input
+                              name="exp_organization"
+                              type="text"
+                              class="form-control exp_organization"
+                              id=""
+                              onChange={generateCV()}
+                            />
+                            <span class="form-text"></span>
+                          </div>
+                          <div class="form-elem">
+                            <label for="" class="form-label">
+                              Location
+                            </label>
+                            <input
+                              name="exp_location"
+                              type="text"
+                              class="form-control exp_location"
+                              id=""
+                              onChange={generateCV()}
+                            />
+                            <span class="form-text"></span>
+                          </div>
+                        </div>
+
+                        <div class="cols-3">
+                          <div class="form-elem">
+                            <label for="" class="form-label">
+                              Start Date
+                            </label>
+                            <input
+                              name="exp_start_date"
+                              type="date"
+                              class="form-control exp_start_date"
+                              id=""
+                              onChange={generateCV()}
+                            />
+                            <span class="form-text"></span>
+                          </div>
+                          <div class="form-elem">
+                            <label for="" class="form-label">
+                              End Date
+                            </label>
+                            <input
+                              name="exp_end_date"
+                              type="date"
+                              class="form-control exp_end_date"
+                              id=""
+                              onChange={generateCV()}
+                            />
+                            <span class="form-text"></span>
+                          </div>
+                          <div class="form-elem">
+                            <label for="" class="form-label">
+                              Description
+                            </label>
+                            <input
+                              name="exp_description"
+                              type="text"
+                              class="form-control exp_description"
+                              id=""
+                              onChange={generateCV()}
+                            />
+                            <span class="form-text"></span>
+                          </div>
+                        </div>
+
+                        <button
+                          data-repeater-delete
+                          type="button"
+                          class="repeater-remove-btn"
+                        >
+                          -
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <button
+                    type="button"
+                    data-repeater-create
+                    value="Add"
+                    class="repeater-add-btn"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+
+              <div class="cv-form-blk">
+                <div class="cv-form-row-title">
+                  <h3>education</h3>
+                </div>
+
+                <div class="row-separator repeater">
+                  <div class="repeater" data-repeater-list="group-c">
+                    <div data-repeater-item>
+                      <div class="cv-form-row cv-form-row-experience">
+                        <div class="cols-3">
+                          <div class="form-elem">
+                            <label for="" class="form-label">
+                              School
+                            </label>
+                            <input
+                              name="edu_school"
+                              type="text"
+                              class="form-control edu_school"
+                              id=""
+                              onChange={generateCV()}
+                            />
+                            <span class="form-text"></span>
+                          </div>
+                          <div class="form-elem">
+                            <label for="" class="form-label">
+                              Degree
+                            </label>
+                            <input
+                              name="edu_degree"
+                              type="text"
+                              class="form-control edu_degree"
+                              id=""
+                              onChange={generateCV()}
+                            />
+                            <span class="form-text"></span>
+                          </div>
+                          <div class="form-elem">
+                            <label for="" class="form-label">
+                              City
+                            </label>
+                            <input
+                              name="edu_city"
+                              type="text"
+                              class="form-control edu_city"
+                              id=""
+                              onChange={generateCV()}
+                            />
+                            <span class="form-text"></span>
+                          </div>
+                        </div>
+
+                        <div class="cols-3">
+                          <div class="form-elem">
+                            <label for="" class="form-label">
+                              Start Date
+                            </label>
+                            <input
+                              name="edu_start_date"
+                              type="date"
+                              class="form-control edu_start_date"
+                              id=""
+                              onChange={generateCV()}
+                            />
+                            <span class="form-text"></span>
+                          </div>
+                          <div class="form-elem">
+                            <label for="" class="form-label">
+                              End Date
+                            </label>
+                            <input
+                              name="edu_graduation_date"
+                              type="date"
+                              class="form-control edu_graduation_date"
+                              id=""
+                              onChange={generateCV()}
+                            />
+                            <span class="form-text"></span>
+                          </div>
+                          <div class="form-elem">
+                            <label for="" class="form-label">
+                              Description
+                            </label>
+                            <input
+                              name="edu_description"
+                              type="text"
+                              class="form-control edu_description"
+                              id=""
+                              onChange={generateCV()}
+                            />
+                            <span class="form-text"></span>
+                          </div>
+                        </div>
+
+                        <button
+                          data-repeater-delete
+                          type="button"
+                          class="repeater-remove-btn"
+                        >
+                          -
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <button
+                    type="button"
+                    data-repeater-create
+                    value="Add"
+                    class="repeater-add-btn"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+
+              <div class="cv-form-blk">
+                <div class="cv-form-row-title">
+                  <h3>projects</h3>
+                </div>
+
+                <div class="row-separator repeater">
+                  <div class="repeater" data-repeater-list="group-d">
+                    <div data-repeater-item>
+                      <div class="cv-form-row cv-form-row-experience">
+                        <div class="cols-3">
+                          <div class="form-elem">
+                            <label for="" class="form-label">
+                              Project Name
+                            </label>
+                            <input
+                              name="proj_title"
+                              type="text"
+                              class="form-control proj_title"
+                              id=""
+                              onChange={generateCV()}
+                            />
+                            <span class="form-text"></span>
+                          </div>
+                          <div class="form-elem">
+                            <label for="" class="form-label">
+                              Project link
+                            </label>
+                            <input
+                              name="proj_link"
+                              type="text"
+                              class="form-control proj_link"
+                              id=""
+                              onChange={generateCV()}
+                            />
+                            <span class="form-text"></span>
+                          </div>
+                          <div class="form-elem">
+                            <label for="" class="form-label">
+                              Description
+                            </label>
+                            <input
+                              name="proj_description"
+                              type="text"
+                              class="form-control proj_description"
+                              id=""
+                              onChange={generateCV()}
+                            />
+                            <span class="form-text"></span>
+                          </div>
+                        </div>
+                        <button
+                          data-repeater-delete
+                          type="button"
+                          class="repeater-remove-btn"
+                        >
+                          -
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <button
+                    type="button"
+                    data-repeater-create
+                    value="Add"
+                    class="repeater-add-btn"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+
+              <div class="cv-form-blk">
+                <div class="cv-form-row-title">
+                  <h3>skills</h3>
+                </div>
+
+                <div class="row-separator repeater">
+                  <div class="repeater" data-repeater-list="group-e">
+                    <div data-repeater-item>
+                      <div class="cv-form-row cv-form-row-skills">
+                        <div class="form-elem">
+                          <label for="" class="form-label">
+                            Skill
+                          </label>
+                          <input
+                            name="skill"
+                            type="text"
+                            class="form-control skill"
+                            id=""
+                            onChange={generateCV()}
+                          />
+                          <span class="form-text"></span>
+                        </div>
+
+                        <button
+                          data-repeater-delete
+                          type="button"
+                          class="repeater-remove-btn"
+                        >
+                          -
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <button
+                    type="button"
+                    data-repeater-create
+                    value="Add"
+                    class="repeater-add-btn"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
-        <div className="form-group">
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="phone">Phone</label>
-          <input
-            type="tel"
-            id="phone"
-            name="phone"
-            value={formData.phone}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="address">Address</label>
-          <textarea
-            id="address"
-            name="address"
-            value={formData.address}
-            onChange={handleChange}
-            required
-          ></textarea>
-        </div>
-        <div className="form-group">
-          <label>Education</label>
-          {formData.education.map((edu, index) => (
-            <div key={index} className="education-item">
-              <input
-                type="text"
-                name="institute"
-                placeholder="Institute"
-                value={edu.institute}
-                onChange={(e) => handleEducationChange(index, e)}
-                required
-              />
-              <input
-                type="text"
-                name="degree"
-                placeholder="Degree"
-                value={edu.degree}
-                onChange={(e) => handleEducationChange(index, e)}
-                required
-              />
-              <input
-                type="text"
-                name="year"
-                placeholder="Year"
-                value={edu.year}
-                onChange={(e) => handleEducationChange(index, e)}
-                required
-              />
+      </section>
+
+      <section id="preview-sc" class="print_area">
+        <div class="container">
+          <div class="preview-cnt">
+            <div class="preview-cnt-l bg-green text-white">
+              <div class="preview-blk">
+                <div class="preview-image">
+                  <img src="" alt="" id="image_dsp" />
+                </div>
+                <div class="preview-item preview-item-name">
+                  <span class="preview-item-val fw-6" id="fullname_dsp"></span>
+                </div>
+                <div class="preview-item">
+                  <span
+                    class="preview-item-val text-uppercase fw-6 ls-1"
+                    id="designation_dsp"
+                  ></span>
+                </div>
+              </div>
+
+              <div class="preview-blk">
+                <div class="preview-blk-title">
+                  <h3>about</h3>
+                </div>
+                <div class="preview-blk-list">
+                  <div class="preview-item">
+                    <span class="preview-item-val" id="phoneno_dsp"></span>
+                  </div>
+                  <div class="preview-item">
+                    <span class="preview-item-val" id="email_dsp"></span>
+                  </div>
+                  <div class="preview-item">
+                    <span class="preview-item-val" id="address_dsp"></span>
+                  </div>
+                  <div class="preview-item">
+                    <span class="preview-item-val" id="summary_dsp"></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="preview-blk">
+                <div class="preview-blk-title">
+                  <h3>skills</h3>
+                </div>
+                <div class="skills-items preview-blk-list" id="skills_dsp">
+                  {/* <!-- skills list here --> */}
+                </div>
+              </div>
             </div>
-          ))}
-          <button type="button" className="add-btn" onClick={handleAddEducation}>
-            Add Education
+
+            <div class="preview-cnt-r bg-white">
+              <div class="preview-blk">
+                <div class="preview-blk-title">
+                  <h3>Achievements</h3>
+                </div>
+                <div
+                  class="achievements-items preview-blk-list"
+                  id="achievements_dsp"
+                ></div>
+              </div>
+
+              <div class="preview-blk">
+                <div class="preview-blk-title">
+                  <h3>educations</h3>
+                </div>
+                <div
+                  class="educations-items preview-blk-list"
+                  id="educations_dsp"
+                ></div>
+              </div>
+
+              <div class="preview-blk">
+                <div class="preview-blk-title">
+                  <h3>experiences</h3>
+                </div>
+                <div
+                  class="experiences-items preview-blk-list"
+                  id="experiences_dsp"
+                ></div>
+              </div>
+
+              <div class="preview-blk">
+                <div class="preview-blk-title">
+                  <h3>projects</h3>
+                </div>
+                <div
+                  class="projects-items preview-blk-list"
+                  id="projects_dsp"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="print-btn-sc">
+        <div class="container">
+          <button
+            type="button"
+            class="print-btn btn btn-primary"
+            onclick={printCV()}
+          >
+            Print CV
           </button>
         </div>
-        <div className="form-group">
-          <label>Work Experience</label>
-          {formData.experience.map((exp, index) => (
-            <div key={index} className="experience-item">
-              <input
-                type="text"
-                name="position"
-                placeholder="Position"
-                value={exp.position}
-                onChange={(e) => handleExperienceChange(index, e)}
-                required
-              />
-              <input
-                type="text"
-                name="company"
-                placeholder="Company"
-                value={exp.company}
-                onChange={(e) => handleExperienceChange(index, e)}
-                required
-              />
-              <input
-                type="text"
-                name="year"
-                placeholder="Year"
-                value={exp.year}
-                onChange={(e) => handleExperienceChange(index, e)}
-                required
-              />
-            </div>
-          ))}
-          <button type="button" className="add-btn" onClick={handleAddExperience}>
-            Add Experience
-          </button>
-        </div>
-        <div className="form-group">
-          <label htmlFor="skills">Skills</label>
-          <textarea
-            id="skills"
-            name="skills"
-            value={formData.skills}
-            onChange={handleChange}
-            required
-          ></textarea>
-        </div>
-        <div className="form-group">
-          <label htmlFor="additionalInfo">Additional Information</label>
-          <textarea
-            id="additionalInfo"
-            name="additionalInfo"
-            value={formData.additionalInfo}
-            onChange={handleChange}
-          ></textarea>
-        </div>
-        <button type="submit">Save Resume</button>
-      </form>
+      </section>
     </div>
   );
 };
