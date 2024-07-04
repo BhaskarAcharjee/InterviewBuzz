@@ -3,11 +3,13 @@ import { useNavigate } from "react-router-dom";
 import BehavioralQuestionCard from "./BehavioralQuestionCard";
 import "./BehavioralQuestions.css";
 import BehavioralQuestionModal from "../../components/Modal/BehavioralQuestionModal";
+import { importQuestions } from "../../services/api";
 
 const BehavioralQuestionList = ({
   questions,
   onEdit,
   onDelete,
+  setQuestions,
   toggleFavorite,
 }) => {
   const [view, setView] = useState("grid");
@@ -47,10 +49,13 @@ const BehavioralQuestionList = ({
     setExportContent(formattedContent);
   };
 
-  const handleImportQuestions = (importText) => {
-    // Implement your import logic here
-    console.log(importText);
-    alert("Import functionality implementation coming soon...");
+  const handleImportQuestions = async (questionsArray) => {
+    try {
+      const response = await importQuestions(questionsArray);
+      setQuestions([...questions, ...response.data]);
+    } catch (error) {
+      console.error("Error importing questions:", error);
+    }
   };
 
   const handleExportQuestions = () => {

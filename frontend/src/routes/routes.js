@@ -26,6 +26,7 @@ const routes = (
       element={
         <BehavioralQuestionList
           questions={questions}
+          setQuestions={setQuestions}
           onEdit={editQuestion}
           onDelete={deleteQuestionById}
           toggleFavorite={toggleFavorite}

@@ -28,6 +28,18 @@ router.post("/", async (req, res) => {
   }
 });
 
+// Import multiple questions
+router.post("/import", async (req, res) => {
+  const questions = req.body.questions;
+
+  try {
+    const newQuestions = await BehavioralQuestion.insertMany(questions);
+    res.status(201).json(newQuestions);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+});
+
 // Get a question by ID
 router.get("/:id", getQuestion, (req, res) => {
   res.json(res.question);
