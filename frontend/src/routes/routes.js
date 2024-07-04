@@ -13,6 +13,7 @@ import InterviewExperiences from "../pages/InterviewExperiences/InterviewExperie
 
 const routes = (
   questions,
+  setQuestions,
   addNewQuestion,
   editQuestion,
   deleteQuestionById,
@@ -26,7 +27,7 @@ const routes = (
         <BehavioralQuestionList
           questions={questions}
           onEdit={editQuestion}
-          onDelete={deleteQuestionById} 
+          onDelete={deleteQuestionById}
           toggleFavorite={toggleFavorite}
         />
       }
@@ -37,7 +38,7 @@ const routes = (
     />
     <Route
       path="/behavioral/:id"
-      element={<BehavioralQuestionDetail questions={questions} />}
+      element={<BehavioralQuestionDetail questions={questions} setQuestions={setQuestions} />} // Pass setQuestions here
     />
     <Route
       path="/behavioral/edit/:id"

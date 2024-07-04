@@ -54,13 +54,21 @@ router.patch("/:id", getQuestion, async (req, res) => {
 });
 
 // Delete a question by ID
-router.delete("/:id", getQuestion, async (req, res) => {
+router.delete('/:id', async (req, res) => {
   try {
-    await res.question.remove();
+    const question = await BehavioralQuestion.findById(req.params.id);
+    if (!question) {
+      console.error("Question not found for ID:", req.params.id);
+      return res.status(404).json({ message: "Cannot find question" });
+    }
+
+    console.log("Question found, attempting to delete:", question);
+    await BehavioralQuestion.deleteOne({ _id: req.params.id });
+    console.log("Question deleted successfully");
     res.json({ message: "Question deleted successfully" });
   } catch (err) {
     console.error("Error deleting question:", err); // Log detailed error message
-    res.status(500).json({ message: "Failed to delete question" }); // Return an error response
+    res.status(500).json({ message: "Failed to delete question", error: err.message }); // Return an error response
   }
 });
 
@@ -73,6 +81,7 @@ async function getQuestion(req, res, next) {
       return res.status(404).json({ message: "Cannot find question" });
     }
   } catch (err) {
+    console.error(`Error finding question with ID ${req.params.id}:`, err); // Enhanced logging
     return res.status(500).json({ message: err.message });
   }
 

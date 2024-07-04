@@ -1,9 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
-import Sidebar from './components/Sidebar/Sidebar';
-import routes from './routes/routes';
-import './App.css';
-import { getQuestions, createQuestion, updateQuestion, deleteQuestion } from './services/api';
+import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router } from "react-router-dom";
+import Sidebar from "./components/Sidebar/Sidebar";
+import routes from "./routes/routes";
+import "./App.css";
+import {
+  getQuestions,
+  createQuestion,
+  updateQuestion,
+  deleteQuestion,
+} from "./services/api";
 
 const App = () => {
   const [questions, setQuestions] = useState([]);
@@ -17,7 +22,7 @@ const App = () => {
       const response = await getQuestions();
       setQuestions(response.data);
     } catch (error) {
-      console.error('Error fetching questions:', error);
+      console.error("Error fetching questions:", error);
     }
   };
 
@@ -26,18 +31,23 @@ const App = () => {
       const response = await createQuestion(newQuestion);
       setQuestions([...questions, response.data]);
     } catch (error) {
-      console.error('Error adding question:', error);
+      console.error("Error adding question:", error);
     }
   };
 
   const editQuestion = async (updatedQuestion) => {
     try {
-      const response = await updateQuestion(updatedQuestion._id, updatedQuestion);
+      const response = await updateQuestion(
+        updatedQuestion._id,
+        updatedQuestion
+      );
       setQuestions(
-        questions.map((q) => (q._id === updatedQuestion._id ? response.data : q))
+        questions.map((q) =>
+          q._id === updatedQuestion._id ? response.data : q
+        )
       );
     } catch (error) {
-      console.error('Error editing question:', error);
+      console.error("Error editing question:", error);
     }
   };
 
@@ -46,7 +56,7 @@ const App = () => {
       await deleteQuestion(id);
       setQuestions(questions.filter((q) => q._id !== id));
     } catch (error) {
-      console.error('Error deleting question:', error);
+      console.error("Error deleting question:", error);
     }
   };
 
@@ -61,7 +71,14 @@ const App = () => {
       <div className="App">
         <Sidebar />
         <main className="main-content">
-          {routes(questions, addNewQuestion, editQuestion, deleteQuestionById, toggleFavorite)}
+          {routes(
+            questions,
+            setQuestions,
+            addNewQuestion,
+            editQuestion,
+            deleteQuestionById,
+            toggleFavorite
+          )}
         </main>
       </div>
     </Router>

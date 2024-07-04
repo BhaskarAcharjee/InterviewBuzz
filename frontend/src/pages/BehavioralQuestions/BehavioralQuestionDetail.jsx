@@ -3,7 +3,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import "./BehavioralQuestions.css";
 import { deleteQuestion } from "../../services/api";
 
-const BehavioralQuestionDetail = ({ questions }) => {
+const BehavioralQuestionDetail = ({ questions, setQuestions }) => {
   const { id } = useParams();
   const navigate = useNavigate();
   const question = questions.find((q) => q._id === id);
@@ -31,13 +31,12 @@ const BehavioralQuestionDetail = ({ questions }) => {
   const handleDelete = async () => {
     try {
       await deleteQuestion(question._id);
-      navigate("/behavioral");
+      setQuestions(questions.filter((q) => q._id !== id)); // Update state
+      navigate("/behavioral"); // Redirect to main page
     } catch (error) {
-      console.error("Error deleting question:", error); // Log detailed Axios error
-      // Handle error display or fallback as needed
+      console.error("Error deleting question:", error);
     }
   };
-  
 
   return (
     <div className="question-detail-container">
@@ -45,7 +44,10 @@ const BehavioralQuestionDetail = ({ questions }) => {
         <div className="card-header">
           <h1>{question.question}</h1>
           <div className="card-buttons">
-            <Link to={`/behavioral/edit/${question._id}`} className="edit-button">
+            <Link
+              to={`/behavioral/edit/${question._id}`}
+              className="edit-button"
+            >
               Edit
             </Link>
             <button className="delete-button" onClick={handleDelete}>
