@@ -49,16 +49,20 @@ const BehavioralQuestionList = ({ questions, onEdit, toggleFavorite }) => {
         </button>
       </div>
       <div className={`question-list ${view}`}>
-        {filteredQuestions.map((q) => (
-          <BehavioralQuestionCard
-            key={q._id}
-            _id={q._id}
-            question={q.question}
-            isFavorite={q.isFavorite}
-            onEdit={() => onEdit(q)}
-            toggleFavorite={() => toggleFavorite(q._id)}
-          />
-        ))}
+        {filteredQuestions.length > 0 ? (
+          filteredQuestions.map((q) => (
+            <BehavioralQuestionCard
+              key={q._id}
+              _id={q._id}
+              question={q.question}
+              isFavorite={q.isFavorite}
+              onEdit={() => onEdit(q)}
+              toggleFavorite={() => toggleFavorite(q._id)}
+            />
+          ))
+        ) : (
+          <div className="no-questions">Nothing to display</div>
+        )}
       </div>
     </div>
   );
