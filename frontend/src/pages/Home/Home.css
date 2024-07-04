@@ -49,6 +49,7 @@
   color: white;
   border-radius: 4px;
   cursor: pointer;
+  height: 40px; /* Set explicit height to match input height */
 }
 
 .add-btn:hover {
@@ -73,4 +74,12 @@
 .interview-item span {
   flex: 1;
   text-align: center;
+}
+
+@media (max-width: 768px) {
+  .input-group {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-right: 20px;
+  }
 }

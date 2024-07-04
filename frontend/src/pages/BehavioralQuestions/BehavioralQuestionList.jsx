@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import BehavioralQuestionCard from "./BehavioralQuestionCard";
 import "./BehavioralQuestions.css";
 
-const BehavioralQuestionList = ({ questions, onEdit, toggleFavorite }) => {
-  const [view, setView] = React.useState("grid");
-  const [filter, setFilter] = React.useState("all");
+const BehavioralQuestionList = ({
+  questions,
+  onEdit,
+  onDelete,
+  toggleFavorite,
+}) => {
+  const [view, setView] = useState("grid");
+  const [filter, setFilter] = useState("all");
   const navigate = useNavigate();
 
   const handleCreateNewClick = () => {
@@ -24,25 +29,47 @@ const BehavioralQuestionList = ({ questions, onEdit, toggleFavorite }) => {
     (q) => filter === "all" || (filter === "favorites" && q.isFavorite)
   );
 
+  const handleImportQuestions = () => {
+    // Implement your import logic here
+    alert("Implement import functionality");
+  };
+
+  const handleExportQuestions = () => {
+    // Implement your export logic here
+    alert("Implement export functionality");
+  };
+
   return (
     <div className="behavioral-questions-container">
       <h1>Behavioral Questions</h1>
       <p>Prepare for the most common behavioral questions...</p>
-      <button className="create-new-btn" onClick={handleCreateNewClick}>
-        Create New Question
-      </button>
-      <div className="filter-options">
-        <div
-          className={`filter-tab ${filter === "all" ? "active" : ""}`}
-          onClick={() => handleFilterChange("all")}
-        >
-          All
+      <div className="button-container">
+        <button className="create-new-btn" onClick={handleCreateNewClick}>
+          Create New Question
+        </button>
+        <div className="import-export-buttons">
+          <button className="import-btn" onClick={handleImportQuestions}>
+            Import
+          </button>
+          <button className="export-btn" onClick={handleExportQuestions}>
+            Export
+          </button>
         </div>
-        <div
-          className={`filter-tab ${filter === "favorites" ? "active" : ""}`}
-          onClick={() => handleFilterChange("favorites")}
-        >
-          Favorites
+      </div>
+      <div className="filter-options-container">
+        <div className="filter-options">
+          <div
+            className={`filter-tab ${filter === "all" ? "active" : ""}`}
+            onClick={() => handleFilterChange("all")}
+          >
+            All
+          </div>
+          <div
+            className={`filter-tab ${filter === "favorites" ? "active" : ""}`}
+            onClick={() => handleFilterChange("favorites")}
+          >
+            Favorites
+          </div>
         </div>
         <button className="toggle-view-btn" onClick={handleViewToggle}>
           {view === "grid" ? "Switch to List View" : "Switch to Grid View"}
@@ -57,6 +84,7 @@ const BehavioralQuestionList = ({ questions, onEdit, toggleFavorite }) => {
               question={q.question}
               isFavorite={q.isFavorite}
               onEdit={() => onEdit(q)}
+              onDelete={() => onDelete(q._id)}
               toggleFavorite={() => toggleFavorite(q._id)}
             />
           ))

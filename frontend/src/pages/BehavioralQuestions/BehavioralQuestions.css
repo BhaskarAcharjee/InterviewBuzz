@@ -6,6 +6,35 @@
   margin: 0 auto;
 }
 
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.import-export-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.import-btn,
+.export-btn {
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.import-btn:hover,
+.export-btn:hover {
+  background-color: #0056b3;
+}
+
 .create-new-btn {
   padding: 10px 20px;
   font-size: 1rem;
@@ -14,7 +43,7 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
   transition: background-color 0.3s;
 }
 
@@ -22,29 +51,36 @@
   background-color: #1c7430;
 }
 
-.filter-options {
+.filter-options-container {
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.7); /* Transparent background */
+  border-radius: 10px;
+}
+
+.filter-options {
+  display: flex;
+  gap: 10px;
 }
 
 .filter-tab {
   padding: 10px 20px;
   font-size: 1rem;
   cursor: pointer;
-  background: linear-gradient(135deg, #007bff, #0056b3);
-  color: white;
+  background-color: #f0f0f0; /* Light gray background */
+  color: #333; /* Dark gray text */
   border: none;
-  border-radius: 5px;
-  margin-right: 10px;
-  transition: background-color 0.3s;
+  border-radius: 30px;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .filter-tab:hover,
 .filter-tab.active {
-  background-color: #004494;
+  background-color: #004494; /* Dark blue background on hover and active */
+  color: white; /* White text on hover and active */
 }
 
 .toggle-view-btn {
@@ -69,7 +105,7 @@
 }
 
 .question-list.grid .card {
-  width: calc(33.333% - 20px);
+  width: calc(30% - 20px);
 }
 
 .question-list.list .card {
@@ -79,7 +115,7 @@
 /* Card Styles */
 .card {
   background-color: white;
-  border: 1px solid #ddd;
+  /* border: 1px solid #ddd; */
   border-radius: 8px;
   padding: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -97,16 +133,32 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 10px; /* Add margin to separate header from icons */
+}
+
+.card-header h3 {
+  white-space: nowrap;
+  font-size: 0.9rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: calc(100% - 60px); /* Adjust this value as needed */
 }
 
 .card-icons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.left-icons {
   display: flex;
   gap: 10px;
 }
 
 .edit-icon,
-.favorite-icon {
-  font-size: 1.5rem;
+.favorite-icon,
+.delete-icon {
+  font-size: 1rem;
   cursor: pointer;
   transition: color 0.3s, transform 0.3s;
 }
@@ -116,6 +168,14 @@
 }
 
 .edit-icon:hover {
+  color: #0056b3;
+}
+
+.delete-icon {
+  color: #007bff;
+}
+
+.delete-icon:hover {
   color: #0056b3;
 }
 
@@ -236,10 +296,10 @@
 
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
-  .filter-options {
+  /* .filter-options {
     flex-direction: column;
     align-items: flex-start;
-  }
+  } */
 
   .question-list.grid .card {
     width: calc(50% - 20px);
@@ -248,10 +308,18 @@
   .question-list.list .card {
     width: 100%;
   }
+
+  .toggle-view-btn {
+    display: none;
+  }
 }
 
 @media (max-width: 480px) {
   .question-list.grid .card {
     width: 100%;
+  }
+
+  .toggle-view-btn {
+    display: none;
   }
 }

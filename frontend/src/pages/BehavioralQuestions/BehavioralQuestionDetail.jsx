@@ -1,7 +1,6 @@
 import React from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "./BehavioralQuestions.css";
-import { deleteQuestion } from "../../services/api";
 
 const BehavioralQuestionDetail = ({ questions, setQuestions }) => {
   const { id } = useParams();
@@ -28,32 +27,11 @@ const BehavioralQuestionDetail = ({ questions, setQuestions }) => {
     }
   };
 
-  const handleDelete = async () => {
-    try {
-      await deleteQuestion(question._id);
-      setQuestions(questions.filter((q) => q._id !== id)); // Update state
-      navigate("/behavioral"); // Redirect to main page
-    } catch (error) {
-      console.error("Error deleting question:", error);
-    }
-  };
-
   return (
     <div className="question-detail-container">
       <div className="card">
         <div className="card-header">
           <h1>{question.question}</h1>
-          <div className="card-buttons">
-            <Link
-              to={`/behavioral/edit/${question._id}`}
-              className="edit-button"
-            >
-              Edit
-            </Link>
-            <button className="delete-button" onClick={handleDelete}>
-              Delete
-            </button>
-          </div>
         </div>
         <p>{question.answer}</p>
       </div>
