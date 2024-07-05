@@ -20,6 +20,7 @@ import ResumeBuilder from "./pages/ResumeBuilder/ResumeBuilder";
 import ProfilePage from "./pages/Profile/ProfilePage";
 import Login from "./pages/Auth/Login";
 import Signup from "./pages/Auth/Signup";
+import Hero from "./pages/Hero/Hero";
 import "./App.css";
 import {
   getQuestions,
@@ -115,7 +116,8 @@ const MainContent = ({
       {showSidebar && <Sidebar />}
       <main className="main-content">
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Hero />} />
+          <Route path="/home" element={<Home />} />
           <Route
             path="/behavioral"
             element={
@@ -162,6 +164,7 @@ const MainContent = ({
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="*" element={<ProfilePage />} />
         </Routes>
       </main>
     </div>

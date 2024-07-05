@@ -17,10 +17,10 @@ const Home = () => {
 
   return (
     <div className="home-container">
-      <h2 className="title">Welcome to InterviewBuzz!</h2>
+      <h2 className="title">Prepare for Your Interviews</h2>
       <p className="subtitle">
-        Prepare for your interviews with our comprehensive list of coding and
-        technical questions.
+        Explore our comprehensive list of coding and technical questions,
+        prepare with real-time mock interviews, and track your progress.
       </p>
 
       <div className="section">

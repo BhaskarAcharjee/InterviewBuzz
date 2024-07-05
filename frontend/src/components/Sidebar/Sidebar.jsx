@@ -19,7 +19,9 @@ const Sidebar = () => {
   return (
     <>
       <div className="mobile-header">
-        <h2>Interview Buzz</h2>
+        <NavLink to="/" style={{ textDecoration: "none" }}>
+          <h2>Interview Buzz</h2>
+        </NavLink>
         <div className="header-icons">
           <button className="menu-icon" onClick={toggleSidebar}>
             &#9776;
@@ -41,11 +43,13 @@ const Sidebar = () => {
       </div>
       <div className={`sidebar ${isOpen ? "open" : ""}`}>
         <div className="sidebar-content">
-          <h2>Interview Buzz</h2>
+          <NavLink to="/" style={{ textDecoration: "none" }}>
+            <h2>Interview Buzz</h2>
+          </NavLink>
           <nav>
             <ul>
               <li>
-                <NavLink to="/" onClick={toggleSidebar}>
+                <NavLink to="/home" onClick={toggleSidebar}>
                   Home
                 </NavLink>
               </li>

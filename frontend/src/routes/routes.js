@@ -14,6 +14,7 @@ import ResumeBuilder from "../pages/ResumeBuilder/ResumeBuilder";
 import ProfilePage from "../pages/Profile/ProfilePage";
 import Login from "../pages/Auth/Login";
 import Signup from "../pages/Auth/Signup";
+import Hero from "../pages/Hero/Hero";
 
 const routes = (
   questions,
@@ -24,7 +25,8 @@ const routes = (
   toggleFavorite
 ) => (
   <Routes>
-    <Route path="/" element={<Home />} />
+    <Route path="/" element={<Hero />} />
+    <Route path="/home" element={<Home />} />
     <Route
       path="/behavioral"
       element={
@@ -48,7 +50,7 @@ const routes = (
           questions={questions}
           setQuestions={setQuestions}
         />
-      } // Pass setQuestions here
+      }
     />
     <Route
       path="/behavioral/edit/:id"
@@ -65,6 +67,7 @@ const routes = (
     <Route path="/resume-builder" element={<ResumeBuilder />} />
     <Route path="/login" element={<Login />} />
     <Route path="/signup" element={<Signup />} />
+    <Route path="*" element={<ProfilePage />} /> {/* Fallback route */}
   </Routes>
 );
 
