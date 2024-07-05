@@ -61,111 +61,60 @@ const ResumeBuilder = () => {
     }
   };
 
-  const addAchievement = () => {
+  // Generic function to add an item to a section
+  const addItem = (section, newItem) => {
     setFormData({
       ...formData,
-      achievements: [...formData.achievements, { title: "", description: "" }],
+      [section]: [...formData[section], newItem],
     });
   };
 
-  const removeAchievement = (index) => {
-    const updatedAchievements = formData.achievements.filter(
-      (_, i) => i !== index
-    );
+  // Generic function to remove an item from a section
+  const removeItem = (section, index) => {
+    const updatedSection = formData[section].filter((_, i) => i !== index);
     setFormData({
       ...formData,
-      achievements: updatedAchievements,
+      [section]: updatedSection,
     });
   };
 
-  const addExperience = () => {
-    setFormData({
-      ...formData,
-      experiences: [
-        ...formData.experiences,
-        {
-          title: "",
-          organization: "",
-          location: "",
-          startDate: "",
-          endDate: "",
-          description: "",
-        },
-      ],
-    });
-  };
+  // Specific functions for each section
+  const addAchievement = () =>
+    addItem("achievements", { title: "", description: "" });
+  const removeAchievement = (index) => removeItem("achievements", index);
 
-  const removeExperience = (index) => {
-    const updatedExperiences = formData.experiences.filter(
-      (_, i) => i !== index
-    );
-    setFormData({
-      ...formData,
-      experiences: updatedExperiences,
+  const addExperience = () =>
+    addItem("experiences", {
+      title: "",
+      organization: "",
+      location: "",
+      startDate: "",
+      endDate: "",
+      description: "",
     });
-  };
+  const removeExperience = (index) => removeItem("experiences", index);
 
-  const addEducation = () => {
-    setFormData({
-      ...formData,
-      educations: [
-        ...formData.educations,
-        {
-          edu_school: "",
-          edu_degree: "",
-          edu_city: "",
-          edu_start_date: "",
-          edu_graduation_date: "",
-          edu_description: "",
-        },
-      ],
+  const addEducation = () =>
+    addItem("educations", {
+      edu_school: "",
+      edu_degree: "",
+      edu_city: "",
+      edu_start_date: "",
+      edu_graduation_date: "",
+      edu_description: "",
     });
-  };
+  const removeEducation = (index) => removeItem("educations", index);
 
-  const removeEducation = (index) => {
-    const updatedEducations = formData.educations.filter((_, i) => i !== index);
-    setFormData({
-      ...formData,
-      educations: updatedEducations,
+  const addProject = () =>
+    addItem("projects", {
+      proj_title: "",
+      proj_link: "",
+      proj_description: "",
     });
-  };
+  const removeProject = (index) => removeItem("projects", index);
 
-  const addProject = () => {
-    setFormData({
-      ...formData,
-      projects: [
-        ...formData.projects,
-        {
-          proj_title: "",
-          proj_link: "",
-          proj_description: "",
-        },
-      ],
-    });
-  };
-
-  const removeProject = (index) => {
-    const updatedProjects = formData.projects.filter((_, i) => i !== index);
-    setFormData({
-      ...formData,
-      projects: updatedProjects,
-    });
-  };
-
-  const addSkill = () => {
-    setFormData({
-      ...formData,
-      skills: [...formData.skills, { skill: "" }],
-    });
-  };
-
-  const removeSkill = (index) => {
-    const updatedSkills = formData.skills.filter((_, i) => i !== index);
-    setFormData({
-      ...formData,
-      skills: updatedSkills,
-    });
-  };
+  const addSkill = () => addItem("skills", { skill: "" });
+  const removeSkill = (index) => removeItem("skills", index);
 
   // Function to handle image preview
   const handleImageChange = (e) => {
@@ -798,7 +747,14 @@ const ResumeBuilder = () => {
               {/* Header Section : Preview */}
               <div class="preview-blk">
                 <div class="preview-image">
-                  <img src={formData.image} alt="" id="image_dsp" />
+                  <img
+                    src={
+                      formData.image ||
+                      "https://clipart-library.com/8300/profile-clipart-md.png"
+                    }
+                    alt=""
+                    id="image_dsp"
+                  />
                 </div>
                 <div class="preview-item preview-item-name">
                   <span class="preview-item-val fw-6" id="fullname_dsp">
@@ -892,19 +848,28 @@ const ResumeBuilder = () => {
                   {formData.educations.map((education, index) => (
                     <div key={index} class="preview-item">
                       <h4>{education.edu_school}</h4>
-                      <p>
-                        <strong>Degree:</strong> {education.edu_degree}
-                      </p>
-                      <p>
-                        <strong>City:</strong> {education.edu_city}
-                      </p>
-                      <p>
-                        <strong>Start Date:</strong> {education.edu_start_date}
-                      </p>
-                      <p>
-                        <strong>Graduation Date:</strong>{" "}
-                        {education.edu_graduation_date}
-                      </p>
+                      {education.edu_degree && (
+                        <p>
+                          <strong>Degree:</strong> {education.edu_degree}
+                        </p>
+                      )}
+                      {education.edu_city && (
+                        <p>
+                          <strong>City:</strong> {education.edu_city}
+                        </p>
+                      )}
+                      {education.edu_start_date && (
+                        <p>
+                          <strong>Start Date:</strong>{" "}
+                          {education.edu_start_date}
+                        </p>
+                      )}
+                      {education.edu_graduation_date && (
+                        <p>
+                          <strong>Graduation Date:</strong>{" "}
+                          {education.edu_graduation_date}
+                        </p>
+                      )}
                       <p>{education.edu_description}</p>
                     </div>
                   ))}
@@ -923,12 +888,16 @@ const ResumeBuilder = () => {
                   {formData.experiences.map((experience, index) => (
                     <div key={index} className="experience-item">
                       <h4>{experience.title}</h4>
-                      <p>
-                        {experience.organization}, {experience.location}
-                      </p>
-                      <p>
-                        {experience.startDate} - {experience.endDate}
-                      </p>
+                      {experience.organization && (
+                        <p>
+                          {experience.organization}, {experience.location}
+                        </p>
+                      )}
+                      {experience.startDate && (
+                        <p>
+                          {experience.startDate} - {experience.endDate}
+                        </p>
+                      )}
                       <p>{experience.description}</p>
                     </div>
                   ))}
@@ -947,9 +916,11 @@ const ResumeBuilder = () => {
                   {formData.projects.map((project, index) => (
                     <div key={index} className="preview-item">
                       <h4>{project.proj_title}</h4>
-                      <p>
-                        <strong>Project link:</strong> {project.proj_link}
-                      </p>
+                      {project.proj_link && (
+                        <p>
+                          <strong>Project link:</strong> {project.proj_link}
+                        </p>
+                      )}
                       <p>{project.proj_description}</p>
                     </div>
                   ))}

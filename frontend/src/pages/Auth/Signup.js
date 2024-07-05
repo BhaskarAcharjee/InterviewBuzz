@@ -23,43 +23,55 @@ const Signup = () => {
 
   return (
     <div className="auth-container">
-      <div className="auth-form">
-        <h2>Sign Up</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label>Username</label>
-            <input
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label>Email</label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label>Password</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </div>
-          <button type="submit" className="auth-button">
-            Sign Up
-          </button>
-        </form>
-        <p className="auth-switch">
-          Already have an account? <NavLink to="/login">Log In</NavLink>
-        </p>
+      <div className="auth-content">
+        <div className="auth-image">
+          <img
+            src="https://static.vecteezy.com/system/resources/previews/020/003/925/original/job-interview-graphic-clipart-design-free-png.png"
+            alt="Interview Buzz"
+          />
+        </div>
+        <div className="auth-form">
+          <h2>Join Interview Buzz</h2>
+          <p>
+            Create your account to access top-notch interview resources and
+            start your journey to your dream job!
+          </p>
+          <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label>Username</label>
+              <input
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label>Email</label>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label>Password</label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
+            <button type="submit" className="auth-button">
+              Sign Up
+            </button>
+          </form>
+          <p className="auth-switch">
+            Already have an account? <NavLink to="/login">Log In</NavLink>
+          </p>
+        </div>
       </div>
     </div>
   );
