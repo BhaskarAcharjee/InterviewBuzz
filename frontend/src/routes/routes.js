@@ -12,6 +12,8 @@ import DreamCompany from "../pages/DreamCompany/DreamCompany";
 import InterviewExperiences from "../pages/InterviewExperiences/InterviewExperiences";
 import ResumeBuilder from "../pages/ResumeBuilder/ResumeBuilder";
 import ProfilePage from "../pages/Profile/ProfilePage";
+import Login from "../pages/Auth/Login";
+import Signup from "../pages/Auth/Signup";
 
 const routes = (
   questions,
@@ -41,7 +43,12 @@ const routes = (
     />
     <Route
       path="/behavioral/:id"
-      element={<BehavioralQuestionDetail questions={questions} setQuestions={setQuestions} />} // Pass setQuestions here
+      element={
+        <BehavioralQuestionDetail
+          questions={questions}
+          setQuestions={setQuestions}
+        />
+      } // Pass setQuestions here
     />
     <Route
       path="/behavioral/edit/:id"
@@ -56,6 +63,8 @@ const routes = (
     <Route path="/interview-experiences" element={<InterviewExperiences />} />
     <Route path="/profile" element={<ProfilePage />} />
     <Route path="/resume-builder" element={<ResumeBuilder />} />
+    <Route path="/login" element={<Login />} />
+    <Route path="/signup" element={<Signup />} />
   </Routes>
 );
 

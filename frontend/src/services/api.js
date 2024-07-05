@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API_URL =
-  "https://interviewgenius.onrender.com/api/behavioral-questions" ||
+  // "https://interviewgenius.onrender.com/api/behavioral-questions" ||
   "http://localhost:5000/api/behavioral-questions";
 
 export const getQuestions = () => axios.get(API_URL);

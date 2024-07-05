@@ -1,9 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import { getCurrentUser } from "../../services/auth";
 import "./Sidebar.css";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const userData = getCurrentUser();
+    setUser(userData);
+  }, []);
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
@@ -17,13 +24,19 @@ const Sidebar = () => {
           <button className="menu-icon" onClick={toggleSidebar}>
             &#9776;
           </button>
-          <NavLink to="/profile">
-            <img
-              width="25"
-              src="https://img.icons8.com/ios-filled/50/user-male-circle.png"
-              alt="Profile"
-            />
-          </NavLink>
+          {user ? (
+            <NavLink to="/profile">
+              <img
+                width="25"
+                src="https://img.icons8.com/ios-filled/50/user-male-circle.png"
+                alt="Profile"
+              />
+            </NavLink>
+          ) : (
+            <NavLink to="/login">
+              <button className="login-button">Log In</button>
+            </NavLink>
+          )}
         </div>
       </div>
       <div className={`sidebar ${isOpen ? "open" : ""}`}>
@@ -74,16 +87,24 @@ const Sidebar = () => {
             </ul>
           </nav>
         </div>
-        <div className="sidebar-profile">
-          <NavLink to="/profile" onClick={toggleSidebar}>
-            <img
-              width="25"
-              src="https://img.icons8.com/ios-filled/50/user-male-circle.png"
-              alt="Profile"
-            />
-            <span>Profile</span>
-          </NavLink>
-        </div>
+        {user ? (
+          <div className="sidebar-profile">
+            <NavLink to="/profile" onClick={toggleSidebar}>
+              <img
+                width="25"
+                src="https://img.icons8.com/ios-filled/50/user-male-circle.png"
+                alt="Profile"
+              />
+              <span>Profile</span>
+            </NavLink>
+          </div>
+        ) : (
+          <div className="sidebar-profile">
+            <NavLink to="/login" onClick={toggleSidebar}>
+              <span>Log In</span>
+            </NavLink>
+          </div>
+        )}
       </div>
     </>
   );

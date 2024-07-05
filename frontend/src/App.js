@@ -1,7 +1,25 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 import Sidebar from "./components/Sidebar/Sidebar";
-import routes from "./routes/routes";
+import Home from "./pages/Home/Home";
+import BehavioralQuestionList from "./pages/BehavioralQuestions/BehavioralQuestionList";
+import BehavioralQuestionCreate from "./pages/BehavioralQuestions/BehavioralQuestionCreate";
+import BehavioralQuestionDetail from "./pages/BehavioralQuestions/BehavioralQuestionDetail";
+import BehavioralQuestionEdit from "./pages/BehavioralQuestions/BehavioralQuestionEdit";
+import ProjectQuestions from "./pages/ProjectQuestions/ProjectQuestions";
+import TechnicalQuestions from "./pages/TechnicalQuestions/TechnicalQuestions";
+import Flashcards from "./pages/Flashcards/Flashcards";
+import DreamCompany from "./pages/DreamCompany/DreamCompany";
+import InterviewExperiences from "./pages/InterviewExperiences/InterviewExperiences";
+import ResumeBuilder from "./pages/ResumeBuilder/ResumeBuilder";
+import ProfilePage from "./pages/Profile/ProfilePage";
+import Login from "./pages/Auth/Login";
+import Signup from "./pages/Auth/Signup";
 import "./App.css";
 import {
   getQuestions,
@@ -68,20 +86,85 @@ const App = () => {
 
   return (
     <Router>
-      <div className="App">
-        <Sidebar />
-        <main className="main-content">
-          {routes(
-            questions,
-            setQuestions,
-            addNewQuestion,
-            editQuestion,
-            deleteQuestionById,
-            toggleFavorite
-          )}
-        </main>
-      </div>
+      <MainContent
+        questions={questions}
+        setQuestions={setQuestions}
+        addNewQuestion={addNewQuestion}
+        editQuestion={editQuestion}
+        deleteQuestionById={deleteQuestionById}
+        toggleFavorite={toggleFavorite}
+      />
     </Router>
+  );
+};
+
+const MainContent = ({
+  questions,
+  setQuestions,
+  addNewQuestion,
+  editQuestion,
+  deleteQuestionById,
+  toggleFavorite,
+}) => {
+  const location = useLocation();
+  const excludePaths = ["/login", "/signup"];
+  const showSidebar = !excludePaths.includes(location.pathname);
+
+  return (
+    <div className="App">
+      {showSidebar && <Sidebar />}
+      <main className="main-content">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route
+            path="/behavioral"
+            element={
+              <BehavioralQuestionList
+                questions={questions}
+                setQuestions={setQuestions}
+                onEdit={editQuestion}
+                onDelete={deleteQuestionById}
+                toggleFavorite={toggleFavorite}
+              />
+            }
+          />
+          <Route
+            path="/behavioral/create"
+            element={<BehavioralQuestionCreate onSave={addNewQuestion} />}
+          />
+          <Route
+            path="/behavioral/:id"
+            element={
+              <BehavioralQuestionDetail
+                questions={questions}
+                setQuestions={setQuestions}
+              />
+            }
+          />
+          <Route
+            path="/behavioral/edit/:id"
+            element={
+              <BehavioralQuestionEdit
+                questions={questions}
+                onSave={editQuestion}
+              />
+            }
+          />
+          <Route path="/projects" element={<ProjectQuestions />} />
+          <Route path="/technical" element={<TechnicalQuestions />} />
+          <Route path="/flashcards" element={<Flashcards />} />
+          <Route path="/dream-company" element={<DreamCompany />} />
+          <Route
+            path="/interview-experiences"
+            element={<InterviewExperiences />}
+          />
+          <Route path="/resume-builder" element={<ResumeBuilder />} />
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+        </Routes>
+      </main>
+    </div>
   );
 };
 

@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:900&display=swap");
 
 svg {
-  border: 10px solid white;
+  /* border: 10px solid white; */
   border-bottom-width: 30px;
 }
 @media only screen and (max-width: 480px) {
