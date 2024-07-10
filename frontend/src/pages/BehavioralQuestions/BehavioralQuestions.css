@@ -1,7 +1,7 @@
 /* Behavioral Page */
 
 .behavioral-questions-container {
-  padding: 20px;
+  /* padding: 20px; */
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -57,7 +57,7 @@
   align-items: center;
   margin-bottom: 20px;
   padding: 10px;
-  background-color: rgba(255, 255, 255, 0.7); /* Transparent background */
+  /* background-color: rgba(255, 255, 255, 0.7); */
   border-radius: 10px;
 }
 
@@ -113,7 +113,8 @@
 }
 
 /* Card Styles */
-.card {
+.card,
+.preview-card {
   background-color: white;
   /* border: 1px solid #ddd; */
   border-radius: 8px;
@@ -302,6 +303,16 @@
 
 .delete-button {
   margin-left: 10px;
+}
+
+/* Mardown editor */
+.wmde-markdown {
+  color: black !important;
+  background-color: white !important;
+}
+
+.wmde-markdown code {
+  color: white !important;
 }
 
 /* Mobile Responsiveness */

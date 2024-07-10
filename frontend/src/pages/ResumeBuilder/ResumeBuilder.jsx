@@ -137,65 +137,65 @@ const ResumeBuilder = () => {
   }
 
   return (
-    <div>
-      <section id="about-sc" class="">
-        <div class="container">
-          <div class="about-cnt">
-            <form action="" class="cv-form" id="cv-form">
+    <div className="res-container">
+      <section id="about-sc">
+        <div className="resume-container">
+          <div className="about-cnt">
+            <form action="" className="cv-form" id="cv-form">
               {/* About Section : Input Field */}
-              <div class="cv-form-blk">
-                <div class="cv-form-row-title">
+              <div className="cv-form-blk">
+                <div className="cv-form-row-title">
                   <h3>about section</h3>
                 </div>
-                <div class="cv-form-row cv-form-row-about">
-                  <div class="cols-3">
-                    <div class="form-elem">
-                      <label for="" class="form-label">
+                <div className="cv-form-row cv-form-row-about">
+                  <div className="cols-3">
+                    <div className="form-elem">
+                      <label htmlFor="" className="form-label">
                         First Name
                       </label>
                       <input
                         name="firstname"
                         type="text"
-                        class="form-control firstname"
+                        className="form-control firstname"
                         id=""
                         onChange={handleInputChange}
                         placeholder="e.g. John"
                       />
-                      <span class="form-text"></span>
+                      <span className="form-text"></span>
                     </div>
-                    <div class="form-elem">
-                      <label for="" class="form-label">
-                        Middle Name <span class="opt-text">(optional)</span>
+                    <div className="form-elem">
+                      <label htmlFor="" className="form-label">
+                        Middle Name <span className="opt-text">(optional)</span>
                       </label>
                       <input
                         name="middlename"
                         type="text"
-                        class="form-control middlename"
+                        className="form-control middlename"
                         id=""
                         onChange={handleInputChange}
                         placeholder="e.g. Herbert"
                       />
-                      <span class="form-text"></span>
+                      <span className="form-text"></span>
                     </div>
-                    <div class="form-elem">
-                      <label for="" class="form-label">
+                    <div className="form-elem">
+                      <label htmlFor="" className="form-label">
                         Last Name
                       </label>
                       <input
                         name="lastname"
                         type="text"
-                        class="form-control lastname"
+                        className="form-control lastname"
                         id=""
                         onChange={handleInputChange}
                         placeholder="e.g. Doe"
                       />
-                      <span class="form-text"></span>
+                      <span className="form-text"></span>
                     </div>
                   </div>
 
-                  <div class="cols-3">
-                    <div class="form-elem">
-                      <label for="" class="form-label">
+                  <div className="cols-3">
+                    <div className="form-elem">
+                      <label htmlFor="" className="form-label">
                         Your Image
                       </label>
                       <input
@@ -207,78 +207,78 @@ const ResumeBuilder = () => {
                         onChange={handleImageChange}
                       />
                     </div>
-                    <div class="form-elem">
-                      <label for="" class="form-label">
+                    <div className="form-elem">
+                      <label htmlFor="" className="form-label">
                         Designation
                       </label>
                       <input
                         name="designation"
                         type="text"
-                        class="form-control designation"
+                        className="form-control designation"
                         id=""
                         onChange={handleInputChange}
                         placeholder="e.g. Sr.Accountants"
                       />
-                      <span class="form-text"></span>
+                      <span className="form-text"></span>
                     </div>
-                    <div class="form-elem">
-                      <label for="" class="form-label">
+                    <div className="form-elem">
+                      <label htmlFor="" className="form-label">
                         Address
                       </label>
                       <input
                         name="address"
                         type="text"
-                        class="form-control address"
+                        className="form-control address"
                         id=""
                         onChange={handleInputChange}
                         placeholder="e.g. Lake Street-23"
                       />
-                      <span class="form-text"></span>
+                      <span className="form-text"></span>
                     </div>
                   </div>
 
-                  <div class="cols-3">
-                    <div class="form-elem">
-                      <label for="" class="form-label">
+                  <div className="cols-3">
+                    <div className="form-elem">
+                      <label htmlFor="" className="form-label">
                         Email
                       </label>
                       <input
                         name="email"
                         type="text"
-                        class="form-control email"
+                        className="form-control email"
                         id=""
                         onChange={handleInputChange}
                         placeholder="e.g. johndoe@gmail.com"
                       />
-                      <span class="form-text"></span>
+                      <span className="form-text"></span>
                     </div>
-                    <div class="form-elem">
-                      <label for="" class="form-label">
+                    <div className="form-elem">
+                      <label htmlFor="" className="form-label">
                         Phone No:
                       </label>
                       <input
                         name="phoneno"
                         type="text"
-                        class="form-control phoneno"
+                        className="form-control phoneno"
                         id=""
                         onChange={handleInputChange}
                         placeholder="e.g. 456-768-798, 567.654.002"
                       />
-                      <span class="form-text"></span>
+                      <span className="form-text"></span>
                     </div>
-                    <div class="form-elem">
-                      <label for="" class="form-label">
+                    <div className="form-elem">
+                      <label htmlFor="" className="form-label">
                         Summary
                       </label>
                       <input
                         name="summary"
                         type="text"
-                        class="form-control summary"
+                        className="form-control summary"
                         id=""
                         onChange={handleInputChange}
                         placeholder="e.g. Doe"
                       />
-                      <span class="form-text"></span>
+                      <span className="form-text"></span>
                     </div>
                   </div>
                 </div>
@@ -473,116 +473,116 @@ const ResumeBuilder = () => {
               </div>
 
               {/* Education Section : Input Field */}
-              <div class="cv-form-blk">
-                <div class="cv-form-row-title">
+              <div className="cv-form-blk">
+                <div className="cv-form-row-title">
                   <h3>education</h3>
                 </div>
 
-                <div class="row-separator repeater">
-                  <div class="repeater" data-repeater-list="group-c">
+                <div className="row-separator repeater">
+                  <div className="repeater" data-repeater-list="group-c">
                     {formData.educations.map((education, index) => (
                       <div key={index} data-repeater-item>
-                        <div class="cv-form-row cv-form-row-experience">
-                          <div class="cols-3">
-                            <div class="form-elem">
-                              <label for="" class="form-label">
+                        <div className="cv-form-row cv-form-row-experience">
+                          <div className="cols-3">
+                            <div className="form-elem">
+                              <label htmlFor="" className="form-label">
                                 School
                               </label>
                               <input
                                 name="edu_school"
                                 type="text"
-                                class="form-control edu_school"
+                                className="form-control edu_school"
                                 id=""
                                 onChange={(e) =>
                                   handleInputChange(e, index, "educations")
                                 }
                               />
-                              <span class="form-text"></span>
+                              <span className="form-text"></span>
                             </div>
-                            <div class="form-elem">
-                              <label for="" class="form-label">
+                            <div className="form-elem">
+                              <label htmlFor="" className="form-label">
                                 Degree
                               </label>
                               <input
                                 name="edu_degree"
                                 type="text"
-                                class="form-control edu_degree"
+                                className="form-control edu_degree"
                                 id=""
                                 onChange={(e) =>
                                   handleInputChange(e, index, "educations")
                                 }
                               />
-                              <span class="form-text"></span>
+                              <span className="form-text"></span>
                             </div>
-                            <div class="form-elem">
-                              <label for="" class="form-label">
+                            <div className="form-elem">
+                              <label htmlFor="" className="form-label">
                                 City
                               </label>
                               <input
                                 name="edu_city"
                                 type="text"
-                                class="form-control edu_city"
+                                className="form-control edu_city"
                                 id=""
                                 onChange={(e) =>
                                   handleInputChange(e, index, "educations")
                                 }
                               />
-                              <span class="form-text"></span>
+                              <span className="form-text"></span>
                             </div>
                           </div>
 
-                          <div class="cols-3">
-                            <div class="form-elem">
-                              <label for="" class="form-label">
+                          <div className="cols-3">
+                            <div className="form-elem">
+                              <label htmlFor="" className="form-label">
                                 Start Date
                               </label>
                               <input
                                 name="edu_start_date"
                                 type="date"
-                                class="form-control edu_start_date"
+                                className="form-control edu_start_date"
                                 id=""
                                 onChange={(e) =>
                                   handleInputChange(e, index, "educations")
                                 }
                               />
-                              <span class="form-text"></span>
+                              <span className="form-text"></span>
                             </div>
-                            <div class="form-elem">
-                              <label for="" class="form-label">
+                            <div className="form-elem">
+                              <label htmlFor="" className="form-label">
                                 End Date
                               </label>
                               <input
                                 name="edu_graduation_date"
                                 type="date"
-                                class="form-control edu_graduation_date"
+                                className="form-control edu_graduation_date"
                                 id=""
                                 onChange={(e) =>
                                   handleInputChange(e, index, "educations")
                                 }
                               />
-                              <span class="form-text"></span>
+                              <span className="form-text"></span>
                             </div>
-                            <div class="form-elem">
-                              <label for="" class="form-label">
+                            <div className="form-elem">
+                              <label htmlFor="" className="form-label">
                                 Description
                               </label>
                               <input
                                 name="edu_description"
                                 type="text"
-                                class="form-control edu_description"
+                                className="form-control edu_description"
                                 id=""
                                 onChange={(e) =>
                                   handleInputChange(e, index, "educations")
                                 }
                               />
-                              <span class="form-text"></span>
+                              <span className="form-text"></span>
                             </div>
                           </div>
 
                           <button
                             data-repeater-delete
                             type="button"
-                            class="repeater-remove-btn"
+                            className="repeater-remove-btn"
                             onClick={() => removeEducation(index)}
                           >
                             -
@@ -595,7 +595,7 @@ const ResumeBuilder = () => {
                     type="button"
                     data-repeater-create
                     value="Add"
-                    class="repeater-add-btn"
+                    className="repeater-add-btn"
                     onClick={addEducation}
                   >
                     +
@@ -740,13 +740,13 @@ const ResumeBuilder = () => {
         </div>
       </section>
 
-      <section id="preview-sc" class="print_area">
-        <div class="container">
-          <div class="preview-cnt">
-            <div class="preview-cnt-l bg-green text-white">
+      <section id="preview-sc" className="print_area">
+        <div className="resume-container">
+          <div className="preview-cnt">
+            <div className="preview-cnt-l bg-green text-white">
               {/* Header Section : Preview */}
-              <div class="preview-blk">
-                <div class="preview-image">
+              <div className="preview-blk">
+                <div className="preview-image">
                   <img
                     src={
                       formData.image ||
@@ -756,15 +756,15 @@ const ResumeBuilder = () => {
                     id="image_dsp"
                   />
                 </div>
-                <div class="preview-item preview-item-name">
-                  <span class="preview-item-val fw-6" id="fullname_dsp">
+                <div className="preview-item preview-item-name">
+                  <span className="preview-item-val fw-6" id="fullname_dsp">
                     {formData.firstname} {formData.middlename}{" "}
                     {formData.lastname}
                   </span>
                 </div>
-                <div class="preview-item">
+                <div className="preview-item">
                   <span
-                    class="preview-item-val text-uppercase fw-6 ls-1"
+                    className="preview-item-val text-uppercase fw-6 ls-1"
                     id="designation_dsp"
                   >
                     {formData.designation}
@@ -773,29 +773,29 @@ const ResumeBuilder = () => {
               </div>
 
               {/* About Section : Preview */}
-              <div class="preview-blk">
-                <div class="preview-blk-title">
+              <div className="preview-blk">
+                <div className="preview-blk-title">
                   <h3>about</h3>
                 </div>
-                <div class="preview-blk-list">
-                  <div class="preview-item">
-                    <span class="preview-item-val" id="phoneno_dsp">
+                <div className="preview-blk-list">
+                  <div className="preview-item">
+                    <span className="preview-item-val" id="phoneno_dsp">
                       {formData.phoneno}
                     </span>
                   </div>
-                  <div class="preview-item">
-                    <span class="preview-item-val" id="email_dsp">
+                  <div className="preview-item">
+                    <span className="preview-item-val" id="email_dsp">
                       {formData.email}
                     </span>
                   </div>
-                  <div class="preview-item">
-                    <span class="preview-item-val" id="address_dsp">
+                  <div className="preview-item">
+                    <span className="preview-item-val" id="address_dsp">
                       {" "}
                       {formData.address}
                     </span>
                   </div>
-                  <div class="preview-item">
-                    <span class="preview-item-val" id="summary_dsp">
+                  <div className="preview-item">
+                    <span className="preview-item-val" id="summary_dsp">
                       {formData.summary}
                     </span>
                   </div>
@@ -817,7 +817,7 @@ const ResumeBuilder = () => {
               </div>
             </div>
 
-            <div class="preview-cnt-r bg-white">
+            <div className="preview-cnt-r bg-white">
               {/* Achievement Section : Preview */}
               <div className="preview-blk">
                 <div className="preview-blk-title">
@@ -837,16 +837,16 @@ const ResumeBuilder = () => {
               </div>
 
               {/* Education Section : Preview */}
-              <div class="preview-blk">
-                <div class="preview-blk-title">
+              <div className="preview-blk">
+                <div className="preview-blk-title">
                   <h3>educations</h3>
                 </div>
                 <div
-                  class="educations-items preview-blk-list"
+                  className="educations-items preview-blk-list"
                   id="educations_dsp"
                 >
                   {formData.educations.map((education, index) => (
-                    <div key={index} class="preview-item">
+                    <div key={index} className="preview-item">
                       <h4>{education.edu_school}</h4>
                       {education.edu_degree && (
                         <p>
@@ -931,11 +931,11 @@ const ResumeBuilder = () => {
         </div>
       </section>
 
-      <section class="print-btn-sc">
-        <div class="container">
+      <section className="print-btn-sc">
+        <div className="resume-container">
           <button
             type="button"
-            class="print-btn btn btn-primary"
+            className="print-btn btn btn-primary"
             onClick={printCV}
           >
             Print CV

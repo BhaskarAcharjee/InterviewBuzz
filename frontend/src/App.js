@@ -18,9 +18,11 @@ import DreamCompany from "./pages/DreamCompany/DreamCompany";
 import InterviewExperiences from "./pages/InterviewExperiences/InterviewExperiences";
 import ResumeBuilder from "./pages/ResumeBuilder/ResumeBuilder";
 import ProfilePage from "./pages/Profile/ProfilePage";
+import Auth from "./pages/Auth/Auth";
 import Login from "./pages/Auth/Login";
 import Signup from "./pages/Auth/Signup";
 import Hero from "./pages/Hero/Hero";
+import PageNotFound from "./pages/PageNotFound/PageNotFound";
 import "./App.css";
 import {
   getQuestions,
@@ -28,6 +30,7 @@ import {
   updateQuestion,
   deleteQuestion,
 } from "./services/api";
+
 
 const App = () => {
   const [questions, setQuestions] = useState([]);
@@ -162,9 +165,9 @@ const MainContent = ({
           />
           <Route path="/resume-builder" element={<ResumeBuilder />} />
           <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="*" element={<ProfilePage />} />
+          <Route path="/login" element={<Auth />} />
+          <Route path="/signup" element={<Auth />} />
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
       </main>
     </div>

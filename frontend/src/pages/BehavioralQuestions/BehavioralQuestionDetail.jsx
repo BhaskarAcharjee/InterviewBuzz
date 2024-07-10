@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import Markdown from "@uiw/react-markdown-preview";
 import "./BehavioralQuestions.css";
 
 const BehavioralQuestionDetail = ({ questions, setQuestions }) => {
@@ -32,11 +33,11 @@ const BehavioralQuestionDetail = ({ questions, setQuestions }) => {
 
   return (
     <div className="question-detail-container">
-      <div className="card">
+      <div className="preview-card">
         <div className="card-header">
           <h1>{question.question}</h1>
         </div>
-        <p>{question.answer}</p>
+        <Markdown source={question.answer} />
         <div className="timestamps">
           <p>Created at: {formattedCreatedAt}</p>
           <p>Modified at: {formattedUpdatedAt}</p>

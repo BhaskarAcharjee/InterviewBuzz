@@ -14,12 +14,14 @@
   --font-manrope: "Manrope", sans-serif;
   --transition: all 300ms ease-in-out;
 }
-/* 
-* {
-  box-sizing: border-box;
+
+.res-container * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /*only for this page*/
 }
 
-html {
+/* html {
   font-size: 10px;
 } */
 
@@ -199,7 +201,7 @@ a{
   letter-spacing: 2px;
 }
 
-.container {
+.resume-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1.6rem;
@@ -228,7 +230,7 @@ a{
 .btn {
   font-size: 14.5px;
   font-weight: 600;
-  padding: 1.4rem 1.6rem;
+  /* padding: 1.4rem 1.6rem; */
   border-radius: 4px;
   display: inline-block;
 }
@@ -272,7 +274,7 @@ a{
   box-shadow: rgba(0, 0, 0, 0.08) 0px 3px 8px;
 }
 
-.navbar .container {
+.navbar .resume-container {
   width: 100%;
 }
 

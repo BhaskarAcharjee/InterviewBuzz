@@ -28,7 +28,11 @@ const BehavioralQuestionCreate = ({ onSave }) => {
         onChange={(e) => setQuestion(e.target.value)}
         className="input"
       />
-      <MarkdownEditor value={answer} onChange={(value) => setAnswer(value)} />
+      <MarkdownEditor
+        height={600}
+        value={answer}
+        onChange={(value) => setAnswer(value)}
+      />
       <button className="save-btn" onClick={handleSave}>
         Save Question
       </button>
