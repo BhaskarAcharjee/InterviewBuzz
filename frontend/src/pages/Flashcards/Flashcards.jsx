@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./Flashcards.css";
 import TabSwitch from "../../components/TabSwitch/TabSwitch";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { flashcards } from "../../constants/flashcard";
 
 const Flashcards = () => {
   const options = [
@@ -9,50 +11,52 @@ const Flashcards = () => {
   ];
 
   const [activeTab, setActiveTab] = useState(options[0]);
+  const [categoryIndex, setCategoryIndex] = useState(0);
+  const [questionIndex, setQuestionIndex] = useState(0);
+  const [answered, setAnswered] = useState(false);
+  const [selectedOption, setSelectedOption] = useState(null);
 
-  const flashcards = {
-    javascript: [
-      {
-        question: "What is closure in JavaScript?",
-        answer:
-          "Closure is the combination of a function and the lexical environment within which that function was declared.",
-        type: "revise",
-      },
-      {
-        question:
-          "What is the difference between 'undefined' and 'null' in JavaScript?",
-        answer:
-          "'Undefined' means a variable has been declared but has not yet been assigned a value, whereas 'null' is an assignment value that means no value.",
-        type: "revise",
-      },
-      {
-        question: "What are higher-order functions in JavaScript?",
-        answer:
-          "Higher-order functions are functions that take other functions as arguments or return functions as their results.",
-        type: "revise",
-      },
-      {
-        question:
-          "Is JavaScript a statically typed or dynamically typed language?",
-        type: "yesno",
-      },
-      {
-        question: "Which of the following is not a JavaScript data type?",
-        options: ["Number", "String", "Boolean", "Class"],
-        correctAnswer: "Class",
-        type: "mcq",
-      },
-    ],
-    react: [
-      // Add react flashcards here
-    ],
-    css: [
-      // Add css flashcards here
-    ],
-  };
+  const categories = Object.keys(flashcards);
 
   const handleOptionClick = (option) => {
     setActiveTab(option);
+    setQuestionIndex(0);
+    setAnswered(false);
+    setSelectedOption(null);
+  };
+
+  const handlePrevCategory = () => {
+    setCategoryIndex(
+      (prevIndex) => (prevIndex - 1 + categories.length) % categories.length
+    );
+    setQuestionIndex(0);
+    setAnswered(false);
+    setSelectedOption(null);
+  };
+
+  const handleNextCategory = () => {
+    setCategoryIndex((prevIndex) => (prevIndex + 1) % categories.length);
+    setQuestionIndex(0);
+    setAnswered(false);
+    setSelectedOption(null);
+  };
+
+  const handleOptionSelect = (option, correctAnswer) => {
+    setSelectedOption(option);
+    setAnswered(true);
+  };
+
+  const handleNextQuestion = () => {
+    setQuestionIndex(
+      (prevIndex) =>
+        (prevIndex + 1) % flashcards[categories[categoryIndex]].length
+    );
+    setAnswered(false);
+    setSelectedOption(null);
+  };
+
+  const handleSkipQuestion = () => {
+    handleNextQuestion();
   };
 
   return (
@@ -67,52 +71,109 @@ const Flashcards = () => {
         onOptionClick={handleOptionClick}
       />
       <div className="flashcards-categories">
-        {Object.keys(flashcards).map((category, index) => (
-          <div key={index} className="flashcards-category">
-            <h2 className="category-title">{category.toUpperCase()}</h2>
-            <div className="flashcards-grid">
-              {flashcards[category]
-                .filter((flashcard) => {
-                  if (
-                    activeTab.label === "Revise" &&
-                    flashcard.type === "revise"
-                  )
-                    return true;
-                  if (
-                    activeTab.label === "Quiz" &&
-                    (flashcard.type === "yesno" || flashcard.type === "mcq")
-                  )
-                    return true;
-                  return false;
-                })
-                .map((flashcard, idx) => (
+        <div className="flashcards-category">
+          <div className="category-header">
+            <FaArrowLeft className="nav-icon" onClick={handlePrevCategory} />
+            <h2 className="category-title">
+              {categories[categoryIndex].toUpperCase()}
+            </h2>
+            <FaArrowRight className="nav-icon" onClick={handleNextCategory} />
+          </div>
+          <div className="flashcards-grid">
+            {flashcards[categories[categoryIndex]]
+              .filter((flashcard) => {
+                if (activeTab.label === "Revise" && flashcard.type === "revise")
+                  return true;
+                if (
+                  activeTab.label === "Quiz" &&
+                  (flashcard.type === "yesno" || flashcard.type === "mcq")
+                )
+                  return true;
+                return false;
+              })
+              .map((flashcard, idx) =>
+                activeTab.label === "Revise" ? (
                   <div className="flashcard" key={idx}>
                     <div className="flashcard-question">
                       {flashcard.question}
                     </div>
-                    {flashcard.type === "revise" && (
-                      <div className="flashcard-answer">{flashcard.answer}</div>
-                    )}
-                    {flashcard.type === "yesno" && (
-                      <div className="flashcard-options">
-                        <button className="option-btn">Yes</button>
-                        <button className="option-btn">No</button>
-                      </div>
-                    )}
-                    {flashcard.type === "mcq" && (
-                      <div className="flashcard-options">
-                        {flashcard.options.map((option, i) => (
-                          <button key={i} className="option-btn">
-                            {option}
-                          </button>
-                        ))}
-                      </div>
-                    )}
+                    <div className="flashcard-answer">{flashcard.answer}</div>
                   </div>
-                ))}
-            </div>
+                ) : (
+                  activeTab.label === "Quiz" &&
+                  idx === questionIndex && (
+                    <div className="flashcard" key={idx}>
+                      <div className="flashcard-question">
+                        {flashcard.question}
+                      </div>
+                      {flashcard.type === "yesno" && (
+                        <div className="flashcard-options">
+                          {flashcard.options.map((option, i) => (
+                            <button
+                              key={i}
+                              className={`option-btn ${
+                                answered &&
+                                (option === flashcard.correctAnswer
+                                  ? "correct"
+                                  : selectedOption === option
+                                  ? "wrong"
+                                  : "")
+                              }`}
+                              onClick={() =>
+                                handleOptionSelect(
+                                  option,
+                                  flashcard.correctAnswer
+                                )
+                              }
+                              disabled={answered}
+                            >
+                              {option}
+                            </button>
+                          ))}
+                        </div>
+                      )}
+                      {flashcard.type === "mcq" && (
+                        <div className="flashcard-options">
+                          {flashcard.options.map((option, i) => (
+                            <button
+                              key={i}
+                              className={`option-btn ${
+                                answered &&
+                                (option === flashcard.correctAnswer
+                                  ? "correct"
+                                  : selectedOption === option
+                                  ? "wrong"
+                                  : "")
+                              }`}
+                              onClick={() =>
+                                handleOptionSelect(
+                                  option,
+                                  flashcard.correctAnswer
+                                )
+                              }
+                              disabled={answered}
+                            >
+                              {option}
+                            </button>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  )
+                )
+              )}
           </div>
-        ))}
+          {answered && (
+            <div className="quiz-navigation">
+              <button className="quiz-btn" onClick={handleNextQuestion}>
+                Next
+              </button>
+              <button className="quiz-btn" onClick={handleSkipQuestion}>
+                Skip
+              </button>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
