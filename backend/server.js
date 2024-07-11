@@ -39,3 +39,7 @@ app.use("/api/auth", authRouter);
 // Behavioral Question Routes
 const behavioralQuestionsRouter = require("./routes/behavioralQuestions");
 app.use("/api/behavioral-questions", behavioralQuestionsRouter);
+
+// Dream companies Routes
+const dreamCompaniesRouter = require("./routes/dreamCompany");
+app.use("/api/dream-companies", dreamCompaniesRouter);

@@ -14,13 +14,12 @@ import BehavioralQuestionEdit from "./pages/BehavioralQuestions/BehavioralQuesti
 import ProjectQuestions from "./pages/ProjectQuestions/ProjectQuestions";
 import TechnicalQuestions from "./pages/TechnicalQuestions/TechnicalQuestions";
 import Flashcards from "./pages/Flashcards/Flashcards";
-import DreamCompany from "./pages/DreamCompany/DreamCompany";
+import DreamCompanyList from "./pages/DreamCompany/DreamCompanyList";
+import DreamCompanyCreate from "./pages/DreamCompany/DreamCompanyCreate";
 import InterviewExperiences from "./pages/InterviewExperiences/InterviewExperiences";
 import ResumeBuilder from "./pages/ResumeBuilder/ResumeBuilder";
 import ProfilePage from "./pages/Profile/ProfilePage";
 import Auth from "./pages/Auth/Auth";
-import Login from "./pages/Auth/Login";
-import Signup from "./pages/Auth/Signup";
 import Hero from "./pages/Hero/Hero";
 import PageNotFound from "./pages/PageNotFound/PageNotFound";
 import "./App.css";
@@ -30,7 +29,6 @@ import {
   updateQuestion,
   deleteQuestion,
 } from "./services/api";
-
 
 const App = () => {
   const [questions, setQuestions] = useState([]);
@@ -158,7 +156,11 @@ const MainContent = ({
           <Route path="/projects" element={<ProjectQuestions />} />
           <Route path="/technical" element={<TechnicalQuestions />} />
           <Route path="/flashcards" element={<Flashcards />} />
-          <Route path="/dream-company" element={<DreamCompany />} />
+          <Route path="/dream-company" element={<DreamCompanyList />} />
+          <Route
+            path="/dream-company/create"
+            element={<DreamCompanyCreate />}
+          />
           <Route
             path="/interview-experiences"
             element={<InterviewExperiences />}

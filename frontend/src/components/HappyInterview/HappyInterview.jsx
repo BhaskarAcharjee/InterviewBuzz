@@ -21,17 +21,17 @@ const HappyInterview = () => {
             y2="3114.467"
             gradientTransform="scale(-1 1) rotate(56.234 -1054.449 212.058)"
           >
-            <stop offset=".002" stop-color="#fff" />
-            <stop offset=".032" stop-color="#e8e4ec" stop-opacity=".97" />
-            <stop offset=".089" stop-color="#c1b7cc" stop-opacity=".913" />
-            <stop offset=".152" stop-color="#9e8faf" stop-opacity=".85" />
-            <stop offset=".219" stop-color="#7f6c96" stop-opacity=".783" />
-            <stop offset=".291" stop-color="#654e81" stop-opacity=".71" />
-            <stop offset=".371" stop-color="#513670" stop-opacity=".63" />
-            <stop offset=".462" stop-color="#412463" stop-opacity=".54" />
-            <stop offset=".569" stop-color="#35175a" stop-opacity=".433" />
-            <stop offset=".708" stop-color="#2f0f55" stop-opacity=".293" />
-            <stop offset="1" stop-color="#2d0d53" stop-opacity="0" />
+            <stop offset=".002" stopColor="#fff" />
+            <stop offset=".032" stopColor="#e8e4ec" stopOpacity=".97" />
+            <stop offset=".089" stopColor="#c1b7cc" stopOpacity=".913" />
+            <stop offset=".152" stopColor="#9e8faf" stopOpacity=".85" />
+            <stop offset=".219" stopColor="#7f6c96" stopOpacity=".783" />
+            <stop offset=".291" stopColor="#654e81" stopOpacity=".71" />
+            <stop offset=".371" stopColor="#513670" stopOpacity=".63" />
+            <stop offset=".462" stopColor="#412463" stopOpacity=".54" />
+            <stop offset=".569" stopColor="#35175a" stopOpacity=".433" />
+            <stop offset=".708" stopColor="#2f0f55" stopOpacity=".293" />
+            <stop offset="1" stopColor="#2d0d53" stopOpacity="0" />
           </linearGradient>
           <path
             id="big-planet_1_"
@@ -449,8 +449,8 @@ const HappyInterview = () => {
               r="8.4"
               fill="#14192e"
               stroke="#fa3757"
-              stroke-width="2"
-              stroke-miterlimit="10"
+              strokeWidth="2"
+              strokeMiterlimit="10"
             />
             <ellipse
               className="st8"
@@ -483,8 +483,8 @@ const HappyInterview = () => {
             <path
               fill="#14192e"
               stroke="#fecb2f"
-              stroke-width="2"
-              stroke-miterlimit="10"
+              strokeWidth="2"
+              strokeMiterlimit="10"
               d="M1808.5 1515.3l-129.6-1.6-8.4 12.3 138-4z"
             />
             <ellipse className="st8" cx="1754.9" cy="1502.4" rx="97" ry="6.9" />
@@ -546,8 +546,8 @@ const HappyInterview = () => {
               d="M3116.7 941.8s-6.1 3.1-64.6 3.1c-58.6 0-64.5-3.1-64.5-3.1l-20.8-68.7h170.7l-20.8 68.7z"
               fill="#fecb2f"
               stroke="#14192e"
-              stroke-width="2"
-              stroke-miterlimit="10"
+              strokeWidth="2"
+              strokeMiterlimit="10"
             />
             <path
               className="st7"
@@ -568,9 +568,9 @@ const HappyInterview = () => {
               d="M2959 892.4s87.7 16.4 189.3 0"
               fill="#f8f3dc"
               stroke="#14192e"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-miterlimit="10"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeMiterlimit="10"
             />
             <path
               className="st7"

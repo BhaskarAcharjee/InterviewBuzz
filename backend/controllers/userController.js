@@ -5,6 +5,13 @@ const bcrypt = require("bcryptjs");
 // JWT secret key
 const JWT_SECRET = process.env.JWT_SECRET || "mysecret";
 
+let userId = null; // Initial value for testing purposes
+
+exports.getLoginUserId = () => {
+  console.log("Current userId:", userId);
+  return userId;
+};
+
 // Signup controller
 exports.signup = async (req, res) => {
   const { username, email, password } = req.body;
@@ -24,6 +31,10 @@ exports.signup = async (req, res) => {
       { expiresIn: "1d" }
     );
 
+    userId = newUser._id.toString(); // Update the userId variable
+
+    console.log("New signup - userId:", userId); // Debugging log
+
     res.status(201).json({
       token,
       user: {
@@ -34,6 +45,7 @@ exports.signup = async (req, res) => {
       },
     });
   } catch (err) {
+    console.error("Signup error:", err);
     res.status(500).json({ message: "Server error" });
   }
 };
@@ -52,6 +64,10 @@ exports.login = async (req, res) => {
       expiresIn: "1d",
     });
 
+    userId = user._id.toString(); // Update the userId variable
+
+    console.log("Login - userId:", userId); // Debugging log
+
     res.json({
       token,
       user: {
@@ -62,6 +78,7 @@ exports.login = async (req, res) => {
       },
     });
   } catch (err) {
+    console.error("Login error:", err);
     res.status(500).json({ message: "Server error" });
   }
 };

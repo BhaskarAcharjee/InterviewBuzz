@@ -1,9 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Home.css";
+import Calender from "../../components/Calender/Calender";
 
 const Home = () => {
-  const [schedule, setSchedule] = useState({ date: "", time: "", company: "" });
+  const [schedule, setSchedule] = useState({
+    date: "",
+    startTime: "",
+    endTime: "",
+    company: "",
+  });
   const [interviews, setInterviews] = useState([]);
+  const [latestInterviews, setLatestInterviews] = useState([]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -11,9 +18,33 @@ const Home = () => {
   };
 
   const handleAddInterview = () => {
+    if (!schedule.date) {
+      alert("Please select a date");
+      return;
+    }
     setInterviews([...interviews, schedule]);
-    setSchedule({ date: "", time: "", company: "" });
+    setSchedule({ date: "", startTime: "", endTime: "", company: "" });
   };
+
+  useEffect(() => {
+    const updateLatestInterviews = () => {
+      const width = window.innerWidth;
+      let numberOfInterviews = 5;
+      if (width <= 768) {
+        numberOfInterviews = 1;
+      } else if (width <= 1024) {
+        numberOfInterviews = 2;
+      }
+      setLatestInterviews(interviews.slice(-numberOfInterviews));
+    };
+
+    updateLatestInterviews();
+    window.addEventListener("resize", updateLatestInterviews);
+
+    return () => {
+      window.removeEventListener("resize", updateLatestInterviews);
+    };
+  }, [interviews]);
 
   return (
     <div className="home-container">
@@ -35,8 +66,15 @@ const Home = () => {
           />
           <input
             type="time"
-            name="time"
-            value={schedule.time}
+            name="startTime"
+            value={schedule.startTime}
+            onChange={handleInputChange}
+            className="input"
+          />
+          <input
+            type="time"
+            name="endTime"
+            value={schedule.endTime}
             onChange={handleInputChange}
             className="input"
           />
@@ -53,14 +91,18 @@ const Home = () => {
           </button>
         </div>
       </div>
-
-      <div className="section">
+      <div className="section upcoming">
         <h3>Upcoming Interviews</h3>
+        <Calender interviews={latestInterviews} />
+      </div>
+      <div className="section">
+        <h3>All Interviews Schedule</h3>
         <ul className="interview-list">
           {interviews.map((interview, index) => (
             <li key={index} className="interview-item">
               <span>{interview.date}</span>
-              <span>{interview.time}</span>
+              <span>{interview.startTime}</span>
+              <span>{interview.endTime}</span>
               <span>{interview.company}</span>
             </li>
           ))}

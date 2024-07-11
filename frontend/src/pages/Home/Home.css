@@ -5,7 +5,7 @@
   font-family: Arial, sans-serif;
 }
 
-.title {
+.home-container.title {
   font-size: 2rem;
   margin-bottom: 10px;
 }
@@ -81,5 +81,9 @@
     flex-direction: column;
     align-items: flex-start;
     margin-right: 20px;
+  }
+  
+  .upcoming {
+    display: none;
   }
 }
