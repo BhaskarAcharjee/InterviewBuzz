@@ -16,12 +16,15 @@ const BehavioralQuestionList = ({
   const [filter, setFilter] = useState("all");
   const [exportContent, setExportContent] = useState("");
   const [isImportModalOpen, setIsImportModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true); // Loading state
+  const [hasError, setHasError] = useState(false); // Error state
 
   const navigate = useNavigate();
 
   useEffect(() => {
     // Function to prepare export content
     prepareExportContent();
+    setIsLoading(false);
   }, [questions]);
 
   const handleCreateNewClick = () => {
@@ -55,6 +58,7 @@ const BehavioralQuestionList = ({
       setQuestions([...questions, ...response.data]);
     } catch (error) {
       console.error("Error importing questions:", error);
+      setHasError(true);
     }
   };
 
@@ -66,6 +70,14 @@ const BehavioralQuestionList = ({
     document.body.appendChild(element);
     element.click();
   };
+
+  if (isLoading) {
+    return <span className="loader"></span>; // Show loader while loading
+  }
+
+  if (hasError) {
+    return <p>Error loading data. Please try again later.</p>;
+  }
 
   return (
     <div className="behavioral-questions-container">
@@ -120,7 +132,13 @@ const BehavioralQuestionList = ({
             />
           ))
         ) : (
-          <div className="no-questions">Nothing to display</div>
+          <div className="no-questions">
+            {isLoading ? (
+              <span className="loader"></span>
+            ) : (
+              "Nothing to display. Create new questions or import existing ones."
+            )}
+          </div>
         )}
       </div>
       <BehavioralQuestionModal

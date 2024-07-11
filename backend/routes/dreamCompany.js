@@ -14,7 +14,7 @@ router.use(authenticateUser); // Apply the authentication middleware to all rout
 router.get("/", getDreamCompanies); // GET all dream companies for a user
 router.post("/", addDreamCompany); // POST a new dream company
 router.get("/:id", getDreamCompanyById); // GET a specific dream company by ID
-router.put("/:id", updateDreamCompany); // UPDATE a specific dream company by ID
+router.patch("/:id", updateDreamCompany); // PATCH a specific dream company by ID
 router.delete("/:id", deleteDreamCompany); // DELETE a specific dream company by ID
 
 module.exports = router;

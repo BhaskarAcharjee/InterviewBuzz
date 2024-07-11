@@ -1,8 +1,10 @@
 import React from "react";
 import { deleteDreamCompany } from "../../services/api";
 import "./DreamCompany.css";
+import { useNavigate } from "react-router-dom";
 
 const DreamCompanyCard = ({ dreamCompany, onDelete }) => {
+  const navigate = useNavigate();
   const handleDelete = async () => {
     try {
       await deleteDreamCompany(dreamCompany._id);
@@ -13,8 +15,7 @@ const DreamCompanyCard = ({ dreamCompany, onDelete }) => {
   };
 
   const handleEdit = () => {
-    // Implement logic for editing dream company details
-    console.log("Editing dream company:", dreamCompany._id);
+    navigate(`/dream-company/edit/${dreamCompany._id}`);
   };
 
   return (

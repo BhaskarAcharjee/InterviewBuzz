@@ -16,6 +16,7 @@ import TechnicalQuestions from "./pages/TechnicalQuestions/TechnicalQuestions";
 import Flashcards from "./pages/Flashcards/Flashcards";
 import DreamCompanyList from "./pages/DreamCompany/DreamCompanyList";
 import DreamCompanyCreate from "./pages/DreamCompany/DreamCompanyCreate";
+import DreamCompanyEdit from "./pages/DreamCompany/DreamCompanyEdit";
 import InterviewExperiences from "./pages/InterviewExperiences/InterviewExperiences";
 import ResumeBuilder from "./pages/ResumeBuilder/ResumeBuilder";
 import ProfilePage from "./pages/Profile/ProfilePage";
@@ -160,6 +161,10 @@ const MainContent = ({
           <Route
             path="/dream-company/create"
             element={<DreamCompanyCreate />}
+          />
+          <Route
+            path="/dream-company/edit/:id"
+            element={<DreamCompanyEdit />}
           />
           <Route
             path="/interview-experiences"
