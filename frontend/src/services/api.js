@@ -1,15 +1,18 @@
 import axios from "axios";
+import { getApiUrl } from "../utils/getApiUrl";
 
-const API_URL =
-  "https://interviewgenius.onrender.com/api/behavioral-questions" ||
-  "http://localhost:5000/api/behavioral-questions";
+const API_URL = getApiUrl();
 
-export const getQuestions = () => axios.get(API_URL);
-export const createQuestion = (data) => axios.post(API_URL, data);
+// Behavioral APIs
+export const getQuestions = () => axios.get(`${API_URL}/behavioral-questions`);
+export const createQuestion = (data) =>
+  axios.post(`${API_URL}/behavioral-questions`, data);
 export const importQuestions = (questions) => {
-  return axios.post(`${API_URL}/import`, { questions });
+  return axios.post(`${API_URL}/behavioral-questions/import`, { questions });
 };
-export const getQuestion = (id) => axios.get(`${API_URL}/${id}`);
+export const getQuestion = (id) =>
+  axios.get(`${API_URL}/behavioral-questions/${id}`);
 export const updateQuestion = (id, data) =>
-  axios.patch(`${API_URL}/${id}`, data);
-export const deleteQuestion = (id) => axios.delete(`${API_URL}/${id}`);
+  axios.patch(`${API_URL}/behavioral-questions/${id}`, data);
+export const deleteQuestion = (id) =>
+  axios.delete(`${API_URL}/behavioral-questions/${id}`);

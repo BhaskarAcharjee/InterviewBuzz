@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-require("dotenv").config(); // Load environment variables
+require("dotenv").config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -23,11 +23,8 @@ db.once("open", () => {
   console.log("Connected to MongoDB");
 });
 
-// Routes
-const behavioralQuestionsRouter = require("./routes/behavioralQuestions");
-app.use("/api/behavioral-questions", behavioralQuestionsRouter);
-
-app.get("/", (req, res) => {
+// Base API route
+app.get("/api", (req, res) => {
   res.send("API is running...");
 });
 
@@ -35,6 +32,10 @@ app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
 
-// Routes
+// Auth Routes
 const authRouter = require("./routes/auth");
 app.use("/api/auth", authRouter);
+
+// Behavioral Question Routes
+const behavioralQuestionsRouter = require("./routes/behavioralQuestions");
+app.use("/api/behavioral-questions", behavioralQuestionsRouter);

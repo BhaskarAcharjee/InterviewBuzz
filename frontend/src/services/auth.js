@@ -1,8 +1,7 @@
 import axios from "axios";
+import { getApiUrl } from "../utils/getApiUrl";
 
-const API_URL =
-  "https://interviewgenius.onrender.com/api" || 
-  "http://localhost:5000/api";
+const API_URL = getApiUrl();
 
 export const login = async (credentials) => {
   return axios.post(`${API_URL}/auth/login`, credentials);
