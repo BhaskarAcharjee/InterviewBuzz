@@ -1,0 +1,55 @@
+.technical-questions-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.technical-questions-title {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.technical-questions-description {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  color: #666;
+}
+
+.categories-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.category {
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1), -4px -4px 6px rgba(255, 255, 255, 0.7);
+  transition: transform 0.3s;
+}
+
+.category:hover {
+  transform: translateY(-5px);
+}
+
+.category-name {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.questions-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.question {
+  font-size: 1.2rem;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 8px;
+}

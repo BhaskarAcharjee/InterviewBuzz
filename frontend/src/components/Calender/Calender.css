@@ -36,7 +36,7 @@
   background: var(--calBgColor);
 }
 
-// Place on Timeline (24-hour format, 2-hour slots)
+/* Place on Timeline (24-hour format, 2-hour slots) */
 .start-1 {
   grid-row-start: 1;
 }
@@ -133,7 +133,7 @@
   grid-row-end: 12;
 }
 
-// Event
+/* Event */
 
 .title {
   font-weight: 600;
@@ -153,7 +153,7 @@
   height: 60px;
 }
 
-// Global / Etc
+/* Global / Etc */
 
 /* body {
   font-family: system-ui, sans-serif;

@@ -72,7 +72,7 @@ const BehavioralQuestionList = ({
   };
 
   if (isLoading) {
-    return <span className="loader"></span>; // Show loader while loading
+    return <div className="loader"></div>; // Show loader while loading
   }
 
   if (hasError) {
@@ -134,7 +134,7 @@ const BehavioralQuestionList = ({
         ) : (
           <div className="no-questions">
             {isLoading ? (
-              <span className="loader"></span>
+              <div className="loader"></div>
             ) : (
               "Nothing to display. Create new questions or import existing ones."
             )}

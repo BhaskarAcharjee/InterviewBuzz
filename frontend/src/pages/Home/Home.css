@@ -1,36 +1,46 @@
 .home-container {
   padding: 20px;
-  max-width: 900px;
+  max-width: 1200px;
   margin: 0 auto;
-  font-family: Arial, sans-serif;
+  text-align: center;
 }
 
-.home-container.title {
-  font-size: 2rem;
+.title {
+  font-size: 2.5rem;
   margin-bottom: 10px;
+  color: #333;
 }
 
 .subtitle {
   font-size: 1.2rem;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+  color: #666;
 }
 
 .section {
-  background-color: #f9f9f9;
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 10px;
   padding: 20px;
-  border-radius: 8px;
   margin-bottom: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1), -4px -4px 6px rgba(255, 255, 255, 0.7);
+  transition: transform 0.3s;
+}
+
+.section:hover {
+  transform: translateY(-5px);
 }
 
 .section h3 {
   font-size: 1.5rem;
   margin-bottom: 10px;
+  color: #333;
 }
 
 .input-group {
   display: flex;
   gap: 10px;
+  justify-content: center;
   margin-bottom: 10px;
 }
 
@@ -49,7 +59,6 @@
   color: white;
   border-radius: 4px;
   cursor: pointer;
-  height: 40px; /* Set explicit height to match input height */
 }
 
 .add-btn:hover {
@@ -79,8 +88,7 @@
 @media (max-width: 768px) {
   .input-group {
     flex-direction: column;
-    align-items: flex-start;
-    margin-right: 20px;
+    align-items: center;
   }
   
   .upcoming {

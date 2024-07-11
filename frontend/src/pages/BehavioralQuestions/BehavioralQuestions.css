@@ -1,9 +1,20 @@
-/* Behavioral Page */
-
 .behavioral-questions-container {
-  /* padding: 20px; */
   max-width: 1200px;
   margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.behavioral-questions-container h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.behavioral-questions-container p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  color: #666;
 }
 
 .button-container {
@@ -43,7 +54,6 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  /* margin-bottom: 20px; */
   transition: background-color 0.3s;
 }
 
@@ -57,7 +67,6 @@
   align-items: center;
   margin-bottom: 20px;
   padding: 10px;
-  /* background-color: rgba(255, 255, 255, 0.7); */
   border-radius: 10px;
 }
 
@@ -70,8 +79,8 @@
   padding: 10px 20px;
   font-size: 1rem;
   cursor: pointer;
-  background-color: #f0f0f0; /* Light gray background */
-  color: #333; /* Dark gray text */
+  background-color: #f0f0f0;
+  color: #333;
   border: none;
   border-radius: 30px;
   transition: background-color 0.3s, color 0.3s;
@@ -79,8 +88,8 @@
 
 .filter-tab:hover,
 .filter-tab.active {
-  background-color: #004494; /* Dark blue background on hover and active */
-  color: white; /* White text on hover and active */
+  background-color: #004494;
+  color: white;
 }
 
 .toggle-view-btn {
@@ -112,11 +121,8 @@
   width: 100%;
 }
 
-/* Card Styles */
-.card,
-.preview-card {
+.card {
   background-color: white;
-  /* border: 1px solid #ddd; */
   border-radius: 8px;
   padding: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -134,7 +140,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px; /* Add margin to separate header from icons */
+  margin-bottom: 10px;
 }
 
 .card-header h3 {
@@ -142,7 +148,7 @@
   font-size: 0.9rem;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: calc(100% - 60px); /* Adjust this value as needed */
+  max-width: calc(100% - 60px);
 }
 
 .card-icons {
@@ -220,8 +226,6 @@
   background-color: #004494;
 }
 
-/* Detail Page */
-
 .question-detail-container {
   padding: 20px;
   max-width: 800px;
@@ -252,7 +256,6 @@
   background-color: #1c7430;
 }
 
-/* Create & Update */
 .create-question-container {
   padding: 20px;
   max-width: 800px;
@@ -293,7 +296,7 @@
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
-  text-decoration: none; /* Ensure link-style removal */
+  text-decoration: none;
 }
 
 .edit-button:hover,
@@ -305,23 +308,16 @@
   margin-left: 10px;
 }
 
-/* Mardown editor */
 .wmde-markdown {
   color: black !important;
-  background-color: white !important;
+  background-color: #f5f5f5 !important;
 }
 
 .wmde-markdown code {
   color: white !important;
 }
 
-/* Mobile Responsiveness */
 @media (max-width: 768px) {
-  /* .filter-options {
-    flex-direction: column;
-    align-items: flex-start;
-  } */
-
   .question-list.grid .card {
     width: calc(50% - 20px);
   }
@@ -329,32 +325,10 @@
   .question-list.list .card {
     width: 100%;
   }
-
-  .toggle-view-btn {
-    display: none;
-  }
 }
 
 @media (max-width: 480px) {
   .question-list.grid .card {
     width: 100%;
-  }
-
-  .toggle-view-btn {
-    display: none;
-  }
-
-  .create-new-btn {
-    padding: 2px 5px;
-    margin-right: 10px;
-  }
-
-  .nav-btn {
-    padding: 5px 10px;
-    height: 30px;
-  }
-
-  .back-btn {
-    margin-top: 0;
   }
 }

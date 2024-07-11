@@ -1,3 +1,67 @@
+.dream-company-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.dream-company-container h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.dream-company-container p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  color: #666;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.import-export-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.import-btn,
+.export-btn {
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.import-btn:hover,
+.export-btn:hover {
+  background-color: #0056b3;
+}
+
+.create-new-btn {
+  padding: 10px 20px;
+  font-size: 1rem;
+  background: linear-gradient(135deg, #28a745, #218838);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.create-new-btn:hover {
+  background-color: #1c7430;
+}
+
+
 /* Card */
 .dream-company-card {
   background-color: #f4f4f4;

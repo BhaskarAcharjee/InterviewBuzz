@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import DreamCompanyCard from "./DreamCompanyCard";
 import { getDreamCompanies, deleteDreamCompany } from "../../services/api";
 import "./DreamCompany.css";
@@ -8,6 +8,7 @@ const DreamCompanyList = () => {
   const [dreamCompanies, setDreamCompanies] = useState([]);
   const [isLoading, setIsLoading] = useState(true); // Loading state
   const [hasError, setHasError] = useState(false); // Error state
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchDreamCompanies();
@@ -35,34 +36,51 @@ const DreamCompanyList = () => {
   };
 
   if (isLoading) {
-    return <span className="loader"></span>; // Show loader while loading
+    return <div className="loader"></div>; // Show loader while loading
   }
 
   if (hasError) {
     return <p>Error loading data. Please try again later.</p>;
   }
 
+  const handleCreateNewClick = () => {
+    navigate("/dream-company/create");
+  };
+
   return (
-    <div className="dream-company-list">
-      <div className="header">
-        <h2>Dream Companies</h2>
-        <Link to="/dream-company/create" className="add-button">
-          Add Company
-        </Link>
-      </div>
-      {dreamCompanies.length === 0 ? (
-        <p>No data. Create data by clicking the "Add Company" button above.</p>
-      ) : (
-        <div className="company-cards">
-          {dreamCompanies.map((dreamCompany) => (
-            <DreamCompanyCard
-              key={dreamCompany._id}
-              dreamCompany={dreamCompany}
-              onDelete={() => handleDelete(dreamCompany._id)}
-            />
-          ))}
+    <div className="dream-companies-container">
+      <div className="behavioral-questions-container">
+        <h1>Dream Companies</h1>
+        <p>Prepare for the most common behavioral questions...</p>
+
+        <div className="button-container">
+          <button className="create-new-btn" onClick={handleCreateNewClick}>
+            Add Company
+          </button>
+          <div className="import-export-buttons">
+            <button className="import-btn">Import</button>
+            <button className="export-btn">Export</button>
+          </div>
         </div>
-      )}
+
+        <div className="dream-company-list question-list grid">
+          {dreamCompanies.length === 0 ? (
+            <p>
+              No data. Create data by clicking the "Add Company" button above.
+            </p>
+          ) : (
+            <div className="card-container">
+              {dreamCompanies.map((dreamCompany) => (
+                <DreamCompanyCard
+                  key={dreamCompany._id}
+                  dreamCompany={dreamCompany}
+                  onDelete={() => handleDelete(dreamCompany._id)}
+                />
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
     </div>
   );
 };

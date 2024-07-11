@@ -93,7 +93,9 @@ const Home = () => {
       </div>
       <div className="section upcoming">
         <h3>Upcoming Interviews</h3>
-        <Calender interviews={latestInterviews} />
+        {latestInterviews.length > 0 && (
+          <Calender interviews={latestInterviews} />
+        )}
       </div>
       <div className="section">
         <h3>All Interviews Schedule</h3>

@@ -12,6 +12,7 @@ const DreamCompanyEdit = () => {
   });
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     const fetchDreamCompany = async () => {
@@ -38,6 +39,10 @@ const DreamCompanyEdit = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (formData.name.length > 500) {
+      setError("Company name cannot be more than 500 characters");
+      return;
+    }
     try {
       await updateDreamCompany(id, formData);
       navigate("/dream-company");
@@ -47,7 +52,7 @@ const DreamCompanyEdit = () => {
   };
 
   if (isLoading) {
-    return <span className="loader"></span>;
+    return <div className="loader"></div>;
   }
 
   if (hasError) {
@@ -67,6 +72,7 @@ const DreamCompanyEdit = () => {
           onChange={handleChange}
           required
         />
+        {error && <p className="error">{error}</p>}
         <label htmlFor="description">Description:</label>
         <textarea
           id="description"

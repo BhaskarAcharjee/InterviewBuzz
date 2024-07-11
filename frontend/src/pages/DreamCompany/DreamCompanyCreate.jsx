@@ -4,11 +4,12 @@ import { createDreamCompany } from "../../services/api";
 import "./DreamCompany.css";
 
 const DreamCompanyCreate = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     description: "",
   });
+  const [error, setError] = useState("");
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -16,6 +17,10 @@ const DreamCompanyCreate = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (formData.name.length > 500) {
+      setError("Company name cannot be more than 500 characters");
+      return;
+    }
     try {
       await createDreamCompany(formData);
       navigate("/dream-company");
@@ -37,6 +42,7 @@ const DreamCompanyCreate = () => {
           onChange={handleChange}
           required
         />
+        {error && <p className="error">{error}</p>}
         <label htmlFor="description">Description:</label>
         <textarea
           id="description"
