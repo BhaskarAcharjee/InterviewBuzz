@@ -62,3 +62,23 @@
   font-size: 1.2rem;
   color: #555;
 }
+
+.flashcard-options {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.option-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.option-btn:hover {
+  background-color: #0056b3;
+}

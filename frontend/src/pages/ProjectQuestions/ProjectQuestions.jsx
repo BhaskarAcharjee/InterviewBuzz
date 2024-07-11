@@ -1,29 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 import "./ProjectQuestions.css";
+import AddProjectModal from "../../components/Modal/AddProjectModal";
 
 const ProjectQuestions = () => {
-  const questions = [
+  const [projects, setProjects] = useState([
     {
-      question:
-        "Describe a challenging project you worked on. How did you overcome it?",
-      category: "General",
+      projectName: "E-commerce Website",
+      projectLink: "https://ecommerce.com",
+      githubLink: "https://github.com/user/ecommerce",
+      shortDescription:
+        "A full-featured e-commerce website built with React and Node.js.",
+      techStacks: ["React", "Node.js", "Express", "MongoDB"],
     },
     {
-      question:
-        "Explain a technical decision you made in one of your projects and why you chose it.",
-      category: "Technical",
+      projectName: "Social Media App",
+      projectLink: "https://socialmedia.com",
+      githubLink: "https://github.com/user/socialmedia",
+      shortDescription:
+        "A social media application with real-time chat and news feed features.",
+      techStacks: ["React", "Firebase", "Redux"],
     },
     {
-      question:
-        "Discuss a project where you worked with a team. How did you collaborate and resolve conflicts?",
-      category: "Teamwork",
+      projectName: "Project Management Tool",
+      projectLink: "https://projectmanagement.com",
+      githubLink: "https://github.com/user/projectmanagement",
+      shortDescription:
+        "A tool to manage projects, tasks, and teams efficiently.",
+      techStacks: ["Vue", "Node.js", "GraphQL"],
     },
-    {
-      question:
-        "Share an example of a project where you implemented innovative features or solutions.",
-      category: "Innovation",
-    },
-  ];
+  ]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleAddProject = (newProject) => {
+    setProjects([...projects, newProject]);
+  };
 
   return (
     <div className="project-questions-container">
@@ -31,15 +41,32 @@ const ProjectQuestions = () => {
       <p className="project-questions-description">
         Prepare for the most common questions asked regarding your projects...
       </p>
+      <button className="add-project-btn" onClick={() => setIsModalOpen(true)}>
+        Add Project
+      </button>
 
-      <div className="questions-list">
-        {questions.map((q, index) => (
-          <div className="question" key={index}>
-            <h2 className="question-text">{q.question}</h2>
-            <p className="question-category">Category: {q.category}</p>
+      <div className="projects-list">
+        {projects.map((project, index) => (
+          <div className="project-card" key={index}>
+            <h2 className="project-name">{project.projectName}</h2>
+            <p className="project-description">{project.shortDescription}</p>
+            <div className="tech-stacks">
+              {project.techStacks.map((stack, idx) => (
+                <span className="tech-stack" key={idx}>
+                  {stack}
+                </span>
+              ))}
+            </div>
           </div>
         ))}
       </div>
+
+      {isModalOpen && (
+        <AddProjectModal
+          onClose={() => setIsModalOpen(false)}
+          onAddProject={handleAddProject}
+        />
+      )}
     </div>
   );
 };
