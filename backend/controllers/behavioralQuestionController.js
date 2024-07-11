@@ -1,9 +1,9 @@
-const BehavioralQuestion = require("../models/BehavioralQuestion");
+const BehavioralQuestion = require("../models/behavioralQuestion");
 
 // Get all questions
 exports.getAllQuestions = async (req, res) => {
   try {
-    const questions = await BehavioralQuestion.find();
+    const questions = await BehavioralQuestion.find({ userId: req.userId });
     res.json(questions);
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -19,6 +19,7 @@ exports.createQuestion = async (req, res) => {
       question,
       answer,
       isFavorite: isFavorite || false,
+      userId: req.userId,
     });
 
     await newQuestion.save();
@@ -33,7 +34,13 @@ exports.importQuestions = async (req, res) => {
   const { questions } = req.body;
 
   try {
-    const newQuestions = await BehavioralQuestion.insertMany(questions);
+    // Ensure each question includes the userId field
+    const questionsWithUserId = questions.map(question => ({
+      ...question,
+      userId: req.userId
+    }));
+
+    const newQuestions = await BehavioralQuestion.insertMany(questionsWithUserId);
     res.status(201).json(newQuestions);
   } catch (err) {
     res.status(400).json({ message: err.message });

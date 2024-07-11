@@ -1,16 +1,8 @@
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
-const bcrypt = require("bcryptjs");
 
 // JWT secret key
 const JWT_SECRET = process.env.JWT_SECRET || "mysecret";
-
-let userId = null; // Initial value for testing purposes
-
-exports.getLoginUserId = () => {
-  console.log("Current userId:", userId);
-  return userId;
-};
 
 // Signup controller
 exports.signup = async (req, res) => {
@@ -30,10 +22,6 @@ exports.signup = async (req, res) => {
       JWT_SECRET,
       { expiresIn: "1d" }
     );
-
-    userId = newUser._id.toString(); // Update the userId variable
-
-    console.log("New signup - userId:", userId); // Debugging log
 
     res.status(201).json({
       token,
@@ -63,10 +51,6 @@ exports.login = async (req, res) => {
     const token = jwt.sign({ id: user._id, role: user.role }, JWT_SECRET, {
       expiresIn: "1d",
     });
-
-    userId = user._id.toString(); // Update the userId variable
-
-    console.log("Login - userId:", userId); // Debugging log
 
     res.json({
       token,

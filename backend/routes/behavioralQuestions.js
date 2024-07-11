@@ -8,6 +8,9 @@ const {
   deleteQuestion,
   getAllQuestions,
 } = require("../controllers/behavioralQuestionController");
+const authenticateUser = require("../middleware/authenticateUser");
+
+router.use(authenticateUser); // Apply the authentication middleware to all routes
 
 router.get("/", getAllQuestions); // Get all questions
 router.post("/", createQuestion); // Create a new question

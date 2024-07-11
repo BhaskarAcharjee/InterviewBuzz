@@ -1,12 +1,9 @@
-const DreamCompany = require('../models/dreamCompany');
-const { getLoginUserId } = require('./userController');
-
-const userId = getLoginUserId(); // Get the user ID using the function
+const DreamCompany = require("../models/dreamCompany");
 
 // Fetch all dream companies for a user
 exports.getDreamCompanies = async (req, res) => {
   try {
-    const dreamCompanies = await DreamCompany.find({ userId });
+    const dreamCompanies = await DreamCompany.find({ userId: req.userId });
     res.json(dreamCompanies);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -18,7 +15,7 @@ exports.addDreamCompany = async (req, res) => {
   const dreamCompany = new DreamCompany({
     name: req.body.name,
     description: req.body.description,
-    userId: userId,
+    userId: req.userId,
   });
 
   try {
@@ -34,7 +31,7 @@ exports.getDreamCompanyById = async (req, res) => {
   try {
     const dreamCompany = await DreamCompany.findById(req.params.id);
     if (!dreamCompany) {
-      return res.status(404).json({ message: 'Dream company not found' });
+      return res.status(404).json({ message: "Dream company not found" });
     }
     res.json(dreamCompany);
   } catch (error) {
@@ -51,7 +48,7 @@ exports.updateDreamCompany = async (req, res) => {
       { new: true }
     );
     if (!updatedDreamCompany) {
-      return res.status(404).json({ message: 'Dream company not found' });
+      return res.status(404).json({ message: "Dream company not found" });
     }
     res.json(updatedDreamCompany);
   } catch (error) {
@@ -63,7 +60,7 @@ exports.updateDreamCompany = async (req, res) => {
 exports.deleteDreamCompany = async (req, res) => {
   try {
     await DreamCompany.findByIdAndDelete(req.params.id);
-    res.json({ message: 'Deleted dream company' });
+    res.json({ message: "Deleted dream company" });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
