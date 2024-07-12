@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   useLocation,
 } from "react-router-dom";
+import { ContextProvider } from "./context/BehavioralQuestionsContext";
 import Sidebar from "./components/Sidebar/Sidebar";
 import Home from "./pages/Home/Home";
 import BehavioralQuestionList from "./pages/BehavioralQuestions/BehavioralQuestionList";
@@ -24,91 +25,18 @@ import Auth from "./pages/Auth/Auth";
 import Hero from "./pages/Hero/Hero";
 import PageNotFound from "./pages/PageNotFound/PageNotFound";
 import "./App.css";
-import {
-  getQuestions,
-  createQuestion,
-  updateQuestion,
-  deleteQuestion,
-} from "./services/api";
 
 const App = () => {
-  const [questions, setQuestions] = useState([]);
-
-  useEffect(() => {
-    fetchQuestions();
-  }, []);
-
-  const fetchQuestions = async () => {
-    try {
-      const response = await getQuestions();
-      setQuestions(response.data);
-    } catch (error) {
-      console.error("Error fetching questions:", error);
-    }
-  };
-
-  const addNewQuestion = async (newQuestion) => {
-    try {
-      const response = await createQuestion(newQuestion);
-      setQuestions([...questions, response.data]);
-    } catch (error) {
-      console.error("Error adding question:", error);
-    }
-  };
-
-  const editQuestion = async (updatedQuestion) => {
-    try {
-      const response = await updateQuestion(
-        updatedQuestion._id,
-        updatedQuestion
-      );
-      setQuestions(
-        questions.map((q) =>
-          q._id === updatedQuestion._id ? response.data : q
-        )
-      );
-    } catch (error) {
-      console.error("Error editing question:", error);
-    }
-  };
-
-  const deleteQuestionById = async (id) => {
-    try {
-      await deleteQuestion(id);
-      setQuestions(questions.filter((q) => q._id !== id));
-    } catch (error) {
-      console.error("Error deleting question:", error);
-    }
-  };
-
-  const toggleFavorite = async (id) => {
-    const question = questions.find((q) => q._id === id);
-    const updatedQuestion = { ...question, isFavorite: !question.isFavorite };
-    await editQuestion(updatedQuestion);
-  };
-
   return (
-    <Router>
-      <MainContent
-        questions={questions}
-        setQuestions={setQuestions}
-        addNewQuestion={addNewQuestion}
-        editQuestion={editQuestion}
-        deleteQuestionById={deleteQuestionById}
-        toggleFavorite={toggleFavorite}
-      />
-    </Router>
+    <ContextProvider>
+      <Router>
+        <MainContent />
+      </Router>
+    </ContextProvider>
   );
 };
 
-const MainContent = ({
-  questions,
-  setQuestions,
-  addNewQuestion,
-  editQuestion,
-  deleteQuestionById,
-  toggleFavorite,
-}) => {
+const MainContent = () => {
   const location = useLocation();
   const excludePaths = ["/login", "/signup"];
   const showSidebar = !excludePaths.includes(location.pathname);
@@ -120,39 +48,18 @@ const MainContent = ({
         <Routes>
           <Route path="/" element={<Hero />} />
           <Route path="/home" element={<Home />} />
-          <Route
-            path="/behavioral"
-            element={
-              <BehavioralQuestionList
-                questions={questions}
-                setQuestions={setQuestions}
-                onEdit={editQuestion}
-                onDelete={deleteQuestionById}
-                toggleFavorite={toggleFavorite}
-              />
-            }
-          />
+          <Route path="/behavioral" element={<BehavioralQuestionList />} />
           <Route
             path="/behavioral/create"
-            element={<BehavioralQuestionCreate onSave={addNewQuestion} />}
+            element={<BehavioralQuestionCreate />}
           />
           <Route
             path="/behavioral/:id"
-            element={
-              <BehavioralQuestionDetail
-                questions={questions}
-                setQuestions={setQuestions}
-              />
-            }
+            element={<BehavioralQuestionDetail />}
           />
           <Route
             path="/behavioral/edit/:id"
-            element={
-              <BehavioralQuestionEdit
-                questions={questions}
-                onSave={editQuestion}
-              />
-            }
+            element={<BehavioralQuestionEdit />}
           />
           <Route path="/projects" element={<ProjectQuestions />} />
           <Route path="/technical" element={<TechnicalQuestions />} />

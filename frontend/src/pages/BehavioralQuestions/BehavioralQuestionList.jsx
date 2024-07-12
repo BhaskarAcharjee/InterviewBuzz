@@ -3,15 +3,17 @@ import { useNavigate } from "react-router-dom";
 import BehavioralQuestionCard from "./BehavioralQuestionCard";
 import "./BehavioralQuestions.css";
 import BehavioralQuestionModal from "../../components/Modal/BehavioralQuestionModal";
+import { useQuestions } from "../../context/BehavioralQuestionsContext";
 import { importQuestions } from "../../services/api";
 
-const BehavioralQuestionList = ({
-  questions,
-  onEdit,
-  onDelete,
-  setQuestions,
-  toggleFavorite,
-}) => {
+const BehavioralQuestionList = () => {
+  const {
+    questions,
+    setQuestions,
+    editQuestion,
+    deleteQuestionById,
+    toggleFavorite,
+  } = useQuestions();
   const [view, setView] = useState("grid");
   const [filter, setFilter] = useState("all");
   const [exportContent, setExportContent] = useState("");
@@ -75,9 +77,9 @@ const BehavioralQuestionList = ({
     return <div className="loader"></div>; // Show loader while loading
   }
 
-  if (hasError) {
-    return <p>Error loading data. Please try again later.</p>;
-  }
+  // if (hasError) {
+  //   return <p>Error loading data. Please try again later.</p>;
+  // }
 
   return (
     <div className="behavioral-questions-container">
@@ -126,8 +128,8 @@ const BehavioralQuestionList = ({
               _id={q._id}
               question={q.question}
               isFavorite={q.isFavorite}
-              onEdit={() => onEdit(q)}
-              onDelete={() => onDelete(q._id)}
+              onEdit={() => editQuestion(q)}
+              onDelete={() => deleteQuestionById(q._id)}
               toggleFavorite={() => toggleFavorite(q._id)}
             />
           ))

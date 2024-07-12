@@ -1,3 +1,4 @@
+To-Do >>
 Project
 Enter Project name, short description, link, techstacks
 Clicking add question answer markdown editor
@@ -9,3 +10,7 @@ Technical Qusetions
 ADD Questions, Programming language
 Add coding snippets (Leetcode or GFF etc)
 
+---
+
+Bugs >>
+In Question markdown editor if a button code added it displayes the button, and clicking that button gives error

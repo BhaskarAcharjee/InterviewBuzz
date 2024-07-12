@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import MarkdownEditor from "@uiw/react-md-editor";
+import { useQuestions } from "../../context/BehavioralQuestionsContext";
 import "./BehavioralQuestions.css";
 
-const BehavioralQuestionCreate = ({ onSave }) => {
+const BehavioralQuestionCreate = () => {
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
+  const { addNewQuestion } = useQuestions();
   const navigate = useNavigate();
 
   const handleSave = () => {
@@ -14,7 +16,7 @@ const BehavioralQuestionCreate = ({ onSave }) => {
       question,
       answer,
     };
-    onSave(newQuestion);
+    addNewQuestion(newQuestion);
     navigate("/behavioral");
   };
 

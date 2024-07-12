@@ -39,9 +39,9 @@ const DreamCompanyList = () => {
     return <div className="loader"></div>; // Show loader while loading
   }
 
-  if (hasError) {
-    return <p>Error loading data. Please try again later.</p>;
-  }
+  // if (hasError) {
+  //   return <p>Error loading data. Please try again later.</p>;
+  // }
 
   const handleCreateNewClick = () => {
     navigate("/dream-company/create");
@@ -53,7 +53,7 @@ const DreamCompanyList = () => {
         <h1>Dream Companies</h1>
         <p>The goal of your interview preparation...</p>
 
-        <button className="add-project-btn">Add Company</button>
+        <button className="add-project-btn" onClick={handleCreateNewClick}>Add Company</button>
 
         <div className="dream-company-list question-list grid">
           {dreamCompanies.length === 0 ? (

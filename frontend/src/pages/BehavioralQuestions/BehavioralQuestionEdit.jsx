@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import MarkdownEditor from "@uiw/react-md-editor";
+import { useQuestions } from "../../context/BehavioralQuestionsContext";
 import "./BehavioralQuestions.css";
 
-const BehavioralQuestionEdit = ({ questions, onSave }) => {
+const BehavioralQuestionEdit = () => {
   const { id } = useParams();
+  const { questions, editQuestion } = useQuestions();
   const navigate = useNavigate();
   const questionToEdit = questions.find((q) => q._id === id);
 
@@ -24,7 +26,7 @@ const BehavioralQuestionEdit = ({ questions, onSave }) => {
       question,
       answer,
     };
-    onSave(updatedQuestion);
+    editQuestion(updatedQuestion);
     navigate("/behavioral");
   };
 
@@ -33,7 +35,7 @@ const BehavioralQuestionEdit = ({ questions, onSave }) => {
   }
 
   return (
-    <div className="create-question-container">
+    <div className="edit-question-container">
       <h1>Edit Behavioral Question</h1>
       <input
         type="text"

@@ -1,10 +1,13 @@
+// src/pages/BehavioralQuestions/BehavioralQuestionDetail.js
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Markdown from "@uiw/react-markdown-preview";
+import { useQuestions } from "../../context/BehavioralQuestionsContext";
 import "./BehavioralQuestions.css";
 
-const BehavioralQuestionDetail = ({ questions, setQuestions }) => {
+const BehavioralQuestionDetail = () => {
   const { id } = useParams();
+  const { questions } = useQuestions();
   const navigate = useNavigate();
   const question = questions.find((q) => q._id === id);
 

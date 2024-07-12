@@ -7,7 +7,6 @@ const BehavioralQuestionCard = ({
   _id,
   question,
   isFavorite,
-  onEdit,
   toggleFavorite,
   onDelete,
 }) => {
