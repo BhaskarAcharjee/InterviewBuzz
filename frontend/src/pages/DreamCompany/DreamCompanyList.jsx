@@ -4,15 +4,18 @@ import DreamCompanyCard from "./DreamCompanyCard";
 import { getDreamCompanies, deleteDreamCompany } from "../../services/api";
 import "./DreamCompany.css";
 import { sampleDreamCompanies } from "../../constants/companies";
+import { isLoggedIn } from "../../services/auth";
 
 const DreamCompanyList = () => {
   const [dreamCompanies, setDreamCompanies] = useState([]);
   const [isLoading, setIsLoading] = useState(true); // Loading state
   const [hasError, setHasError] = useState(false); // Error state
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false); // Logged-in state
   const navigate = useNavigate();
 
   useEffect(() => {
     fetchDreamCompanies();
+    setIsUserLoggedIn(isLoggedIn()); // Check if user is logged in
   }, []);
 
   const fetchDreamCompanies = async () => {
@@ -40,8 +43,9 @@ const DreamCompanyList = () => {
     return <div className="loader"></div>; // Show loader while loading
   }
 
-  const renderDreamCompanies =
-    dreamCompanies.length > 0 ? dreamCompanies : sampleDreamCompanies;
+  const renderDreamCompanies = isUserLoggedIn
+    ? dreamCompanies
+    : sampleDreamCompanies;
 
   const handleCreateNewClick = () => {
     navigate("/dream-company/create");

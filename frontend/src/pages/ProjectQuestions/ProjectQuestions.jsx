@@ -61,12 +61,11 @@ const ProjectQuestions = () => {
         ))}
       </div>
 
-      {isModalOpen && (
-        <AddProjectModal
-          onClose={() => setIsModalOpen(false)}
-          onAddProject={handleAddProject}
-        />
-      )}
+      <AddProjectModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onAddProject={handleAddProject}
+      />
     </div>
   );
 };

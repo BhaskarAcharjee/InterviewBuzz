@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./BehavioralQuestionModal.css";
+import CommonModal from "./CommonModal";
 
 const BehavioralQuestionModal = ({ isOpen, onClose, onImport }) => {
   const [importText, setImportText] = useState("");
@@ -11,7 +11,11 @@ const BehavioralQuestionModal = ({ isOpen, onClose, onImport }) => {
       .split("\n\n") // Split by double new lines to separate each question block
       .map((block) => {
         const lines = block.split("\n"); // Split each block into lines
-        if (lines.length < 2 || !lines[0].startsWith("Q. ") || !lines[1].startsWith("Ans. ")) {
+        if (
+          lines.length < 2 ||
+          !lines[0].startsWith("Q. ") ||
+          !lines[1].startsWith("Ans. ")
+        ) {
           setError(
             "Please import in the correct format:\nQ. <Question>\nAns. <Answer>\n\nQ. <Question>\nAns. <Answer>"
           );
@@ -29,33 +33,27 @@ const BehavioralQuestionModal = ({ isOpen, onClose, onImport }) => {
 
     onImport(questionsArray);
     setImportText("");
+    setError(""); // Clear the error message upon successful submission
     onClose();
   };
 
-  if (!isOpen) {
-    return null;
-  }
-
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
-        <h2>Import Questions</h2>
-        {error && <div className="error-message">{error}</div>}
-        <textarea
-          value={importText}
-          onChange={(e) => setImportText(e.target.value)}
-          placeholder="Enter questions text..."
-        />
-        <div className="modal-buttons">
-          <button className="import-btn" onClick={handleImport}>
-            Import
-          </button>
-          <button className="cancel-btn" onClick={onClose}>
-            Cancel
-          </button>
-        </div>
-      </div>
-    </div>
+    <CommonModal
+      isOpen={isOpen}
+      onClose={onClose}
+      onSubmit={handleImport}
+      title="Import Questions"
+    >
+      {error && <div className="error-message">{error}</div>}
+      <textarea
+        value={importText}
+        onChange={(e) => {
+          setImportText(e.target.value);
+          if (error) setError(""); // Clear error message on input change
+        }}
+        placeholder="Enter questions text..."
+      />
+    </CommonModal>
   );
 };
 

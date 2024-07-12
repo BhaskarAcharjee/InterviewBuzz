@@ -6,7 +6,7 @@ import BehavioralQuestionModal from "../../components/Modal/BehavioralQuestionMo
 import { useQuestions } from "../../context/BehavioralQuestionsContext";
 import { importQuestions } from "../../services/api";
 import { sampleQuestions } from "../../constants/behavioral";
-import { isLoggedIn } from "../../services/auth"; // Import isLoggedIn function
+import { isLoggedIn } from "../../services/auth";
 
 const BehavioralQuestionList = () => {
   const {
@@ -29,9 +29,12 @@ const BehavioralQuestionList = () => {
 
   useEffect(() => {
     fetchQuestions();
+    setIsUserLoggedIn(isLoggedIn()); // Check if user is logged in
+  }, []);
+
+  useEffect(() => {
     prepareExportContent(); // Function to prepare export content
     setIsLoading(false);
-    setIsUserLoggedIn(isLoggedIn()); // Check if user is logged in
   }, [questions]);
 
   const handleCreateNewClick = () => {
@@ -83,7 +86,7 @@ const BehavioralQuestionList = () => {
   }
 
   // Conditionally render sample data for unauthorized users
-  const renderQuestions = isUserLoggedIn ? questions : sampleQuestions;
+  const renderQuestions = isUserLoggedIn ? filteredQuestions : sampleQuestions;
 
   return (
     <div className="behavioral-questions-container">
