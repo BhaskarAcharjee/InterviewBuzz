@@ -17,18 +17,6 @@
   color: #666;
 }
 
-.add-project-btn {
-  padding: 10px 20px;
-  font-size: 1rem;
-  background: linear-gradient(135deg, #28a745, #218838);
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  margin-bottom: 20px;
-}
-
 .add-project-btn:hover {
   background-color: #1c7430;
 }

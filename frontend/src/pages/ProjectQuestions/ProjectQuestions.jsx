@@ -41,7 +41,7 @@ const ProjectQuestions = () => {
       <p className="project-questions-description">
         Prepare for the most common questions asked regarding your projects...
       </p>
-      <button className="add-project-btn" onClick={() => setIsModalOpen(true)}>
+      <button className="gradient-button" onClick={() => setIsModalOpen(true)}>
         Add Project
       </button>
 

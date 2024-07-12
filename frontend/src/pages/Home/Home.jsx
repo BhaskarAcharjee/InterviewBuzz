@@ -95,9 +95,11 @@ const Home = () => {
             onChange={handleInputChange}
             className="input"
           />
-          <button onClick={handleAddInterview} className="add-project-btn">
-            Add
-          </button>
+          <div className="button-container">
+            <button onClick={handleAddInterview} className="design-button">
+              Add
+            </button>
+          </div>
         </div>
       </div>
       <div className="section upcoming">

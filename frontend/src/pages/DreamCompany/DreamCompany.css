@@ -29,39 +29,6 @@
   gap: 10px;
 }
 
-.import-btn,
-.export-btn {
-  padding: 10px 20px;
-  font-size: 1rem;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.import-btn:hover,
-.export-btn:hover {
-  background-color: #0056b3;
-}
-
-.create-new-btn {
-  padding: 10px 20px;
-  font-size: 1rem;
-  background: linear-gradient(135deg, #28a745, #218838);
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.create-new-btn:hover {
-  background-color: #1c7430;
-}
-
-
 /* Card */
 .dream-company-card {
   background-color: #f4f4f4;
@@ -84,39 +51,6 @@
 
 .card-buttons {
   margin-top: 12px;
-}
-
-.edit-button,
-.delete-button {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-right: 8px;
-  transition: background-color 0.3s ease;
-}
-
-.edit-button:hover,
-.delete-button:hover {
-  background-color: #0056b3;
-}
-
-.add-button {
-  background-color: #28a745;
-  color: #fff;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-bottom: 16px;
-  transition: background-color 0.3s ease;
-  text-decoration: none;
-}
-
-.add-button:hover {
-  background-color: #218838;
 }
 
 /* List */

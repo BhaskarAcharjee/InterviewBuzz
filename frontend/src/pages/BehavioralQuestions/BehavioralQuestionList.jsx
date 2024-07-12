@@ -28,13 +28,23 @@ const BehavioralQuestionList = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetchQuestions();
+    const fetchData = async () => {
+      try {
+        await fetchQuestions();
+      } catch (error) {
+        console.error("Error fetching questions:", error);
+        setHasError(true);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
     setIsUserLoggedIn(isLoggedIn()); // Check if user is logged in
   }, []);
 
   useEffect(() => {
     prepareExportContent(); // Function to prepare export content
-    setIsLoading(false);
   }, [questions]);
 
   const handleCreateNewClick = () => {
@@ -81,10 +91,6 @@ const BehavioralQuestionList = () => {
     element.click();
   };
 
-  if (isLoading) {
-    return <div className="loader"></div>; // Show loader while loading
-  }
-
   // Conditionally render sample data for unauthorized users
   const renderQuestions = isUserLoggedIn ? filteredQuestions : sampleQuestions;
 
@@ -93,17 +99,17 @@ const BehavioralQuestionList = () => {
       <h1>Behavioral Questions</h1>
       <p>Prepare for the most common behavioral questions...</p>
       <div className="button-container">
-        <button className="create-new-btn" onClick={handleCreateNewClick}>
+        <button className="gradient-button" onClick={handleCreateNewClick}>
           Create New Question
         </button>
         <div className="import-export-buttons">
           <button
-            className="import-btn"
+            className="design-button"
             onClick={() => setIsImportModalOpen(true)}
           >
             Import
           </button>
-          <button className="export-btn" onClick={handleExportQuestions}>
+          <button className="design-button" onClick={handleExportQuestions}>
             Export
           </button>
         </div>
