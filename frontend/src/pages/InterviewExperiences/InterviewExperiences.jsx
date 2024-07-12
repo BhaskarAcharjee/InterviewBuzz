@@ -9,7 +9,10 @@ const InterviewExperiences = () => {
       <p className="interview-experiences-description">
         Learn from your previous interview experience...
       </p>
-      <button className="gradient-button">Add Experience</button>
+      <div className="add-button-container">
+        <button className="gradient-button">Add Experience</button>
+      </div>
+
       <div className="experiences-list">
         {experiences.map((exp, index) => (
           <div className="experience" key={index}>

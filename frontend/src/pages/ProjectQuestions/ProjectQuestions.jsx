@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./ProjectQuestions.css";
 import AddProjectModal from "../../components/Modal/AddProjectModal";
+import TagSearchBar from "../../components/TagSearchBar/TagSearchBar";
 
 const ProjectQuestions = () => {
   const [projects, setProjects] = useState([
@@ -29,11 +30,39 @@ const ProjectQuestions = () => {
       techStacks: ["Vue", "Node.js", "GraphQL"],
     },
   ]);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [filteredProjects, setFilteredProjects] = useState(projects);
 
   const handleAddProject = (newProject) => {
     setProjects([...projects, newProject]);
+    setFilteredProjects([...projects, newProject]);
   };
+
+  const handleTagSelect = (selectedTag) => {
+    if (selectedTag === "All") {
+      setFilteredProjects(projects);
+    } else {
+      const filtered = projects.filter((project) =>
+        project.techStacks.includes(selectedTag)
+      );
+      setFilteredProjects(filtered);
+    }
+  };
+
+  const tagFrequency = {};
+  projects.forEach((project) => {
+    project.techStacks.forEach((stack) => {
+      tagFrequency[stack] = (tagFrequency[stack] || 0) + 1;
+    });
+  });
+
+  const sortedTags = Object.entries(tagFrequency)
+    .sort(([, a], [, b]) => b - a)
+    .map(([tag]) => tag);
+
+  const topTags = sortedTags.slice(0, 7);
+  const hasMoreTags = sortedTags.length > 7;
 
   return (
     <div className="project-questions-container">
@@ -41,12 +70,21 @@ const ProjectQuestions = () => {
       <p className="project-questions-description">
         Prepare for the most common questions asked regarding your projects...
       </p>
-      <button className="gradient-button" onClick={() => setIsModalOpen(true)}>
-        Add Project
-      </button>
-
+      <div className="add-button-container">
+        <button
+          className="gradient-button"
+          onClick={() => setIsModalOpen(true)}
+        >
+          Add Project
+        </button>
+      </div>
+      <TagSearchBar
+        tags={topTags}
+        onTagSelect={handleTagSelect}
+        hasMoreTags={hasMoreTags}
+      />
       <div className="projects-list">
-        {projects.map((project, index) => (
+        {filteredProjects.map((project, index) => (
           <div className="project-card" key={index}>
             <h2 className="project-name">{project.projectName}</h2>
             <p className="project-description">{project.shortDescription}</p>

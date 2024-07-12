@@ -65,7 +65,10 @@ const Flashcards = () => {
       <p className="flashcards-description">
         To help prepare for conceptual questions...
       </p>
-      <button className="gradient-button">Add Flashcard</button>
+      <div className="add-button-container">
+        <button className="gradient-button">Add Flashcard</button>
+      </div>
+
       <TabSwitch
         options={options}
         activeOption={activeTab}

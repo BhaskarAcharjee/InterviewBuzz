@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import BehavioralQuestionCard from "./BehavioralQuestionCard";
 import "./BehavioralQuestions.css";
 import BehavioralQuestionModal from "../../components/Modal/BehavioralQuestionModal";
+import TabSwitch from "../../components/TabSwitch/TabSwitch";
 import { useQuestions } from "../../context/BehavioralQuestionsContext";
 import { importQuestions } from "../../services/api";
 import { sampleQuestions } from "../../constants/behavioral";
@@ -24,8 +25,13 @@ const BehavioralQuestionList = () => {
   const [isLoading, setIsLoading] = useState(true); // Loading state
   const [hasError, setHasError] = useState(false); // Error state
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false); // Logged-in state
-
   const navigate = useNavigate();
+
+  const options = [
+    { label: "All", direction: "left", value: "all" },
+    { label: "Favorites", direction: "right", value: "favorites" },
+  ];
+  const [activeTab, setActiveTab] = useState(options[0]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -55,8 +61,9 @@ const BehavioralQuestionList = () => {
     setView(view === "grid" ? "list" : "grid");
   };
 
-  const handleFilterChange = (filterType) => {
-    setFilter(filterType);
+  const handleOptionClick = (option) => {
+    setActiveTab(option);
+    setFilter(option.value);
   };
 
   const filteredQuestions = questions.filter(
@@ -115,20 +122,11 @@ const BehavioralQuestionList = () => {
         </div>
       </div>
       <div className="filter-options-container">
-        <div className="filter-options">
-          <div
-            className={`filter-tab ${filter === "all" ? "active" : ""}`}
-            onClick={() => handleFilterChange("all")}
-          >
-            All
-          </div>
-          <div
-            className={`filter-tab ${filter === "favorites" ? "active" : ""}`}
-            onClick={() => handleFilterChange("favorites")}
-          >
-            Favorites
-          </div>
-        </div>
+        <TabSwitch
+          options={options}
+          activeOption={activeTab}
+          onOptionClick={handleOptionClick}
+        />
         <button className="toggle-view-btn" onClick={handleViewToggle}>
           {view === "grid" ? "Switch to List View" : "Switch to Grid View"}
         </button>

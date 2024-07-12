@@ -52,10 +52,12 @@ const DreamCompanyList = () => {
       <div className="behavioral-questions-container">
         <h1>Dream Companies</h1>
         <p>The goal of your interview preparation...</p>
+        <div className="add-button-container">
+          <button className="gradient-button" onClick={handleCreateNewClick}>
+            Add Company
+          </button>
+        </div>
 
-        <button className="gradient-button" onClick={handleCreateNewClick}>
-          Add Company
-        </button>
         {!isLoading ? (
           <div className="dream-company-list question-list grid">
             {renderDreamCompanies.length === 0 ? (

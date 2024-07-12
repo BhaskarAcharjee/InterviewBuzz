@@ -24,6 +24,10 @@
   margin-bottom: 20px;
 }
 
+.add-button-container{
+  margin-bottom: 20px;
+}
+
 .import-export-buttons {
   display: flex;
   gap: 10px;

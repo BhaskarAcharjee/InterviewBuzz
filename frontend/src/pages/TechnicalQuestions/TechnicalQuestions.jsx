@@ -33,7 +33,10 @@ const TechnicalQuestions = () => {
       <p className="technical-questions-description">
         Keep a record of technical questions you prepared to revise later...
       </p>
-      <button className="gradient-button">Add Question</button>
+      <div className="add-button-container">
+        <button className="gradient-button">Add Question</button>
+      </div>
+
       <TabSwitch
         options={options}
         activeOption={activeTab}
