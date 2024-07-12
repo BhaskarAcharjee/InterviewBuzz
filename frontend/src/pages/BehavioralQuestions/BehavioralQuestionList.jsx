@@ -5,6 +5,8 @@ import "./BehavioralQuestions.css";
 import BehavioralQuestionModal from "../../components/Modal/BehavioralQuestionModal";
 import { useQuestions } from "../../context/BehavioralQuestionsContext";
 import { importQuestions } from "../../services/api";
+import { sampleQuestions } from "../../constants/behavioral";
+import { isLoggedIn } from "../../services/auth"; // Import isLoggedIn function
 
 const BehavioralQuestionList = () => {
   const {
@@ -13,6 +15,7 @@ const BehavioralQuestionList = () => {
     editQuestion,
     deleteQuestionById,
     toggleFavorite,
+    fetchQuestions,
   } = useQuestions();
   const [view, setView] = useState("grid");
   const [filter, setFilter] = useState("all");
@@ -20,13 +23,15 @@ const BehavioralQuestionList = () => {
   const [isImportModalOpen, setIsImportModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true); // Loading state
   const [hasError, setHasError] = useState(false); // Error state
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false); // Logged-in state
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Function to prepare export content
-    prepareExportContent();
+    fetchQuestions();
+    prepareExportContent(); // Function to prepare export content
     setIsLoading(false);
+    setIsUserLoggedIn(isLoggedIn()); // Check if user is logged in
   }, [questions]);
 
   const handleCreateNewClick = () => {
@@ -77,9 +82,8 @@ const BehavioralQuestionList = () => {
     return <div className="loader"></div>; // Show loader while loading
   }
 
-  // if (hasError) {
-  //   return <p>Error loading data. Please try again later.</p>;
-  // }
+  // Conditionally render sample data for unauthorized users
+  const renderQuestions = isUserLoggedIn ? questions : sampleQuestions;
 
   return (
     <div className="behavioral-questions-container">
@@ -121,8 +125,8 @@ const BehavioralQuestionList = () => {
         </button>
       </div>
       <div className={`question-list ${view}`}>
-        {filteredQuestions.length > 0 ? (
-          filteredQuestions.map((q) => (
+        {renderQuestions.length > 0 ? (
+          renderQuestions.map((q) => (
             <BehavioralQuestionCard
               key={q._id}
               _id={q._id}

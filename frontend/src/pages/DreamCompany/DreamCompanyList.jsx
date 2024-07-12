@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import DreamCompanyCard from "./DreamCompanyCard";
 import { getDreamCompanies, deleteDreamCompany } from "../../services/api";
 import "./DreamCompany.css";
+import { sampleDreamCompanies } from "../../constants/companies";
 
 const DreamCompanyList = () => {
   const [dreamCompanies, setDreamCompanies] = useState([]);
@@ -39,9 +40,8 @@ const DreamCompanyList = () => {
     return <div className="loader"></div>; // Show loader while loading
   }
 
-  // if (hasError) {
-  //   return <p>Error loading data. Please try again later.</p>;
-  // }
+  const renderDreamCompanies =
+    dreamCompanies.length > 0 ? dreamCompanies : sampleDreamCompanies;
 
   const handleCreateNewClick = () => {
     navigate("/dream-company/create");
@@ -53,16 +53,18 @@ const DreamCompanyList = () => {
         <h1>Dream Companies</h1>
         <p>The goal of your interview preparation...</p>
 
-        <button className="add-project-btn" onClick={handleCreateNewClick}>Add Company</button>
+        <button className="add-project-btn" onClick={handleCreateNewClick}>
+          Add Company
+        </button>
 
         <div className="dream-company-list question-list grid">
-          {dreamCompanies.length === 0 ? (
+          {renderDreamCompanies.length === 0 ? (
             <p>
               No data. Create data by clicking the "Add Company" button above.
             </p>
           ) : (
             <div className="card-container">
-              {dreamCompanies.map((dreamCompany) => (
+              {renderDreamCompanies.map((dreamCompany) => (
                 <DreamCompanyCard
                   key={dreamCompany._id}
                   dreamCompany={dreamCompany}

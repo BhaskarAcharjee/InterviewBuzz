@@ -71,6 +71,7 @@ export const ContextProvider = ({ children }) => {
       value={{
         questions,
         setQuestions,
+        fetchQuestions,
         addNewQuestion,
         editQuestion,
         deleteQuestionById,

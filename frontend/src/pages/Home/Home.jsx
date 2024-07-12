@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./Home.css";
 import Calender from "../../components/Calender/Calender";
+import { sampleInterviews } from "../../constants/schedule";
+import { isLoggedIn } from "../../services/auth";
 
 const Home = () => {
   const [schedule, setSchedule] = useState({
@@ -11,6 +13,13 @@ const Home = () => {
   });
   const [interviews, setInterviews] = useState([]);
   const [latestInterviews, setLatestInterviews] = useState([]);
+
+  useEffect(() => {
+    // Check if user is logged in and use sample data if not
+    if (!isLoggedIn()) {
+      setInterviews(sampleInterviews);
+    }
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -86,7 +95,7 @@ const Home = () => {
             onChange={handleInputChange}
             className="input"
           />
-          <button onClick={handleAddInterview} className="add-btn">
+          <button onClick={handleAddInterview} className="add-project-btn">
             Add
           </button>
         </div>
