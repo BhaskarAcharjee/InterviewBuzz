@@ -32,7 +32,7 @@ const InterviewExperiences = () => {
       <p className="interview-experiences-description">
         Learn from your previous interview experience...
       </p>
-
+      <button className="add-project-btn">Add Company</button>
       <div className="experiences-list">
         {experiences.map((exp, index) => (
           <div className="experience" key={index}>

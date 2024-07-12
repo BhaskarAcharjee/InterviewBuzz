@@ -51,17 +51,9 @@ const DreamCompanyList = () => {
     <div className="dream-companies-container">
       <div className="behavioral-questions-container">
         <h1>Dream Companies</h1>
-        <p>Prepare for the most common behavioral questions...</p>
+        <p>The goal of your interview preparation...</p>
 
-        <div className="button-container">
-          <button className="create-new-btn" onClick={handleCreateNewClick}>
-            Add Company
-          </button>
-          <div className="import-export-buttons">
-            <button className="import-btn">Import</button>
-            <button className="export-btn">Export</button>
-          </div>
-        </div>
+        <button className="add-project-btn">Add Company</button>
 
         <div className="dream-company-list question-list grid">
           {dreamCompanies.length === 0 ? (
