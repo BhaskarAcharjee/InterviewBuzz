@@ -1,0 +1,176 @@
+/* Modern design navbar */
+.modern-navbar {
+  background-color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.modern-navbar .launch-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+}
+
+.modern-navbar .logo img {
+  max-width: 100%;
+  height: auto;
+}
+
+.modern-navbar nav ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.modern-navbar nav ul li {
+  margin-right: 30px;
+}
+
+.modern-navbar nav ul li:last-child {
+  margin-right: 0;
+}
+
+.modern-navbar nav ul li a {
+  color: #333333;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 10px 0;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.modern-navbar nav ul li a::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background-color: #007bff;
+  transition: width 0.3s ease;
+}
+
+.modern-navbar nav ul li a:hover::before {
+  width: 100%;
+}
+
+.modern-navbar .get-started-btn {
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  padding: 12px 30px;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.modern-navbar .get-started-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive Navbar */
+@media (max-width: 768px) {
+  .modern-navbar .launch-container {
+    padding: 15px;
+  }
+
+  .modern-navbar nav ul {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background-color: #ffffff;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .modern-navbar nav ul.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .modern-navbar nav ul li {
+    margin: 10px 0;
+  }
+
+  .modern-navbar nav ul li a {
+    padding: 10px 20px;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Glass morphic header */
+.glass-morphic-header {
+  background: rgba(255, 255, 255, 0.1); /* Glass morphic effect */
+  padding: 100px 0;
+  text-align: center;
+  color: #333333;
+}
+
+.glass-morphic-header h1 {
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.glass-morphic-header p {
+  font-size: 1.3rem;
+}
+
+.glass-morphic-header img {
+  margin-top: 50px;
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  border-radius: 10px;
+}
+
+/* Main content styles */
+.launch-page section {
+  /* padding: 50px 0; */
+  margin: 20px 20px;
+  text-align: center;
+  color: #333333;
+}
+
+.launch-page section h2 {
+  font-size: 2.8rem;
+  margin-bottom: 30px;
+  font-weight: 700;
+}
+
+.launch-page section p {
+  font-size: 1.2rem;
+}
+
+/* Community Forum section */
+.community-forum {
+  background-color: #f9f9f9;
+  padding: 100px 0;
+}
+
+.community-forum h2 {
+  font-size: 2.8rem;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: 700;
+}
+
+.community-forum p {
+  font-size: 1.2rem;
+}
+

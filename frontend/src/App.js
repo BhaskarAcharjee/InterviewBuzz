@@ -25,6 +25,7 @@ import Auth from "./pages/Auth/Auth";
 import LaunchPage from "./pages/Hero/LaunchPage";
 import PageNotFound from "./pages/PageNotFound/PageNotFound";
 import "./App.css";
+import LaunchPage2 from "./pages/Hero/LaunchPage2";
 
 const App = () => {
   return (
@@ -46,7 +47,7 @@ const MainContent = () => {
       {showSidebar && <Sidebar />}
       <main className="main-content">
         <Routes>
-          <Route path="/" element={<LaunchPage />} />
+          <Route path="/" element={<LaunchPage2 />} />
           <Route path="/home" element={<Home />} />
           <Route path="/behavioral" element={<BehavioralQuestionList />} />
           <Route
