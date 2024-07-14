@@ -101,6 +101,13 @@
   margin-right: 10px;
 }
 
+.login-button {
+  font-size: 1.8rem;
+  color : #fff;
+  display: flex;
+  align-items: center;
+}
+
 /* Media Queries for Mobile Devices */
 @media (max-width: 768px) {
   .sidebar {

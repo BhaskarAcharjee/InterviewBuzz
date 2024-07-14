@@ -22,7 +22,7 @@ import InterviewExperiences from "./pages/InterviewExperiences/InterviewExperien
 import ResumeBuilder from "./pages/ResumeBuilder/ResumeBuilder";
 import ProfilePage from "./pages/Profile/ProfilePage";
 import Auth from "./pages/Auth/Auth";
-import Hero from "./pages/Hero/Hero";
+import LaunchPage from "./pages/Hero/LaunchPage";
 import PageNotFound from "./pages/PageNotFound/PageNotFound";
 import "./App.css";
 
@@ -38,7 +38,7 @@ const App = () => {
 
 const MainContent = () => {
   const location = useLocation();
-  const excludePaths = ["/login", "/signup"];
+  const excludePaths = ["/", "/login", "/signup"];
   const showSidebar = !excludePaths.includes(location.pathname);
 
   return (
@@ -46,7 +46,7 @@ const MainContent = () => {
       {showSidebar && <Sidebar />}
       <main className="main-content">
         <Routes>
-          <Route path="/" element={<Hero />} />
+          <Route path="/" element={<LaunchPage />} />
           <Route path="/home" element={<Home />} />
           <Route path="/behavioral" element={<BehavioralQuestionList />} />
           <Route

@@ -14,7 +14,7 @@ const Login = ({ switchToSignUp }) => {
       const response = await login({ email, password });
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("user", JSON.stringify(response.data.user));
-      navigate("/");
+      navigate("/home");
     } catch (error) {
       console.error("Error logging in:", error);
       alert("Invalid email or password");
@@ -44,7 +44,7 @@ const Login = ({ switchToSignUp }) => {
           required
         />
       </div>
-      <input type="submit" value="Login" className="btn solid"  />
+      <input type="submit" value="Login" className="btn solid" />
       {/* <p className="social-text">Or Sign in with social platforms</p>
       <div className="social-media">
         <a href="#" className="social-icon">

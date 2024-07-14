@@ -14,3 +14,11 @@ Add coding snippets (Leetcode or GFF etc)
 
 Bugs >>
 In Question markdown editor if a button code added it displayes the button, and clicking that button gives error
+
+---
+
+Futurestic Plans >>
+
+- Make it a community for interview aspirants to discuss
+- Make a launch page
+- Authentication & Data security improvements, handling large request

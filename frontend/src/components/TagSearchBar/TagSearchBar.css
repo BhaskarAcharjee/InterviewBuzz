@@ -1,4 +1,4 @@
-.container {
+.tagsearch-container {
   /* margin: 2em 6em; */
   margin-bottom: 20px;
   /* padding: 3em; */
@@ -127,25 +127,13 @@
   outline: none;
 }
 
-@media (max-width: 991px) {
-  .container {
-    background-image: none;
-  }
-
-  .label {
-    pointer-events: none;
-    visibility: hidden;
-    opacity: 0;
-  }
-}
-
 /* Search bar */
 .box {
   position: relative;
-  margin-right:20px;
+  margin-right: 20px;
 }
 
-.input {
+.tagsearch-container.input {
   padding: 10px 40px 10px 10px; /* Adjust padding to accommodate the icon */
   width: 60px;
   height: 60px;
@@ -160,7 +148,7 @@
   transition: 0.5s;
 }
 
-.input:focus {
+.tagsearch-container.input:focus {
   width: 350px;
   background: #3b3640;
   border-radius: 10px;
@@ -179,4 +167,17 @@
 .box:hover .search-icon {
   opacity: 0;
   z-index: -1;
+}
+
+/* Media Responsiveness */
+@media (max-width: 991px) {
+  .tagsearch-container {
+    background-image: none;
+  }
+
+  .label {
+    pointer-events: none;
+    visibility: hidden;
+    opacity: 0;
+  }
 }

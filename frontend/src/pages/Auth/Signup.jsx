@@ -15,7 +15,7 @@ const Signup = ({ switchToSignIn }) => {
       const response = await register({ username, email, password });
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("user", JSON.stringify(response.data.user));
-      navigate("/");
+      navigate("/home");
     } catch (error) {
       console.error("Error registering:", error);
     }

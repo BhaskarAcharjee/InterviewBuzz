@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { getCurrentUser } from "../../services/auth";
+import { IoMdLogIn } from "react-icons/io";
 import "./Sidebar.css";
 
 const Sidebar = () => {
@@ -36,7 +37,7 @@ const Sidebar = () => {
             </NavLink>
           ) : (
             <NavLink to="/login">
-              <button className="login-button">Log In</button>
+              <IoMdLogIn className="login-button" />
             </NavLink>
           )}
         </div>
@@ -106,6 +107,7 @@ const Sidebar = () => {
           <div className="sidebar-profile">
             <NavLink to="/login" onClick={toggleSidebar}>
               <span>Log In</span>
+              <IoMdLogIn className="login-button" />
             </NavLink>
           </div>
         )}

@@ -4,28 +4,26 @@ import "./TagSearchBar.css";
 
 const TagSearchBar = ({ tags, onTagSelect, hasMoreTags }) => {
   return (
-    <div className="container">
+    <div className="tagsearch-container">
       <div className="tags">
         <p className="tags-text">
           <span>Tags</span>
+          <a className="tag" onClick={() => onTagSelect("All")}>
+            All
+          </a>
           {tags.map((tag, index) => (
-            <a
-              href="#"
-              key={index}
-              className="tag"
-              onClick={() => onTagSelect(tag)}
-            >
+            <a key={index} className="tag" onClick={() => onTagSelect(tag)}>
               {tag}
             </a>
           ))}
           {hasMoreTags && (
-            <a href="#" className="tag" onClick={() => onTagSelect("All")}>
+            <a className="tag" onClick={() => onTagSelect("All")}>
               ..more
             </a>
           )}
         </p>
       </div>
-      <div className="box">
+      {/* <div className="box">
         <form name="search">
           <input
             type="text"
@@ -36,7 +34,7 @@ const TagSearchBar = ({ tags, onTagSelect, hasMoreTags }) => {
           />
           <AiOutlineSearch className="search-icon" />
         </form>
-      </div>
+      </div> */}
     </div>
   );
 };
