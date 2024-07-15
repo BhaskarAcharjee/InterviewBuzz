@@ -22,7 +22,6 @@ import InterviewExperiences from "./pages/InterviewExperiences/InterviewExperien
 import ResumeBuilder from "./pages/ResumeBuilder/ResumeBuilder";
 import ProfilePage from "./pages/Profile/ProfilePage";
 import Auth from "./pages/Auth/Auth";
-import LaunchPage from "./pages/Hero/LaunchPage";
 import PageNotFound from "./pages/PageNotFound/PageNotFound";
 import "./App.css";
 import LaunchPage2 from "./pages/Hero/LaunchPage2";
