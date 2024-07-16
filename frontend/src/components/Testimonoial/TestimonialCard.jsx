@@ -1,34 +1,60 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./TestimonialCard.css";
-
-const testimonials = [
-  {
-    text: "Interview Buzz helped me ace my job interview. The resources and tips provided were invaluable, and I felt fully prepared and confident.",
-    markedText: "Interview Buzz helped me ace my job interview.",
-    name: "Emily Ewing",
-    role: "Designer at CompanyX",
-    imgSrc:
-      "https://www.pngall.com/wp-content/uploads/5/Profile-Avatar-PNG.png",
-  },
-  {
-    text: "The mock interviews were a game-changer, and the feedback was extremely helpful. I got my dream job thanks to Interview Buzz.",
-    markedText: "The mock interviews were a game-changer",
-    name: "James Powell",
-    role: "Developer at CompanyY",
-    imgSrc:
-      "https://www.pngall.com/wp-content/uploads/5/Profile-Avatar-PNG.png",
-  },
-  {
-    text: "The resources on Interview Buzz were exactly what I needed. Highly recommend to anyone preparing for interviews.",
-    markedText: "Highly recommend to anyone preparing for interviews.",
-    name: "Olivia Gribben",
-    role: "CEO at CompanyZ",
-    imgSrc:
-      "https://www.pngall.com/wp-content/uploads/5/Profile-Avatar-PNG.png",
-  },
-];
+import { testimonials } from "../../constants/testimonials";
 
 const TestimonialCard = () => {
+  const [currentIndex, setCurrentIndex] = useState(1);
+  const [itemsToShow, setItemsToShow] = useState(1);
+
+  useEffect(() => {
+    const updateItemsToShow = () => {
+      if (window.innerWidth >= 1024) {
+        setItemsToShow(3);
+      } else if (window.innerWidth >= 768) {
+        setItemsToShow(2);
+      } else {
+        setItemsToShow(1);
+      }
+    };
+
+    window.addEventListener("resize", updateItemsToShow);
+    updateItemsToShow();
+
+    const autoScrollInterval = setInterval(() => {
+      setCurrentIndex(
+        (prevIndex) =>
+          (prevIndex + 1) % Math.ceil(testimonials.length / itemsToShow)
+      );
+    }, 5000); // Change testimonial every 5 seconds
+
+    return () => {
+      clearInterval(autoScrollInterval);
+      window.removeEventListener("resize", updateItemsToShow);
+    };
+  }, [itemsToShow]);
+
+  const handleDotClick = (index) => {
+    setCurrentIndex(index);
+  };
+
+  const paginationDots = Array.from(
+    { length: Math.ceil(testimonials.length / itemsToShow) },
+    (_, index) => (
+      <span
+        key={index}
+        className={`ta0-pagination-dot ${
+          currentIndex === index ? "ta0-pagination-dot--active" : ""
+        }`}
+        onClick={() => handleDotClick(index)}
+      />
+    )
+  );
+
+  const currentTestimonials = testimonials.slice(
+    currentIndex * itemsToShow,
+    currentIndex * itemsToShow + itemsToShow
+  );
+
   return (
     <section>
       <div className="ta0-container ta0-max-width-adaptive-lg">
@@ -36,7 +62,7 @@ const TestimonialCard = () => {
           Hear it from our users.
         </h1>
         <div className="ta0-grid ta0-gap-sm">
-          {testimonials.map((testimonial, index) => (
+          {currentTestimonials.map((testimonial, index) => (
             <div
               className="ta0-bg-contrast-lower ta0-bg-opacity-30% ta0-radius-md ta0-padding-md ta0-flex@md ta0-flex-column@md ta0-col-4@md"
               key={index}
@@ -77,6 +103,7 @@ const TestimonialCard = () => {
             </div>
           ))}
         </div>
+        <div className="ta0-pagination">{paginationDots}</div>
       </div>
     </section>
   );

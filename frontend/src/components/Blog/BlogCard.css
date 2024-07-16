@@ -35,11 +35,14 @@
 
 .card {
   background: var(--card-bg);
-  max-width: 370px;
   padding: 1.3rem;
   border-radius: 20px;
   border: 1px solid var(--card-text);
   box-shadow: 8px 6px 0px black;
+}
+
+.card-container .card {
+  max-width: 370px; /* Only for Blog*/
 }
 
 .card__image {

@@ -93,6 +93,7 @@
   width: 100%;
 }
 
+/* Card Design (suppressed by blog card css) */
 .card {
   background-color: white;
   border-radius: 8px;
@@ -302,5 +303,9 @@
 @media (max-width: 480px) {
   .question-list.grid .card {
     width: 100%;
+  }
+
+  .toggle-view-btn{
+    display: none;
   }
 }

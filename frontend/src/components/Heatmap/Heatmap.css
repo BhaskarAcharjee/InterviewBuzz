@@ -1,0 +1,64 @@
+.heatmap-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.heatmap-months {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  width: 100%;
+  margin-bottom: 10px;
+  justify-content: space-between;
+}
+
+.heatmap-month {
+  text-align: center;
+  font-weight: bold;
+  color: #333;
+}
+
+.heatmap-container {
+  display: grid;
+  grid-template-columns: repeat(53, 1fr); /* 52 weeks + 1 for labels */
+  grid-template-rows: repeat(7, 1fr); /* 7 days of the week */
+  gap: 2px;
+  position: relative; /* Added for tooltip positioning */
+}
+
+.heatmap-day {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  transition: transform 0.3s, background-color 0.3s;
+  position: relative;
+  z-index: 0; /* Ensure normal stacking context */
+}
+
+.heatmap-day:hover {
+  transform: scale(1.1);
+  z-index: 1; /* Ensure the block is in front when hovered */
+}
+
+/* Tooltip styling */
+.heatmap-day::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: -30px; /* Position the tooltip above the heatmap block */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out;
+  z-index: 2; /* Ensure tooltip is in front */
+}
+
+.heatmap-day:hover::after {
+  opacity: 1;
+}

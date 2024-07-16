@@ -3,7 +3,7 @@ import axios from "axios";
 const LOCAL_API_URL = "http://localhost:5000/api";
 const PROD_API_URL = "https://interviewgenius.onrender.com/api";
 
-let API_URL = LOCAL_API_URL;
+let API_URL = PROD_API_URL;
 
 export const checkLocalhost = async () => {
   try {

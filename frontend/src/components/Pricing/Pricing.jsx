@@ -52,14 +52,14 @@ const Pricing = () => {
             <td className="price">
               <PersonalPlan />
               <br />
-              €9/month
+              ₹69/month
               <br />
               {/* <a href="#">Get Started</a> */}
             </td>
             <td className="price">
               <ProPlan />
               <br />
-              €39/month
+              ₹239/month
               <br />
               {/* <a href="#">Get Started</a> */}
             </td>

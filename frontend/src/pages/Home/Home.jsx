@@ -138,12 +138,19 @@ const Home = () => {
         </p>
       </div>
 
-      <div className="section">
+      <div className="section dashboard">
         <h3>Dashboard</h3>
-        <p>
-          View all your interview schedules, progress, and analysis in one
-          place.
-        </p>
+        <div className="dashboard-section">
+          <div className="dashboard-card">
+            <h3>Total Interviews</h3>
+            <p>{interviews.length}</p>
+          </div>
+          <div className="dashboard-card">
+            <h3>Upcoming Interviews</h3>
+            <p>{latestInterviews.length}</p>
+          </div>
+          {/* Add more cards as needed */}
+        </div>
       </div>
     </div>
   );
