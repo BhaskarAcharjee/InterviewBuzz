@@ -34,7 +34,7 @@ const BehavioralQuestionCard = ({
   return (
     <div className="card" onClick={handleCardClick}>
       <div className="card-header">
-        <h3>{question}</h3>
+        <h4>{question}</h4>
       </div>
       <div className="card-icons">
         <div className="left-icons">

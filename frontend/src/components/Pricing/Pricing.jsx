@@ -7,7 +7,7 @@ import { ReactComponent as ProPlan } from "../../assets/images/pro_plan.svg";
 
 const Pricing = () => {
   return (
-    <div className="main">
+    <div>
       <table className="price-table">
         <tbody>
           <tr>

@@ -4,6 +4,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import Markdown from "@uiw/react-markdown-preview";
 import { useQuestions } from "../../context/BehavioralQuestionsContext";
 import "./BehavioralQuestions.css";
+import { GrPrevious } from "react-icons/gr";
+import { GrNext } from "react-icons/gr";
 
 const BehavioralQuestionDetail = () => {
   const { id } = useParams();
@@ -52,7 +54,7 @@ const BehavioralQuestionDetail = () => {
           onClick={handlePrev}
           disabled={questionIndex === 0}
         >
-          Previous
+          <GrPrevious />
         </button>
         <button className="back-btn" onClick={() => navigate("/behavioral")}>
           Back to Home
@@ -62,7 +64,7 @@ const BehavioralQuestionDetail = () => {
           onClick={handleNext}
           disabled={questionIndex === questions.length - 1}
         >
-          Next
+          <GrNext />
         </button>
       </div>
     </div>

@@ -86,7 +86,7 @@ const ProjectQuestions = () => {
       <div className="projects-list">
         {filteredProjects.map((project, index) => (
           <div className="project-card" key={index}>
-            <h2 className="project-name">{project.projectName}</h2>
+            <h3 className="project-name">{project.projectName}</h3>
             <p className="project-description">{project.shortDescription}</p>
             <div className="tech-stacks">
               {project.techStacks.map((stack, idx) => (

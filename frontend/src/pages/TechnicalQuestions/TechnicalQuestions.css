@@ -6,23 +6,15 @@
 }
 
 .technical-questions-title {
-  font-size: 2.5rem;
+  /* font-size: 2.5rem; */
   margin-bottom: 10px;
   color: #333;
 }
 
 .technical-questions-description {
-  font-size: 1.2rem;
+  /* font-size: 1.2rem; */
   margin-bottom: 30px;
   color: #666;
-}
-
-.flashcards-categories {
-  margin-top: 20px;
-}
-
-.flashcards-category {
-  margin-bottom: 30px;
 }
 
 .category-header {
@@ -47,41 +39,4 @@
 
 .nav-icon:hover {
   color: #0056b3;
-}
-
-.flashcards-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-}
-
-.flashcard {
-  background: linear-gradient(145deg, #f0f0f0, #e0e0e0);
-  box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1), -4px -4px 6px rgba(255, 255, 255, 0.7);
-  border-radius: 10px;
-  padding: 20px;
-  transition: transform 0.3s;
-  cursor: pointer;
-}
-
-.flashcard:hover {
-  transform: scale(1.05);
-}
-
-.flashcard-question {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-bottom: 15px;
-  color: #333;
-}
-
-.flashcard-answer {
-  font-size: 1.2rem;
-  color: #555;
-}
-
-.flashcard-language {
-  font-size: 1.2rem;
-  color: #007bff;
-  margin-bottom: 10px;
 }

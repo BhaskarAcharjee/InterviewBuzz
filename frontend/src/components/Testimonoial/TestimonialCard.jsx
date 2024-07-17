@@ -58,9 +58,9 @@ const TestimonialCard = () => {
   return (
     <section>
       <div className="ta0-container ta0-max-width-adaptive-lg">
-        <h1 className="ta0-text-center ta0-margin-bottom-lg">
+        <h3 className="ta0-text-center ta0-margin-bottom-lg">
           Hear it from our users.
-        </h1>
+        </h3>
         <div className="ta0-grid ta0-gap-sm">
           {currentTestimonials.map((testimonial, index) => (
             <div

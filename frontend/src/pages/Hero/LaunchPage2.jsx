@@ -7,8 +7,9 @@ import Footer from "../../components/Footer/Footer";
 import TestimonialCard from "../../components/Testimonoial/TestimonialCard";
 import BlogCard from "../../components/Blog/BlogCard";
 import Pricing from "../../components/Pricing/Pricing";
-import ContactUs from "../ContactUs/ContactUs";
+import ContactUs from "../../components/ContactUs/ContactUs";
 import { getCurrentUser } from "../../services/auth";
+import Team from "../../components/Team/Team";
 
 const LaunchPage2 = () => {
   const navigate = useNavigate();
@@ -66,6 +67,7 @@ const LaunchPage2 = () => {
               width="40"
               src="https://img.icons8.com/ios-filled/50/user-male-circle.png"
               alt="Profile"
+              className="logo"
               onClick={handleProfileClick}
             />
           ) : (
@@ -107,9 +109,9 @@ const LaunchPage2 = () => {
             <div id="featuresSection" className="container">
               <div className="row mt-3 mb-3">
                 <div className="col-12 text-center">
-                  <h1 className="mainHeading">
+                  <h4 className="mainHeading">
                     Features that make Interview Buzz simply awesome
-                  </h1>
+                  </h4>
                   <p className="subheading">
                     Not sure if Interview Buzz is for you? Check out a few of
                     the key features!
@@ -124,7 +126,7 @@ const LaunchPage2 = () => {
                       alt=""
                     />
                     <div>
-                      <h2>Variety of Interview Questions</h2>
+                      <h4>Variety of Interview Questions</h4>
                       <p>
                         Access a wide range of interview questions tailored to
                         different industries and job roles.
@@ -139,7 +141,7 @@ const LaunchPage2 = () => {
                       alt=""
                     />
                     <div>
-                      <h2>Mock Interviews</h2>
+                      <h4>Mock Interviews</h4>
                       <p>
                         Practice mock interviews with detailed feedback to
                         simulate real interview scenarios.
@@ -154,7 +156,7 @@ const LaunchPage2 = () => {
                       alt=""
                     />
                     <div>
-                      <h2>Career Advice</h2>
+                      <h4>Career Advice</h4>
                       <p>
                         Receive expert career advice and guidance to help you
                         navigate your career path effectively.
@@ -169,7 +171,7 @@ const LaunchPage2 = () => {
                       alt=""
                     />
                     <div>
-                      <h2>Personalized Learning Paths</h2>
+                      <h4>Personalized Learning Paths</h4>
                       <p>
                         Create personalized learning paths based on your
                         strengths and weaknesses identified during practice
@@ -185,7 +187,7 @@ const LaunchPage2 = () => {
                       alt=""
                     />
                     <div>
-                      <h2>Interactive Learning Experience</h2>
+                      <h4>Interactive Learning Experience</h4>
                       <p>
                         Engage in interactive learning experiences with scroll
                         effects and animations to enhance retention.
@@ -200,7 +202,7 @@ const LaunchPage2 = () => {
                       alt=""
                     />
                     <div>
-                      <h2>Resource Library</h2>
+                      <h4>Resource Library</h4>
                       <p>
                         Access a comprehensive resource library to explore
                         articles, case studies, and more for further learning.
@@ -248,6 +250,14 @@ const LaunchPage2 = () => {
             <Pricing />
           </div>
         </section>
+
+        {/* Meet our Team */}
+        {/* <section id="teamm" className="section">
+          <div className="container">
+            <h2>Meet Our Team</h2>
+            <Team/>
+          </div>
+        </section> */}
 
         {/* Contact Us */}
         <section id="contact" className="section">

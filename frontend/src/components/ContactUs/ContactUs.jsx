@@ -45,7 +45,7 @@ const ContactUs = () => {
             id="formMessage"
             class="form-control form-control-lg"
             rows="7"
-            placeholder="Mensagem"
+            placeholder="Message"
           ></textarea>
         </div>
 

@@ -5,6 +5,7 @@ import { getDreamCompanies, deleteDreamCompany } from "../../services/api";
 import "./DreamCompany.css";
 import { sampleDreamCompanies } from "../../constants/companies";
 import { isLoggedIn } from "../../services/auth";
+import Loader from "../../components/Loader/Loader";
 
 const DreamCompanyList = () => {
   const [dreamCompanies, setDreamCompanies] = useState([]);
@@ -77,7 +78,7 @@ const DreamCompanyList = () => {
             )}
           </div>
         ) : (
-          <div className="loader"></div>
+          <Loader />
         )}
       </div>
     </div>

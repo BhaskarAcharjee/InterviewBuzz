@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getDreamCompany, updateDreamCompany } from "../../services/api";
 import "./DreamCompany.css";
+import Loader from "../../components/Loader/Loader";
 
 const DreamCompanyEdit = () => {
   const { id } = useParams();
@@ -52,7 +53,7 @@ const DreamCompanyEdit = () => {
   };
 
   if (isLoading) {
-    return <div className="loader"></div>;
+    return <Loader/>;
   }
 
   if (hasError) {

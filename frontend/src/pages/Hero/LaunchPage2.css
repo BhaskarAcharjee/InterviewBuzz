@@ -22,6 +22,10 @@
   height: auto;
 }
 
+.logo{
+cursor: pointer;
+}
+
 .modern-navbar nav ul {
   display: flex;
   list-style: none;
@@ -155,13 +159,13 @@
 }
 
 .hero-text h1 {
-  font-size: 3.5rem;
+  /* font-size: 3.5rem; */
   margin-bottom: 20px;
   font-weight: 700;
 }
 
 .hero-text p {
-  font-size: 1.3rem;
+  /* font-size: 1.3rem; */
   margin-bottom: 20px;
 }
 
@@ -199,13 +203,13 @@
 }
 
 .launch-page section h2 {
-  font-size: 2.8rem;
+  /* font-size: 2.8rem; */
   margin-bottom: 30px;
   font-weight: 700;
 }
 
 .launch-page section p {
-  font-size: 1.2rem;
+  /* font-size: 1.2rem; */
 }
 
 /* Community Forum section */
@@ -215,14 +219,14 @@
 }
 
 .community-forum h2 {
-  font-size: 2.8rem;
+  /* font-size: 2.8rem; */
   margin-bottom: 30px;
   text-align: center;
   font-weight: 700;
 }
 
 .community-forum p {
-  font-size: 1.2rem;
+  /* font-size: 1.2rem; */
 }
 
 /* Features section */
@@ -239,14 +243,14 @@
 }
 
 .mainHeading {
-  font-size: 30px;
+  /* font-size: 30px; */
   font-weight: bold;
   color: #323f4b;
 }
 
 .subheading {
   color: #323f4b;
-  font-size: 25px;
+  /* font-size: 25px; */
   font-weight: 900;
 }
 
@@ -256,11 +260,18 @@
 
 #featuresSection h2 {
   color: #323f4b;
-  font-size: 25px;
+  /* font-size: 25px; */
   font-weight: 700;
 }
 
 #featuresSection p {
   color: #9aa5b1;
-  font-size: 16px;
+  /* font-size: 16px; */
+}
+
+
+@media (max-width: 442px) {
+.launch-container{
+  flex-direction: column;
+}
 }

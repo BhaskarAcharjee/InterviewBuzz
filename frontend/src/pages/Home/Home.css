@@ -6,20 +6,20 @@
 }
 
 .home-container .title {
-  font-size: 2.5rem;
+  /* font-size: 2.5rem; */
   margin-bottom: 10px;
   color: #333;
 }
 
 .home-container .subtitle {
-  font-size: 1.2rem;
+  /* font-size: 1.2rem; */
   margin-bottom: 30px;
   color: #666;
 }
 
 .section {
   background: #f9f9f9;
-  border: 1px solid #ddd;
+  /* border: 1px solid #ddd; */
   border-radius: 10px;
   padding: 20px;
   margin-bottom: 20px;
@@ -32,7 +32,7 @@
 }
 
 .section h3 {
-  font-size: 1.5rem;
+  /* font-size: 1.5rem; */
   margin-bottom: 10px;
   color: #333;
 }
@@ -46,7 +46,7 @@
 
 .input {
   padding: 10px;
-  font-size: 1rem;
+  /* font-size: 1rem; */
   border: 1px solid #ccc;
   border-radius: 4px;
 }
@@ -91,13 +91,13 @@
 }
 
 .dashboard-card h3 {
-  font-size: 1.5rem;
+  /* font-size: 1.5rem; */
   margin-bottom: 10px;
   color: #333;
 }
 
 .dashboard-card p {
-  font-size: 1rem;
+  /* font-size: 1rem; */
   color: #666;
 }
 

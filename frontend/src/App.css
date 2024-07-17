@@ -1,3 +1,166 @@
+/* -------------------------------- 
+Global Style
+-------------------------------- */
+/* reset */
+/* *,
+*::after,
+*::before {
+  box-sizing: border-box;
+} 
+* {
+  font: inherit;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+body {
+  background-color: hsl(0, 0%, 100%);
+  font-family: system-ui, sans-serif;
+  color: hsl(230, 7%, 23%);
+  font-size: 1rem;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+ol,
+ul,
+menu {
+  list-style: none;
+}
+
+button,
+input,
+textarea,
+select {
+  background-color: transparent;
+  border-radius: 0;
+  color: inherit;
+  line-height: inherit;
+  appearance: none;
+}
+
+textarea {
+  resize: vertical;
+  overflow: auto;
+  vertical-align: top;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+img,
+video,
+svg {
+  max-width: 100%;
+} */
+
+/* -------------------------------- 
+Font Style
+-------------------------------- */
+
+/* Base font size for body */
+body {
+  font-size: 1rem; /* Default to 16px if 1rem = 16px */
+}
+
+/* Heading and other elements font sizes */
+h1 {
+  font-size: 2.5rem; /* 40px */
+}
+
+h2 {
+  font-size: 2rem; /* 32px */
+}
+
+h3 {
+  font-size: 1.75rem; /* 28px */
+}
+
+h4 {
+  font-size: 1.5rem; /* 24px */
+}
+
+p {
+  font-size: 1rem; /* 16px */
+}
+
+a {
+  font-size: 1rem; /* 16px */
+}
+
+/* Responsive font sizes */
+
+/* Small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  body {
+    font-size: 0.875rem; /* 14px */
+  }
+
+  h1 {
+    font-size: 2rem; /* 32px */
+  }
+
+  h2 {
+    font-size: 1.75rem; /* 28px */
+  }
+
+  h3 {
+    font-size: 1.5rem; /* 24px */
+  }
+
+  h4 {
+    font-size: 1.25rem; /* 20px */
+  }
+
+  p {
+    font-size: 0.875rem; /* 14px */
+  }
+
+  a {
+    font-size: 0.875rem; /* 14px */
+  }
+}
+
+/* Medium devices (tablets, 600px to 1024px) */
+@media only screen and (min-width: 600px) and (max-width: 1024px) {
+  body {
+    font-size: 1rem; /* 16px */
+  }
+
+  h1 {
+    font-size: 2.25rem; /* 36px */
+  }
+
+  h2 {
+    font-size: 2rem; /* 32px */
+  }
+
+  h3 {
+    font-size: 1.75rem; /* 28px */
+  }
+
+  h4 {
+    font-size: 1.5rem; /* 24px */
+  }
+
+  p {
+    font-size: 1rem; /* 16px */
+  }
+
+  a {
+    font-size: 1rem; /* 16px */
+  }
+}
+
 body,
 html {
   margin: 0;
@@ -14,6 +177,13 @@ html {
   font-family: "Poppins", sans-serif;
 }
 
+/* Media Queries for Mobile Devices */
+@media (max-width: 768px) {
+  .App {
+    flex-direction: column;
+  }
+}
+
 .main-content {
   flex-grow: 1;
   /* padding: 20px; */
@@ -21,28 +191,20 @@ html {
   overflow-y: auto;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 .error {
   color: red;
   margin-top: -10px;
 }
 
-/* Loader */
-.loader {
-  width: 120px;
-  height: 20px;
-  -webkit-mask: linear-gradient(90deg, #000 70%, #0000 0) 0/20%;
-  background: linear-gradient(#000 0 0) 0/0% no-repeat #ddd;
-  animation: l4 2s infinite steps(6);
-}
-@keyframes l4 {
-  100% {
-    background-size: 120%;
-  }
-}
-
-/* Button */
+/* -------------------------------- 
+Button Style
+-------------------------------- */
 /* <!-- HTML !--> */
-/* <button class="gradient-button" role="button">Button 29</button> */
+/* <button class="gradient-button" role="button">Button</button> */
 
 /* CSS */
 .gradient-button {
@@ -98,7 +260,7 @@ html {
 }
 
 /* <!-- HTML !-->
-<button class="design-button" role="button">Button 19</button> */
+<button class="design-button" role="button">Button</button> */
 
 /* CSS */
 .design-button {
@@ -164,11 +326,4 @@ html {
 .design-button:active {
   border-width: 4px 0 0;
   background: none;
-}
-
-/* Media Queries for Mobile Devices */
-@media (max-width: 768px) {
-  .App {
-    flex-direction: column;
-  }
 }

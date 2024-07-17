@@ -118,11 +118,10 @@
   }
 }
 
-.btn.btn-primary {
+/* .btn.btn-primary {
   font-family: "Quicksand", sans-serif;
   font-weight: bold;
   height: 2.5rem;
-  /* line-height: 2.5rem; */
   padding: 0 3rem;
   border: 0;
   border-radius: 3rem;
@@ -135,7 +134,7 @@
   box-shadow: 0 0.5em 0.5em -0.4em #ff923cba;
   background-size: 100% 100%;
   transform: translateY(-0.15em);
-}
+} */
 
 @media (min-width: 768px) {
   .contact-container form {

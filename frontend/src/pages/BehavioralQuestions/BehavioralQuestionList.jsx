@@ -8,6 +8,7 @@ import { useQuestions } from "../../context/BehavioralQuestionsContext";
 import { importQuestions } from "../../services/api";
 import { sampleQuestions } from "../../constants/behavioral";
 import { isLoggedIn } from "../../services/auth";
+import Loader from "../../components/Loader/Loader";
 
 const BehavioralQuestionList = () => {
   const {
@@ -147,7 +148,7 @@ const BehavioralQuestionList = () => {
         ) : (
           <div className="no-questions">
             {isLoading ? (
-              <div className="loader"></div>
+              <Loader/>
             ) : (
               "Nothing to display. Create new questions or import existing ones."
             )}

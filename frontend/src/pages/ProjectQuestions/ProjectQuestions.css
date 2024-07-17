@@ -6,13 +6,13 @@
 }
 
 .project-questions-title {
-  font-size: 2.5rem;
+  /* font-size: 2.5rem; */
   margin-bottom: 10px;
   color: #333;
 }
 
 .project-questions-description {
-  font-size: 1.2rem;
+  /* font-size: 1.2rem; */
   margin-bottom: 30px;
   color: #666;
 }
@@ -42,13 +42,13 @@
 }
 
 .project-name {
-  font-size: 1.8rem;
+  /* font-size: 1.8rem; */
   color: #333;
   margin-bottom: 10px;
 }
 
 .project-description {
-  font-size: 1.2rem;
+  /* font-size: 1.2rem; */
   color: #666;
   margin-bottom: 10px;
 }
