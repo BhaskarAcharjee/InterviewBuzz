@@ -1,21 +1,19 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import MDEditor from "@uiw/react-md-editor";
 import "./QuestionForm.css";
 
 const QuestionForm = ({
-  id, // Ensure id is passed as a prop
+  id,
   initialQuestion = "",
   initialAnswer = "",
   saveQuestion,
   pageTitle = "Create Question",
   buttonText = "Save Question",
-  onsaveNavigate = "/home", // Default path
 }) => {
   const [question, setQuestion] = useState(initialQuestion);
   const [answer, setAnswer] = useState(initialAnswer);
   const navigate = useNavigate();
-  const params = useParams();
 
   useEffect(() => {
     if (initialQuestion && initialAnswer) {
@@ -25,7 +23,6 @@ const QuestionForm = ({
   }, [initialQuestion, initialAnswer]);
 
   useEffect(() => {
-    // Update local state when id prop changes
     if (id) {
       setQuestion(initialQuestion);
       setAnswer(initialAnswer);
@@ -34,13 +31,12 @@ const QuestionForm = ({
 
   const handleSave = () => {
     const newQuestion = {
-      _id: id || Date.now(), // Use _id to match backend expectation
+      _id: id || Date.now().toString(),
       question,
       answer,
     };
-    console.log("Saving question:", newQuestion); // Debug statement
+    console.log("Saving question:", newQuestion);
     saveQuestion(newQuestion);
-    navigate(onsaveNavigate);
   };
 
   return (

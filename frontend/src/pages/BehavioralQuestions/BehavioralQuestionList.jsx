@@ -4,21 +4,13 @@ import BehavioralQuestionCard from "./BehavioralQuestionCard";
 import "./BehavioralQuestions.css";
 import BehavioralQuestionModal from "../../components/Modal/BehavioralQuestionModal";
 import TabSwitch from "../../components/TabSwitch/TabSwitch";
-import { useQuestions } from "../../context/BehavioralQuestionsContext";
-import { importQuestions } from "../../services/api";
+import { getQuestions, createQuestion, updateQuestion, deleteQuestion, importQuestions } from "../../services/api";
 import { sampleQuestions } from "../../constants/behavioral";
 import { isLoggedIn } from "../../services/auth";
 import Loader from "../../components/Loader/Loader";
 
 const BehavioralQuestionList = () => {
-  const {
-    questions,
-    setQuestions,
-    editQuestion,
-    deleteQuestionById,
-    toggleFavorite,
-    fetchQuestions,
-  } = useQuestions();
+  const [questions, setQuestions] = useState([]);
   const [view, setView] = useState("grid");
   const [filter, setFilter] = useState("all");
   const [exportContent, setExportContent] = useState("");
@@ -37,7 +29,8 @@ const BehavioralQuestionList = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        await fetchQuestions();
+        const response = await getQuestions();
+        setQuestions(response.data);
       } catch (error) {
         console.error("Error fetching questions:", error);
         setHasError(true);
@@ -97,6 +90,35 @@ const BehavioralQuestionList = () => {
     element.download = "questions_export.txt";
     document.body.appendChild(element);
     element.click();
+  };
+
+  const editQuestion = async (updatedQuestion) => {
+    try {
+      if (!updatedQuestion._id) {
+        throw new Error("Missing _id in updatedQuestion");
+      }
+      const response = await updateQuestion(updatedQuestion._id, updatedQuestion);
+      setQuestions(
+        questions.map((q) => (q._id === updatedQuestion._id ? response.data : q))
+      );
+    } catch (error) {
+      console.error("Error editing question:", error);
+    }
+  };
+
+  const deleteQuestionById = async (id) => {
+    try {
+      await deleteQuestion(id);
+      setQuestions(questions.filter((q) => q._id !== id));
+    } catch (error) {
+      console.error("Error deleting question:", error);
+    }
+  };
+
+  const toggleFavorite = async (id) => {
+    const question = questions.find((q) => q._id === id);
+    const updatedQuestion = { ...question, isFavorite: !question.isFavorite };
+    await editQuestion(updatedQuestion);
   };
 
   // Conditionally render sample data for unauthorized users

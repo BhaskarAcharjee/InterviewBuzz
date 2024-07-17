@@ -5,7 +5,6 @@ import {
   Route,
   useLocation,
 } from "react-router-dom";
-import { ContextProvider } from "./context/BehavioralQuestionsContext";
 import Sidebar from "./components/Sidebar/Sidebar";
 import Home from "./pages/Home/Home";
 import BehavioralQuestionList from "./pages/BehavioralQuestions/BehavioralQuestionList";
@@ -29,11 +28,9 @@ import ProjectDetail from "./pages/ProjectQuestions/ProjectDetail";
 
 const App = () => {
   return (
-    <ContextProvider>
-      <Router>
-        <MainContent />
-      </Router>
-    </ContextProvider>
+    <Router>
+      <MainContent />
+    </Router>
   );
 };
 
