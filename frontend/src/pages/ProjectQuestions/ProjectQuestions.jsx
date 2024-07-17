@@ -1,42 +1,20 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./ProjectQuestions.css";
 import AddProjectModal from "../../components/Modal/AddProjectModal";
 import TagSearchBar from "../../components/TagSearchBar/TagSearchBar";
+import { projects as sampleProjects } from "../../constants/projects";
 
 const ProjectQuestions = () => {
-  const [projects, setProjects] = useState([
-    {
-      projectName: "E-commerce Website",
-      projectLink: "https://ecommerce.com",
-      githubLink: "https://github.com/user/ecommerce",
-      shortDescription:
-        "A full-featured e-commerce website built with React and Node.js.",
-      techStacks: ["React", "Node.js", "Express", "MongoDB"],
-    },
-    {
-      projectName: "Social Media App",
-      projectLink: "https://socialmedia.com",
-      githubLink: "https://github.com/user/socialmedia",
-      shortDescription:
-        "A social media application with real-time chat and news feed features.",
-      techStacks: ["React", "Firebase", "Redux"],
-    },
-    {
-      projectName: "Project Management Tool",
-      projectLink: "https://projectmanagement.com",
-      githubLink: "https://github.com/user/projectmanagement",
-      shortDescription:
-        "A tool to manage projects, tasks, and teams efficiently.",
-      techStacks: ["Vue", "Node.js", "GraphQL"],
-    },
-  ]);
-
+  const [projects, setProjects] = useState(sampleProjects);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [filteredProjects, setFilteredProjects] = useState(projects);
+  const [filteredProjects, setFilteredProjects] = useState(sampleProjects);
+  const navigate = useNavigate();
 
   const handleAddProject = (newProject) => {
-    setProjects([...projects, newProject]);
-    setFilteredProjects([...projects, newProject]);
+    const updatedProjects = [...projects, newProject];
+    setProjects(updatedProjects);
+    setFilteredProjects(updatedProjects);
   };
 
   const handleTagSelect = (selectedTag) => {
@@ -48,6 +26,10 @@ const ProjectQuestions = () => {
       );
       setFilteredProjects(filtered);
     }
+  };
+
+  const handleCardClick = (index) => {
+    navigate(`/projects/${index}`);
   };
 
   const tagFrequency = {};
@@ -85,8 +67,12 @@ const ProjectQuestions = () => {
       />
       <div className="projects-list">
         {filteredProjects.map((project, index) => (
-          <div className="project-card" key={index}>
-            <h3 className="project-name">{project.projectName}</h3>
+          <div
+            className="project-card"
+            key={index}
+            onClick={() => handleCardClick(index)}
+          >
+            <h4 className="project-name">{project.projectName}</h4>
             <p className="project-description">{project.shortDescription}</p>
             <div className="tech-stacks">
               {project.techStacks.map((stack, idx) => (

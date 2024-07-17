@@ -18,7 +18,7 @@ Welcome to **Interview Buzz**! This platform is designed to help you prepare for
 ![screencapture-interview-buzz-vercel-app-home-2024-07-17-19_20_09](https://github.com/user-attachments/assets/d2611d38-7ab7-49e5-8af2-ed04025fe944)
 
 ### Behavioral Question Page
-![screencapture-interview-buzz-vercel-app-behavioral-2024-07-17-19_21_29](https://github.com/user-attachments/assets/998ec917-f8ac-4df1-949f-4cfe5ccb86f0)4
+![screencapture-interview-buzz-vercel-app-behavioral-2024-07-17-19_21_29](https://github.com/user-attachments/assets/998ec917-f8ac-4df1-949f-4cfe5ccb86f0)
 
 ### Behavioral Question Page (Details)
 ![screencapture-localhost-3000-behavioral-668eb79c17b52f5bec21d0ca-2024-07-17-19_27_31](https://github.com/user-attachments/assets/07997df6-04d6-4e24-a7b6-8a0b5d57b068)
@@ -78,7 +78,7 @@ Welcome to **Interview Buzz**! This platform is designed to help you prepare for
 
 4. **Create a `.env` file in the backend directory and add your environment variables:**
    ```env
-   MONGODB_URI=your_mongodb_connection_string
+   MONGODB_URL=your_mongodb_connection_string
    PORT=5000
    ```
 

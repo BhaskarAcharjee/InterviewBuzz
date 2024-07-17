@@ -327,3 +327,13 @@ Button Style
   border-width: 4px 0 0;
   background: none;
 }
+
+/* Markdown */
+.wmde-markdown {
+  color: black !important;
+  background-color: #f5f5f5 !important;
+}
+
+.wmde-markdown code {
+  color: white !important;
+}

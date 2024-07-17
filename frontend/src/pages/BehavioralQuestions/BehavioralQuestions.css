@@ -1,3 +1,4 @@
+/* Behavioral List */
 .behavioral-questions-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -24,7 +25,7 @@
   margin-bottom: 20px;
 }
 
-.add-button-container{
+.add-button-container {
   margin-bottom: 20px;
 }
 
@@ -91,6 +92,26 @@
 
 .question-list.list .card {
   width: 100%;
+}
+
+@media (max-width: 768px) {
+  .question-list.grid .card {
+    width: calc(50% - 20px);
+  }
+
+  .question-list.list .card {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .question-list.grid .card {
+    width: 100%;
+  }
+
+  .toggle-view-btn {
+    display: none;
+  }
 }
 
 /* Card Design (suppressed by blog card css) */
@@ -199,6 +220,7 @@
   background-color: #004494;
 }
 
+/* Question detail Page */
 .question-detail-container {
   padding: 20px;
   max-width: 800px;
@@ -229,7 +251,8 @@
   background-color: #1c7430;
 }
 
-.create-question-container {
+.create-question-container,
+.edit-question-container {
   padding: 20px;
   max-width: 800px;
   margin: 0 auto;
@@ -279,33 +302,4 @@
 
 .delete-button {
   margin-left: 10px;
-}
-
-.wmde-markdown {
-  color: black !important;
-  background-color: #f5f5f5 !important;
-}
-
-.wmde-markdown code {
-  color: white !important;
-}
-
-@media (max-width: 768px) {
-  .question-list.grid .card {
-    width: calc(50% - 20px);
-  }
-
-  .question-list.list .card {
-    width: 100%;
-  }
-}
-
-@media (max-width: 480px) {
-  .question-list.grid .card {
-    width: 100%;
-  }
-
-  .toggle-view-btn{
-    display: none;
-  }
 }

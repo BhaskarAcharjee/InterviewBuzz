@@ -1,3 +1,4 @@
+/* Project List */
 .project-questions-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -6,13 +7,11 @@
 }
 
 .project-questions-title {
-  /* font-size: 2.5rem; */
   margin-bottom: 10px;
   color: #333;
 }
 
 .project-questions-description {
-  /* font-size: 1.2rem; */
   margin-bottom: 30px;
   color: #666;
 }
@@ -35,6 +34,7 @@
   box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1),
     -4px -4px 6px rgba(255, 255, 255, 0.7);
   transition: transform 0.3s;
+  cursor: pointer;
 }
 
 .project-card:hover {
@@ -42,13 +42,11 @@
 }
 
 .project-name {
-  /* font-size: 1.8rem; */
   color: #333;
   margin-bottom: 10px;
 }
 
 .project-description {
-  /* font-size: 1.2rem; */
   color: #666;
   margin-bottom: 10px;
 }
@@ -64,4 +62,133 @@
   color: white;
   padding: 5px 10px;
   border-radius: 5px;
+}
+
+/* Detail Page */
+.project-detail-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+  /* background: #fff; */
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+  border-radius: 10px;
+}
+
+.project-name {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.project-description {
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.tech-stacks {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.tech-stack {
+  background: #007bff;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.project-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.project-links a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.project-links a:hover {
+  text-decoration: underline;
+}
+
+.questions-section {
+  margin-top: 30px;
+}
+
+.add-question-btn {
+  display: inline-flex;
+  align-items: center;
+  background: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  gap: 5px;
+}
+
+.add-question-btn:hover {
+  background: #0056b3;
+}
+
+.add-question-form {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.add-question-form input {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.add-question-form button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background: #28a745;
+  color: white;
+  cursor: pointer;
+}
+
+.add-question-form button:hover {
+  background: #218838;
+}
+
+.questions-list {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.question-card {
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1),
+    -4px -4px 6px rgba(255, 255, 255, 0.7);
+}
+
+.question {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.answer {
+  font-size: 1.2rem;
+  color: #666;
 }

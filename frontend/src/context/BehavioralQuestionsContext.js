@@ -37,6 +37,9 @@ export const ContextProvider = ({ children }) => {
 
   const editQuestion = async (updatedQuestion) => {
     try {
+      if (!updatedQuestion._id) {
+        throw new Error("Missing _id in updatedQuestion");
+      }
       const response = await updateQuestion(
         updatedQuestion._id,
         updatedQuestion

@@ -1,7 +1,6 @@
-// src/pages/BehavioralQuestions/BehavioralQuestionDetail.js
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import Markdown from "@uiw/react-markdown-preview";
+import MDEditor from "@uiw/react-md-editor";
 import { useQuestions } from "../../context/BehavioralQuestionsContext";
 import "./BehavioralQuestions.css";
 import { GrPrevious } from "react-icons/gr";
@@ -42,7 +41,7 @@ const BehavioralQuestionDetail = () => {
         <div className="card-header">
           <h1>{question.question}</h1>
         </div>
-        <Markdown source={question.answer} />
+        <MDEditor.Markdown source={question.answer} />
         <div className="timestamps">
           <p>Created at: {formattedCreatedAt}</p>
           <p>Modified at: {formattedUpdatedAt}</p>

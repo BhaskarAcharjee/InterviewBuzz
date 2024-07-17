@@ -25,6 +25,7 @@ import Auth from "./pages/Auth/Auth";
 import PageNotFound from "./pages/PageNotFound/PageNotFound";
 import "./App.css";
 import LaunchPage2 from "./pages/Hero/LaunchPage2";
+import ProjectDetail from "./pages/ProjectQuestions/ProjectDetail";
 
 const App = () => {
   return (
@@ -62,6 +63,7 @@ const MainContent = () => {
             element={<BehavioralQuestionEdit />}
           />
           <Route path="/projects" element={<ProjectQuestions />} />
+          <Route path="/projects/:id" element={<ProjectDetail />} />
           <Route path="/technical" element={<TechnicalQuestions />} />
           <Route path="/flashcards" element={<Flashcards />} />
           <Route path="/dream-company" element={<DreamCompanyList />} />

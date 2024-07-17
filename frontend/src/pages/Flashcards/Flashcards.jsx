@@ -110,6 +110,7 @@ const Flashcards = () => {
                       <div className="flashcard-question">
                         {flashcard.question}
                       </div>
+                      {/* Yes-No */}
                       {flashcard.type === "yesno" && (
                         <div className="flashcard-options">
                           {flashcard.options.map((option, i) => (
@@ -136,6 +137,7 @@ const Flashcards = () => {
                           ))}
                         </div>
                       )}
+                      {/* MCQ */}
                       {flashcard.type === "mcq" && (
                         <div className="flashcard-options">
                           {flashcard.options.map((option, i) => (
@@ -167,16 +169,19 @@ const Flashcards = () => {
                 )
               )}
           </div>
-          {answered && (
-            <div className="quiz-navigation">
+          {/* Next/Skip Button */}
+
+          <div className="quiz-navigation">
+            {answered ? (
               <button className="quiz-btn" onClick={handleNextQuestion}>
                 Next
               </button>
+            ) : (
               <button className="quiz-btn" onClick={handleSkipQuestion}>
                 Skip
               </button>
-            </div>
-          )}
+            )}
+          </div>
         </div>
       </div>
     </div>
