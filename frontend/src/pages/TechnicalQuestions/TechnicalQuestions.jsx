@@ -3,6 +3,7 @@ import "./TechnicalQuestions.css";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import TabSwitch from "../../components/TabSwitch/TabSwitch";
 import { categories } from "../../constants/technical";
+import Card from "../../components/Card/Card";
 
 const TechnicalQuestions = () => {
   const options = [
@@ -55,15 +56,13 @@ const TechnicalQuestions = () => {
                 (question) => question.type === activeTab.label.toLowerCase()
               )
               .map((question, idx) => (
-                <div className="flashcard" key={idx}>
-                  <div className="flashcard-question">{question.question}</div>
-                  {question.type === "coding" && (
-                    <div className="flashcard-language">
-                      Language: {question.language}
-                    </div>
-                  )}
-                  <div className="flashcard-answer">{question.answer}</div>
-                </div>
+                <Card
+                  key={idx}
+                  label={categories[categoryIndex].name}
+                  title="Technical Question"
+                  question={question.question}
+                  answer={question.answer}
+                />
               ))}
           </div>
         </div>

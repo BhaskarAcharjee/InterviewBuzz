@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import DreamCompanyCard from "./DreamCompanyCard";
+import Card from "../../components/Card/Card";
 import "./DreamCompany.css";
 import { sampleDreamCompanies } from "../../constants/companies";
 import { isLoggedIn } from "../../services/auth";
@@ -55,16 +55,20 @@ const DreamCompanyList = () => {
             )}
           </div>
         ) : (
-          <div className="dream-company-list question-list grid">
-            <div className="card-container">
-              {renderDreamCompanies.map((dreamCompany) => (
-                <DreamCompanyCard
-                  key={dreamCompany._id}
-                  dreamCompany={dreamCompany}
-                  onDelete={() => handleDelete(dreamCompany._id)}
-                />
-              ))}
-            </div>
+          <div className="dream-company-list">
+            {renderDreamCompanies.map((dreamCompany) => (
+              <Card
+                key={dreamCompany._id}
+                label={dreamCompany.name}
+                title="Dream Company"
+                question={dreamCompany.name}
+                answer={dreamCompany.description}
+                onEdit={() =>
+                  navigate(`/dream-company/edit/${dreamCompany._id}`)
+                }
+                onDelete={() => handleDelete(dreamCompany._id)}
+              />
+            ))}
           </div>
         )}
       </div>

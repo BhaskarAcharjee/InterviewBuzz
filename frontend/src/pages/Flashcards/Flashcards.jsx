@@ -3,6 +3,8 @@ import "./Flashcards.css";
 import TabSwitch from "../../components/TabSwitch/TabSwitch";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { flashcards } from "../../constants/flashcard";
+import Card from "../../components/Card/Card";
+import QuizCard from "../../components/Card/QuizCard";
 
 const Flashcards = () => {
   const options = [
@@ -41,11 +43,6 @@ const Flashcards = () => {
     setSelectedOption(null);
   };
 
-  const handleOptionSelect = (option, correctAnswer) => {
-    setSelectedOption(option);
-    setAnswered(true);
-  };
-
   const handleNextQuestion = () => {
     setQuestionIndex(
       (prevIndex) =>
@@ -55,8 +52,18 @@ const Flashcards = () => {
     setSelectedOption(null);
   };
 
-  const handleSkipQuestion = () => {
-    handleNextQuestion();
+  const handlePrevQuestion = () => {
+    setQuestionIndex(
+      (prevIndex) =>
+        (prevIndex - 1 + flashcards[categories[categoryIndex]].length) %
+        flashcards[categories[categoryIndex]].length
+    );
+    setAnswered(false);
+    setSelectedOption(null);
+  };
+
+  const handleCheckAnswer = () => {
+    setAnswered(true);
   };
 
   return (
@@ -97,90 +104,31 @@ const Flashcards = () => {
               })
               .map((flashcard, idx) =>
                 activeTab.label === "Revise" ? (
-                  <div className="flashcard" key={idx}>
-                    <div className="flashcard-question">
-                      {flashcard.question}
-                    </div>
-                    <div className="flashcard-answer">{flashcard.answer}</div>
-                  </div>
+                  <Card
+                    key={idx}
+                    label="Revise"
+                    title="Flashcards"
+                    question={flashcard.question}
+                    answer={flashcard.answer}
+                  />
                 ) : (
                   activeTab.label === "Quiz" &&
                   idx === questionIndex && (
-                    <div className="flashcard" key={idx}>
-                      <div className="flashcard-question">
-                        {flashcard.question}
-                      </div>
-                      {/* Yes-No */}
-                      {flashcard.type === "yesno" && (
-                        <div className="flashcard-options">
-                          {flashcard.options.map((option, i) => (
-                            <button
-                              key={i}
-                              className={`option-btn ${
-                                answered &&
-                                (option === flashcard.correctAnswer
-                                  ? "correct"
-                                  : selectedOption === option
-                                  ? "wrong"
-                                  : "")
-                              }`}
-                              onClick={() =>
-                                handleOptionSelect(
-                                  option,
-                                  flashcard.correctAnswer
-                                )
-                              }
-                              disabled={answered}
-                            >
-                              {option}
-                            </button>
-                          ))}
-                        </div>
-                      )}
-                      {/* MCQ */}
-                      {flashcard.type === "mcq" && (
-                        <div className="flashcard-options">
-                          {flashcard.options.map((option, i) => (
-                            <button
-                              key={i}
-                              className={`option-btn ${
-                                answered &&
-                                (option === flashcard.correctAnswer
-                                  ? "correct"
-                                  : selectedOption === option
-                                  ? "wrong"
-                                  : "")
-                              }`}
-                              onClick={() =>
-                                handleOptionSelect(
-                                  option,
-                                  flashcard.correctAnswer
-                                )
-                              }
-                              disabled={answered}
-                            >
-                              {option}
-                            </button>
-                          ))}
-                        </div>
-                      )}
-                    </div>
+                    <QuizCard
+                      key={idx}
+                      question={flashcard.question}
+                      options={flashcard.options}
+                      correct={flashcard.correct}
+                      onNextQuestion={handleNextQuestion}
+                      onPrevQuestion={handlePrevQuestion}
+                      onCheckAnswer={handleCheckAnswer}
+                      answered={answered}
+                      selectedOption={selectedOption}
+                      setSelectedOption={setSelectedOption}
+                    />
                   )
                 )
               )}
-          </div>
-          {/* Next/Skip Button */}
-
-          <div className="quiz-navigation">
-            {answered ? (
-              <button className="quiz-btn" onClick={handleNextQuestion}>
-                Next
-              </button>
-            ) : (
-              <button className="quiz-btn" onClick={handleSkipQuestion}>
-                Skip
-              </button>
-            )}
           </div>
         </div>
       </div>

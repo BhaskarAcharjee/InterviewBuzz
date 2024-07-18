@@ -1,0 +1,113 @@
+.card-box {
+  background: white;
+  border-radius: 20px;
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  position: relative;
+  align-content: space-between;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  overflow: hidden;
+  /* max-height: 400px; */
+}
+
+.card-box-icon {
+  display: grid;
+  place-items: center;
+  padding: 16px;
+}
+
+.card-box-label {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  padding-left: 16px;
+  margin-right: 24px;
+  font-size: 14px;
+  letter-spacing: 0.125em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-box-title {
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-size: 18px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+.card-box-content {
+  padding: 16px;
+  /* margin-right: 16px; */
+  text-align: left;
+}
+
+.card-box-question {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.card-box-answer {
+  color: #555;
+}
+
+.studio-button {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  display: flex;
+  align-items: center;
+  background: #68009d;
+  color: white;
+  padding: 8px 10px;
+  border-radius: 50px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  transition: 0.35s ease all;
+  overflow: hidden;
+  max-width: 22px; /* icon size */
+}
+
+.studio-button-icon {
+  position: relative;
+  top: 1px;
+}
+
+.studio-button-label {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* spacing between icons */
+  white-space: nowrap;
+  padding: 0 8px;
+  /* opacity: 0; */
+  transform: translateX(10px);
+  transition: 0.25s ease all;
+}
+
+.studio-circle-icon {
+  font-size: 22px;
+  margin-top: 2px;
+}
+
+.studio-edit-icon,
+.studio-delete-icon {
+  font-size: 20px;
+  color: white;
+  transition: color 0.2s ease;
+  cursor: pointer;
+}
+
+.card-box:hover .studio-button {
+  max-width: 100%;
+}
+
+.card-box:hover .studio-button-label {
+  opacity: 1;
+  transform: translateX(0);
+  transition: 0.25s 0.1s ease-in opacity,
+    0.15s 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.275) transform;
+}
