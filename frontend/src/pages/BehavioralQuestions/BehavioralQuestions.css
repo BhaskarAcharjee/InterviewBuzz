@@ -7,13 +7,11 @@
 }
 
 .behavioral-questions-container h1 {
-  /* font-size: 2.5rem; */
   margin-bottom: 10px;
   color: #333;
 }
 
 .behavioral-questions-container p {
-  /* font-size: 1.2rem; */
   margin-bottom: 30px;
   color: #666;
 }
@@ -50,7 +48,6 @@
 
 .filter-tab {
   padding: 10px 20px;
-  /* font-size: 1rem; */
   cursor: pointer;
   background-color: #f0f0f0;
   color: #333;
@@ -67,7 +64,6 @@
 
 .toggle-view-btn {
   padding: 10px 20px;
-  /* font-size: 1rem; */
   cursor: pointer;
   background: linear-gradient(135deg, #6c757d, #5a6268);
   color: white;
@@ -83,20 +79,33 @@
 .question-list {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-around;
   gap: 20px;
 }
 
 .question-list.grid .card {
-  width: calc(30% - 20px);
+  width: calc(27%);
 }
 
 .question-list.list .card {
   width: 100%;
 }
 
+@media (max-width: 1220px) {
+  .question-list.grid .card {
+    width: calc(40%);
+  }
+}
+
+@media (max-width: 868px) {
+  .question-list.grid .card {
+    width: calc(80%);
+  }
+}
+
 @media (max-width: 768px) {
   .question-list.grid .card {
-    width: calc(50% - 20px);
+    width: calc(100%);
   }
 
   .question-list.list .card {
@@ -105,9 +114,9 @@
 }
 
 @media (max-width: 480px) {
-  .question-list.grid .card {
+  /* .question-list.grid .card {
     width: 100%;
-  }
+  } */
 
   .toggle-view-btn {
     display: none;

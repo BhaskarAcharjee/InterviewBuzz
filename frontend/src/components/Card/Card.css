@@ -8,7 +8,6 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin: 10px;
   overflow: hidden;
-  /* max-height: 400px; */
 }
 
 .card-box-icon {
@@ -54,6 +53,9 @@
 
 .card-box-answer {
   color: #555;
+  max-height: 315px;
+  margin-bottom: 8px;
+  overflow: auto;
 }
 
 .studio-button {

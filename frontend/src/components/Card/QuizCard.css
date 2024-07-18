@@ -86,6 +86,12 @@
   cursor: pointer;
 }
 
+.quiz-nav .prev.disabled,
+.quiz-nav .next.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
 .quiz-nav .nextline,
 .quiz-nav .prevline {
   fill: none;
@@ -129,4 +135,5 @@
   transition: all 0.8s ease-in-out;
   margin-left: auto;
   margin-right: auto;
+  padding: 0.2em;
 }

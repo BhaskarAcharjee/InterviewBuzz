@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import "./CommonModal.css";
 
 const CommonModal = ({ isOpen, onClose, onSubmit, title, children }) => {
   const handleSubmit = () => {
     onSubmit();
-    // onClose();
+    onClose();
   };
 
   if (!isOpen) {

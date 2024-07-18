@@ -68,15 +68,15 @@ const ProjectQuestions = () => {
       <div className="projects-list">
         {filteredProjects.map((project, index) => (
           <div
-            className="project-card"
+            className="card"
             key={index}
             onClick={() => handleCardClick(index)}
           >
             <h4 className="project-name">{project.projectName}</h4>
             <p className="project-description">{project.shortDescription}</p>
-            <div className="tech-stacks">
+            <div class="projcard-tagbox">
               {project.techStacks.map((stack, idx) => (
-                <span className="tech-stack" key={idx}>
+                <span className="projcard-tag" key={idx}>
                   {stack}
                 </span>
               ))}

@@ -66,6 +66,10 @@ const Flashcards = () => {
     setAnswered(true);
   };
 
+  const hasNextQuestion =
+    questionIndex < flashcards[categories[categoryIndex]].length - 1;
+  const hasPrevQuestion = questionIndex > 0;
+
   return (
     <div className="flashcards-container">
       <h1 className="flashcards-title">Flashcards</h1>
@@ -118,13 +122,15 @@ const Flashcards = () => {
                       key={idx}
                       question={flashcard.question}
                       options={flashcard.options}
-                      correct={flashcard.correct}
+                      correct={flashcard.correctAnswer}
                       onNextQuestion={handleNextQuestion}
                       onPrevQuestion={handlePrevQuestion}
                       onCheckAnswer={handleCheckAnswer}
                       answered={answered}
                       selectedOption={selectedOption}
                       setSelectedOption={setSelectedOption}
+                      hasNext={hasNextQuestion}
+                      hasPrev={hasPrevQuestion}
                     />
                   )
                 )
