@@ -1,35 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import DreamCompanyCard from "./DreamCompanyCard";
-import { getDreamCompanies, deleteDreamCompany } from "../../services/api";
 import "./DreamCompany.css";
 import { sampleDreamCompanies } from "../../constants/companies";
 import { isLoggedIn } from "../../services/auth";
 import Loader from "../../components/Loader/Loader";
+import { QuestionsContext } from "../../context/QuestionsContext";
+import { deleteDreamCompany } from "../../services/api";
 
 const DreamCompanyList = () => {
-  const [dreamCompanies, setDreamCompanies] = useState([]);
-  const [isLoading, setIsLoading] = useState(true); // Loading state
-  const [hasError, setHasError] = useState(false); // Error state
-  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false); // Logged-in state
+  const { dreamCompanies, setDreamCompanies, isDreamCompanyLoading } =
+    useContext(QuestionsContext);
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(isLoggedIn());
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetchDreamCompanies();
     setIsUserLoggedIn(isLoggedIn()); // Check if user is logged in
   }, []);
-
-  const fetchDreamCompanies = async () => {
-    try {
-      const response = await getDreamCompanies();
-      setDreamCompanies(response.data);
-    } catch (error) {
-      console.error("Error fetching dream companies:", error);
-      setHasError(true);
-    } finally {
-      setIsLoading(false);
-    }
-  };
 
   const handleDelete = async (id) => {
     try {
@@ -59,26 +46,26 @@ const DreamCompanyList = () => {
           </button>
         </div>
 
-        {!isLoading ? (
-          <div className="dream-company-list question-list grid">
-            {renderDreamCompanies.length === 0 ? (
-              <p>
-                No data. Create data by clicking the "Add Company" button above.
-              </p>
+        {renderDreamCompanies.length === 0 ? (
+          <div className="no-questions">
+            {isDreamCompanyLoading ? (
+              <Loader />
             ) : (
-              <div className="card-container">
-                {renderDreamCompanies.map((dreamCompany) => (
-                  <DreamCompanyCard
-                    key={dreamCompany._id}
-                    dreamCompany={dreamCompany}
-                    onDelete={() => handleDelete(dreamCompany._id)}
-                  />
-                ))}
-              </div>
+              "No data. Create data by clicking the 'Add Company' button above."
             )}
           </div>
         ) : (
-          <Loader />
+          <div className="dream-company-list question-list grid">
+            <div className="card-container">
+              {renderDreamCompanies.map((dreamCompany) => (
+                <DreamCompanyCard
+                  key={dreamCompany._id}
+                  dreamCompany={dreamCompany}
+                  onDelete={() => handleDelete(dreamCompany._id)}
+                />
+              ))}
+            </div>
+          </div>
         )}
       </div>
     </div>

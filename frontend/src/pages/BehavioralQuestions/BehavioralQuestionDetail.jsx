@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import MDEditor from "@uiw/react-md-editor";
 import { getQuestions } from "../../services/api";
@@ -6,28 +6,13 @@ import "./BehavioralQuestions.css";
 import { GrPrevious } from "react-icons/gr";
 import { GrNext } from "react-icons/gr";
 import Loader from "../../components/Loader/Loader";
+import { QuestionsContext } from "../../context/QuestionsContext";
 
 const BehavioralQuestionDetail = () => {
   const { id } = useParams();
-  const [questions, setQuestions] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const { questions, isBehavioralLoading } = useContext(QuestionsContext);
   const navigate = useNavigate();
   const question = questions.find((q) => q._id === id);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await getQuestions();
-        setQuestions(response.data);
-      } catch (error) {
-        console.error("Error fetching questions:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
 
   const questionIndex = questions.findIndex((q) => q._id === id);
 
@@ -45,11 +30,15 @@ const BehavioralQuestionDetail = () => {
     }
   };
 
-  const formattedCreatedAt = question ? new Date(question.createdAt).toLocaleString() : '';
-  const formattedUpdatedAt = question ? new Date(question.updatedAt).toLocaleString() : '';
+  const formattedCreatedAt = question
+    ? new Date(question.createdAt).toLocaleString()
+    : "";
+  const formattedUpdatedAt = question
+    ? new Date(question.updatedAt).toLocaleString()
+    : "";
 
-  if (loading) {
-    return <Loader/>;
+  if (isBehavioralLoading) {
+    return <Loader />;
   }
 
   if (!question) {

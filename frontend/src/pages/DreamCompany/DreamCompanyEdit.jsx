@@ -1,18 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getDreamCompany, updateDreamCompany } from "../../services/api";
+import { QuestionsContext } from "../../context/QuestionsContext";
 import "./DreamCompany.css";
 import Loader from "../../components/Loader/Loader";
 
 const DreamCompanyEdit = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { dreamCompanies, setDreamCompanies, isDreamCompanyLoading } =
+    useContext(QuestionsContext);
   const [formData, setFormData] = useState({
     name: "",
     description: "",
   });
-  const [isLoading, setIsLoading] = useState(true);
-  const [hasError, setHasError] = useState(false);
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -25,9 +26,6 @@ const DreamCompanyEdit = () => {
         });
       } catch (error) {
         console.error("Error fetching dream company:", error);
-        setHasError(true);
-      } finally {
-        setIsLoading(false);
       }
     };
 
@@ -45,19 +43,20 @@ const DreamCompanyEdit = () => {
       return;
     }
     try {
-      await updateDreamCompany(id, formData);
+      const response = await updateDreamCompany(id, formData);
+      setDreamCompanies(
+        dreamCompanies.map((company) =>
+          company._id === id ? response.data : company
+        )
+      );
       navigate("/dream-company");
     } catch (error) {
       console.error("Error updating dream company:", error);
     }
   };
 
-  if (isLoading) {
-    return <Loader/>;
-  }
-
-  if (hasError) {
-    return <p>Error loading data. Please try again later.</p>;
+  if (isDreamCompanyLoading) {
+    return <Loader />;
   }
 
   return (
@@ -83,7 +82,9 @@ const DreamCompanyEdit = () => {
           rows={4}
           required
         />
-        <button type="submit" className="submit-button">Update Company</button>
+        <button type="submit" className="submit-button">
+          Update Company
+        </button>
       </form>
     </div>
   );

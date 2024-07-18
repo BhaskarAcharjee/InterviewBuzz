@@ -25,12 +25,15 @@ import PageNotFound from "./pages/PageNotFound/PageNotFound";
 import "./App.css";
 import LaunchPage2 from "./pages/Hero/LaunchPage2";
 import ProjectDetail from "./pages/ProjectQuestions/ProjectDetail";
+import { QuestionsProvider } from "./context/QuestionsContext";
 
 const App = () => {
   return (
-    <Router>
-      <MainContent />
-    </Router>
+    <QuestionsProvider>
+      <Router>
+        <MainContent />
+      </Router>
+    </QuestionsProvider>
   );
 };
 

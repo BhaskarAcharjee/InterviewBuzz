@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { createDreamCompany } from "../../services/api";
+import { QuestionsContext } from "../../context/QuestionsContext";
 import "./DreamCompany.css";
 
 const DreamCompanyCreate = () => {
   const navigate = useNavigate();
+  const { dreamCompanies, setDreamCompanies } = useContext(QuestionsContext);
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -22,7 +24,8 @@ const DreamCompanyCreate = () => {
       return;
     }
     try {
-      await createDreamCompany(formData);
+      const response = await createDreamCompany(formData);
+      setDreamCompanies([...dreamCompanies, response.data]);
       navigate("/dream-company");
     } catch (error) {
       console.error("Error creating dream company:", error);

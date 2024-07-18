@@ -1,23 +1,29 @@
-import React, { useState, useEffect } from "react";
+// BehavioralQuestionList.js
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import BehavioralQuestionCard from "./BehavioralQuestionCard";
 import "./BehavioralQuestions.css";
 import BehavioralQuestionModal from "../../components/Modal/BehavioralQuestionModal";
 import TabSwitch from "../../components/TabSwitch/TabSwitch";
-import { getQuestions, createQuestion, updateQuestion, deleteQuestion, importQuestions } from "../../services/api";
+import {
+  createQuestion,
+  updateQuestion,
+  deleteQuestion,
+  importQuestions,
+} from "../../services/api";
 import { sampleQuestions } from "../../constants/behavioral";
 import { isLoggedIn } from "../../services/auth";
 import Loader from "../../components/Loader/Loader";
+import { QuestionsContext } from "../../context/QuestionsContext";
 
 const BehavioralQuestionList = () => {
-  const [questions, setQuestions] = useState([]);
+  const { questions, setQuestions, isBehavioralLoading } =
+    useContext(QuestionsContext);
   const [view, setView] = useState("grid");
   const [filter, setFilter] = useState("all");
   const [exportContent, setExportContent] = useState("");
   const [isImportModalOpen, setIsImportModalOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(true); // Loading state
-  const [hasError, setHasError] = useState(false); // Error state
-  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false); // Logged-in state
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
   const navigate = useNavigate();
 
   const options = [
@@ -27,19 +33,6 @@ const BehavioralQuestionList = () => {
   const [activeTab, setActiveTab] = useState(options[0]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await getQuestions();
-        setQuestions(response.data);
-      } catch (error) {
-        console.error("Error fetching questions:", error);
-        setHasError(true);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchData();
     setIsUserLoggedIn(isLoggedIn()); // Check if user is logged in
   }, []);
 
@@ -79,7 +72,6 @@ const BehavioralQuestionList = () => {
       setQuestions([...questions, ...response.data]);
     } catch (error) {
       console.error("Error importing questions:", error);
-      setHasError(true);
     }
   };
 
@@ -97,9 +89,14 @@ const BehavioralQuestionList = () => {
       if (!updatedQuestion._id) {
         throw new Error("Missing _id in updatedQuestion");
       }
-      const response = await updateQuestion(updatedQuestion._id, updatedQuestion);
+      const response = await updateQuestion(
+        updatedQuestion._id,
+        updatedQuestion
+      );
       setQuestions(
-        questions.map((q) => (q._id === updatedQuestion._id ? response.data : q))
+        questions.map((q) =>
+          q._id === updatedQuestion._id ? response.data : q
+        )
       );
     } catch (error) {
       console.error("Error editing question:", error);
@@ -154,9 +151,18 @@ const BehavioralQuestionList = () => {
           {view === "grid" ? "Switch to List View" : "Switch to Grid View"}
         </button>
       </div>
-      <div className={`question-list ${view}`}>
-        {renderQuestions.length > 0 ? (
-          renderQuestions.map((q) => (
+
+      {renderQuestions.length === 0 ? (
+        <div className="no-questions">
+          {isBehavioralLoading ? (
+            <Loader />
+          ) : (
+            "Nothing to display. Create new questions or import existing ones."
+          )}
+        </div>
+      ) : (
+        <div className={`question-list ${view}`}>
+          {renderQuestions.map((q) => (
             <BehavioralQuestionCard
               key={q._id}
               _id={q._id}
@@ -166,17 +172,10 @@ const BehavioralQuestionList = () => {
               onDelete={() => deleteQuestionById(q._id)}
               toggleFavorite={() => toggleFavorite(q._id)}
             />
-          ))
-        ) : (
-          <div className="no-questions">
-            {isLoading ? (
-              <Loader/>
-            ) : (
-              "Nothing to display. Create new questions or import existing ones."
-            )}
-          </div>
-        )}
-      </div>
+          ))}
+        </div>
+      )}
+
       <BehavioralQuestionModal
         isOpen={isImportModalOpen}
         onClose={() => setIsImportModalOpen(false)}

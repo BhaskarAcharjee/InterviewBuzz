@@ -4,54 +4,54 @@ import { ReactComponent as ContactUsImg } from "../../assets/images/contact_us.s
 
 const ContactUs = () => {
   return (
-    <div class="contact-container d-flex justify-content-center align-items-center">
+    <div className="contact-container d-flex justify-content-center align-items-center">
       {/* SVG */}
       <ContactUsImg />
 
       {/* FORM */}
 
       <form>
-        <h1 class="title text-center mb-4">Talk to Us</h1>
+        <h1 className="title text-center mb-4">Talk to Us</h1>
 
         {/* <!-- Name --> */}
-        <div class="form-group position-relative">
-          <label for="formName" class="d-block">
-            <i class="icon" data-feather="user"></i>
+        <div className="form-group position-relative">
+          <label htmlFor="formName" className="d-block">
+            <i className="icon" data-feather="user"></i>
           </label>
           <input
             type="text"
             id="formName"
-            class="form-control form-control-lg thick"
+            className="form-control form-control-lg thick"
             placeholder="Name"
           />
         </div>
 
         {/* <!-- E-mail --> */}
-        <div class="form-group position-relative">
-          <label for="formEmail" class="d-block">
-            <i class="icon" data-feather="mail"></i>
+        <div className="form-group position-relative">
+          <label htmlFor="formEmail" className="d-block">
+            <i className="icon" data-feather="mail"></i>
           </label>
           <input
             type="email"
             id="formEmail"
-            class="form-control form-control-lg thick"
+            className="form-control form-control-lg thick"
             placeholder="E-mail"
           />
         </div>
 
         {/* <!-- Message --> */}
-        <div class="form-group message">
+        <div className="form-group message">
           <textarea
             id="formMessage"
-            class="form-control form-control-lg"
+            className="form-control form-control-lg"
             rows="7"
             placeholder="Message"
           ></textarea>
         </div>
 
         {/* <!-- Submit btn --> */}
-        <div class="text-center">
-          <button type="submit" class="btn btn-primary" tabIndex="-1">
+        <div className="text-center">
+          <button type="submit" className="btn btn-primary" tabIndex="-1">
             Send message
           </button>
         </div>

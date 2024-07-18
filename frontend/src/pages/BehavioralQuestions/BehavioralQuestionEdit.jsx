@@ -1,28 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import QuestionForm from "../../components/QuestionForm/QuestionForm";
-import { getQuestions, updateQuestion } from "../../services/api";
+import { updateQuestion } from "../../services/api";
+import { QuestionsContext } from "../../context/QuestionsContext";
 
 const BehavioralQuestionEdit = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [questions, setQuestions] = useState([]);
+  const { questions, setQuestions } = useContext(QuestionsContext);
   const [questionToEdit, setQuestionToEdit] = useState(null);
 
   useEffect(() => {
-    const fetchQuestions = async () => {
-      try {
-        const response = await getQuestions();
-        setQuestions(response.data);
-        const question = response.data.find((q) => q._id === id);
-        setQuestionToEdit(question);
-      } catch (error) {
-        console.error("Error fetching questions:", error);
-      }
-    };
-
-    fetchQuestions();
-  }, [id]);
+    const question = questions.find((q) => q._id === id);
+    setQuestionToEdit(question);
+  }, [id, questions]);
 
   const editQuestion = async (updatedQuestion) => {
     try {

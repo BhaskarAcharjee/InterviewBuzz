@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import QuestionForm from "../../components/QuestionForm/QuestionForm";
 import { createQuestion } from "../../services/api";
+import { QuestionsContext } from "../../context/QuestionsContext";
 
 const BehavioralQuestionCreate = () => {
   const navigate = useNavigate();
-  const [questions, setQuestions] = useState([]);
+  const { questions, setQuestions } = useContext(QuestionsContext);
 
   const addNewQuestion = async (newQuestion) => {
     try {
