@@ -24,6 +24,7 @@ import "./App.css";
 import LaunchPage2 from "./pages/Hero/LaunchPage2";
 import ProjectDetail from "./pages/ProjectQuestions/ProjectDetail";
 import { QuestionsProvider } from "./context/QuestionsContext";
+import TechnicalQuestionDetail from "./pages/TechnicalQuestions/TechnicalQuestionDetail";
 
 const App = () => {
   return (
@@ -63,6 +64,10 @@ const MainContent = () => {
           <Route path="/projects" element={<ProjectQuestions />} />
           <Route path="/projects/:id" element={<ProjectDetail />} />
           <Route path="/technical" element={<TechnicalQuestions />} />
+          <Route
+            path="/technical/:categoryId/:type/:questionId"
+            element={<TechnicalQuestionDetail />}
+          />
           <Route path="/flashcards" element={<Flashcards />} />
           <Route path="/dream-company" element={<DreamCompanyList />} />
           <Route

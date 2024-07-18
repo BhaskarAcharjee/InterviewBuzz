@@ -5,6 +5,7 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { flashcards } from "../../constants/flashcard";
 import Card from "../../components/Card/Card";
 import QuizCard from "../../components/Card/QuizCard";
+import CommonModal from "../../components/Modal/CommonModal";
 
 const Flashcards = () => {
   const options = [
@@ -17,6 +18,14 @@ const Flashcards = () => {
   const [questionIndex, setQuestionIndex] = useState(0);
   const [answered, setAnswered] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isEditModal, setIsEditModal] = useState(false);
+  const [editIndex, setEditIndex] = useState(null);
+  const [newFlashcard, setNewFlashcard] = useState({
+    question: "",
+    answer: "",
+    type: "revise",
+  });
 
   const categories = Object.keys(flashcards);
 
@@ -66,6 +75,38 @@ const Flashcards = () => {
     setAnswered(true);
   };
 
+  const openModal = () => {
+    setIsModalOpen(true);
+    setIsEditModal(false);
+    setNewFlashcard({ question: "", answer: "", type: "revise" });
+  };
+
+  const closeAndResetModal = () => {
+    setIsModalOpen(false);
+    setIsEditModal(false);
+    setEditIndex(null);
+    setNewFlashcard({ question: "", answer: "", type: "revise" });
+  };
+
+  const handleAddFlashcard = () => {
+    // Add newFlashcard to flashcards state or API logic
+    closeAndResetModal();
+  };
+
+  const handleEditFlashcard = () => {
+    // Update flashcard at editIndex in flashcards state or API logic
+    closeAndResetModal();
+  };
+
+  const openEditModal = (index) => {
+    setIsModalOpen(true);
+    setIsEditModal(true);
+    setEditIndex(index);
+    const { question, answer, type } =
+      flashcards[categories[categoryIndex]][index];
+    setNewFlashcard({ question, answer, type });
+  };
+
   const hasNextQuestion =
     questionIndex < flashcards[categories[categoryIndex]].length - 1;
   const hasPrevQuestion = questionIndex > 0;
@@ -77,7 +118,9 @@ const Flashcards = () => {
         To help prepare for conceptual questions...
       </p>
       <div className="add-button-container">
-        <button className="gradient-button">Add Flashcard</button>
+        <button className="gradient-button" onClick={openModal}>
+          Add Flashcard
+        </button>
       </div>
 
       <TabSwitch
@@ -114,6 +157,7 @@ const Flashcards = () => {
                     title="Flashcards"
                     question={flashcard.question}
                     answer={flashcard.answer}
+                    onEdit={() => openEditModal(idx)}
                   />
                 ) : (
                   activeTab.label === "Quiz" &&
@@ -138,6 +182,132 @@ const Flashcards = () => {
           </div>
         </div>
       </div>
+
+      <CommonModal
+        isOpen={isModalOpen}
+        onClose={closeAndResetModal}
+        onSubmit={isEditModal ? handleEditFlashcard : handleAddFlashcard}
+        title={isEditModal ? "Edit Flashcard" : "Add Flashcard"}
+      >
+        <div className="modal-form">
+          <textarea
+            value={newFlashcard.question}
+            placeholder="Question"
+            onChange={(e) =>
+              setNewFlashcard({ ...newFlashcard, question: e.target.value })
+            }
+          />
+          {newFlashcard.type === "revise" && (
+            <textarea
+              value={newFlashcard.answer}
+              placeholder="Answer"
+              onChange={(e) =>
+                setNewFlashcard({ ...newFlashcard, answer: e.target.value })
+              }
+            />
+          )}
+          {newFlashcard.type === "mcq" && (
+            <>
+              {[...Array(4)].map((_, i) => (
+                <input
+                  key={i}
+                  value={newFlashcard.options?.[i] || ""}
+                  placeholder={`Option ${i + 1}`}
+                  onChange={(e) =>
+                    setNewFlashcard({
+                      ...newFlashcard,
+                      options: {
+                        ...newFlashcard.options,
+                        [i]: e.target.value,
+                      },
+                    })
+                  }
+                />
+              ))}
+            </>
+          )}
+          <div className="toggle-options">
+            <label
+              className={`toggle-option ${
+                newFlashcard.type === "revise" ? "active" : ""
+              }`}
+              onClick={() =>
+                setNewFlashcard({ ...newFlashcard, type: "revise" })
+              }
+            >
+              Revise
+            </label>
+            <label
+              className={`toggle-option ${
+                newFlashcard.type === "yesno" ? "active" : ""
+              }`}
+              onClick={() =>
+                setNewFlashcard({ ...newFlashcard, type: "yesno" })
+              }
+            >
+              Yes/No
+            </label>
+            <label
+              className={`toggle-option ${
+                newFlashcard.type === "mcq" ? "active" : ""
+              }`}
+              onClick={() => setNewFlashcard({ ...newFlashcard, type: "mcq" })}
+            >
+              MCQ
+            </label>
+          </div>
+          {newFlashcard.type === "mcq" && (
+            <>
+              <input
+                type="text"
+                value={newFlashcard.correctAnswer || ""}
+                placeholder="Correct Answer"
+                onChange={(e) =>
+                  setNewFlashcard({
+                    ...newFlashcard,
+                    correctAnswer: e.target.value,
+                  })
+                }
+              />
+              <textarea
+                value={newFlashcard.hint || ""}
+                placeholder="Hint"
+                onChange={(e) =>
+                  setNewFlashcard({
+                    ...newFlashcard,
+                    hint: e.target.value,
+                  })
+                }
+              />
+            </>
+          )}
+          {newFlashcard.type === "yesno" && (
+            <>
+              <input
+                type="text"
+                value={newFlashcard.correctAnswer || ""}
+                placeholder="Correct Answer (Yes/No)"
+                onChange={(e) =>
+                  setNewFlashcard({
+                    ...newFlashcard,
+                    correctAnswer: e.target.value,
+                  })
+                }
+              />
+              <textarea
+                value={newFlashcard.hint || ""}
+                placeholder="Hint"
+                onChange={(e) =>
+                  setNewFlashcard({
+                    ...newFlashcard,
+                    hint: e.target.value,
+                  })
+                }
+              />
+            </>
+          )}
+        </div>
+      </CommonModal>
     </div>
   );
 };

@@ -104,3 +104,29 @@ textarea:focus {
   height: 120px;
   resize: vertical;
 }
+
+/* Toggle Type */
+.toggle-options {
+  display: flex;
+  justify-content: center;
+  margin-top: 12px;
+  border-radius: 30px;
+  background-color: #d3d3d3;
+}
+
+.toggle-option {
+  padding: 10px 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.toggle-option:hover {
+  background-color: #f0f0f0;
+}
+
+.toggle-option.active {
+  background-color: #4caf50;
+  color: white;
+}

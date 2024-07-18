@@ -6,13 +6,11 @@
 }
 
 .technical-questions-title {
-  /* font-size: 2.5rem; */
   margin-bottom: 10px;
   color: #333;
 }
 
 .technical-questions-description {
-  /* font-size: 1.2rem; */
   margin-bottom: 30px;
   color: #666;
 }
@@ -40,3 +38,6 @@
 .nav-icon:hover {
   color: #0056b3;
 }
+
+/* Detail Page */
+/* from Behavioral Detail page */

@@ -2,9 +2,9 @@ import React from "react";
 import "./Card.css";
 import { FaEdit, FaTrash, FaChevronCircleLeft } from "react-icons/fa";
 
-const Card = ({ label, title, question, answer, onEdit, onDelete }) => {
+const Card = ({ label, title, question, answer, onEdit, onDelete, onClick }) => {
   return (
-    <div className="card-box">
+    <div className="card-box" onClick={onClick}>
       <div className="card-box-icon">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -33,8 +33,8 @@ const Card = ({ label, title, question, answer, onEdit, onDelete }) => {
           <FaChevronCircleLeft className="studio-circle-icon" />
         </div>
         <div className="studio-button-label">
-          <FaEdit className="studio-edit-icon" onClick={onEdit} />
-          <FaTrash className="studio-delete-icon" onClick={onDelete} />
+          <FaEdit className="studio-edit-icon" onClick={(e) => { e.stopPropagation(); onEdit(); }} />
+          <FaTrash className="studio-delete-icon" onClick={(e) => { e.stopPropagation(); onDelete(); }} />
         </div>
       </div>
     </div>

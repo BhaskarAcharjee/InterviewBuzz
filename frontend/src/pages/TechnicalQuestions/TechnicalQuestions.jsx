@@ -4,6 +4,7 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import TabSwitch from "../../components/TabSwitch/TabSwitch";
 import { categories } from "../../constants/technical";
 import Card from "../../components/Card/Card";
+import { useNavigate } from "react-router-dom";
 
 const TechnicalQuestions = () => {
   const options = [
@@ -13,6 +14,7 @@ const TechnicalQuestions = () => {
 
   const [activeTab, setActiveTab] = useState(options[0]);
   const [categoryIndex, setCategoryIndex] = useState(0);
+  const navigate = useNavigate();
 
   const handleOptionClick = (option) => {
     setActiveTab(option);
@@ -62,6 +64,13 @@ const TechnicalQuestions = () => {
                   title="Technical Question"
                   question={question.question}
                   answer={question.answer}
+                  onClick={() =>
+                    navigate(
+                      `/technical/${categories[
+                        categoryIndex
+                      ].name.toLowerCase()}/${question.type}/${idx}`
+                    )
+                  }
                 />
               ))}
           </div>
