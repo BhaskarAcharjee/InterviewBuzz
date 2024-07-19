@@ -8,12 +8,15 @@ import TestimonialCard from "../../components/Testimonoial/TestimonialCard";
 import BlogCard from "../../components/Blog/BlogCard";
 import Pricing from "../../components/Pricing/Pricing";
 import ContactUs from "../../components/ContactUs/ContactUs";
-import { getCurrentUser } from "../../services/auth";
+import { getCurrentUser, getCandidateCount } from "../../services/auth";
 import Team from "../../components/Team/Team";
 
-const LaunchPage2 = () => {
+const LandingPage = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
+  const [candidateCount, setCandidateCount] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const userData = getCurrentUser();
@@ -31,6 +34,22 @@ const LaunchPage2 = () => {
   const handleProfileClick = () => {
     navigate("/profile");
   };
+
+  useEffect(() => {
+    const fetchCandidateCount = async () => {
+      try {
+        const count = await getCandidateCount();
+        setCandidateCount(count);
+        setIsLoading(false);
+      } catch (error) {
+        console.error("Error fetching candidate count:", error);
+        setError("Error fetching candidate count.");
+        setIsLoading(false);
+      }
+    };
+
+    fetchCandidateCount();
+  }, []);
 
   return (
     <div className="launch-page">
@@ -224,6 +243,10 @@ const LaunchPage2 = () => {
               experiences. Engage in discussions, ask questions, and learn from
               others to boost your confidence and preparation.
             </p>
+            <p>
+              <strong>{candidateCount}</strong> candidates are already part of
+              our community!
+            </p>
           </div>
         </section>
 
@@ -274,4 +297,4 @@ const LaunchPage2 = () => {
   );
 };
 
-export default LaunchPage2;
+export default LandingPage;

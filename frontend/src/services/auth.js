@@ -19,3 +19,8 @@ export const getCurrentUser = () => {
 export const isLoggedIn = () => {
   return localStorage.getItem("user");
 };
+
+export const getCandidateCount = async () => {
+  const response = await axios.get(`${API_URL}/auth/candidate-count`);
+  return response ? response.data.count : null;
+};

@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import BehavioralQuestionCard from "./BehavioralQuestionCard";
 import "./BehavioralQuestions.css";
 import BehavioralQuestionModal from "../../components/Modal/BehavioralQuestionModal";
 import TabSwitch from "../../components/TabSwitch/TabSwitch";
@@ -14,6 +13,8 @@ import { sampleQuestions } from "../../constants/behavioral";
 import { isLoggedIn } from "../../services/auth";
 import Loader from "../../components/Loader/Loader";
 import { QuestionsContext } from "../../context/QuestionsContext";
+import { FaHeart, FaEdit, FaTrash } from "react-icons/fa";
+import { showToast } from "../../utils/showToast";
 
 const BehavioralQuestionList = () => {
   const { questions, setQuestions, isBehavioralLoading } =
@@ -83,22 +84,27 @@ const BehavioralQuestionList = () => {
     element.click();
   };
 
-  const editQuestion = async (updatedQuestion) => {
+  const handleSaveQuestion = async (question) => {
+    if (!isUserLoggedIn) {
+      showToast(false, "Please log in to save the question.");
+      return;
+    }
+
     try {
-      if (!updatedQuestion._id) {
-        throw new Error("Missing _id in updatedQuestion");
+      if (question._id) {
+        // Edit existing question
+        const response = await updateQuestion(question._id, question);
+        setQuestions(
+          questions.map((q) => (q._id === question._id ? response.data : q))
+        );
+      } else {
+        // Create new question
+        const response = await createQuestion(question);
+        setQuestions([...questions, response.data]);
       }
-      const response = await updateQuestion(
-        updatedQuestion._id,
-        updatedQuestion
-      );
-      setQuestions(
-        questions.map((q) =>
-          q._id === updatedQuestion._id ? response.data : q
-        )
-      );
+      navigate("/behavioral");
     } catch (error) {
-      console.error("Error editing question:", error);
+      console.error("Error saving question:", error);
     }
   };
 
@@ -116,7 +122,38 @@ const BehavioralQuestionList = () => {
       (q) => q._id === id
     );
     const updatedQuestion = { ...question, isFavorite: !question.isFavorite };
-    await editQuestion(updatedQuestion);
+    await handleSaveQuestion(updatedQuestion);
+  };
+
+  const handleCardClick = (id) => {
+    navigate(`/behavioral/${id}`);
+  };
+
+  const handleFavoriteClick = (e, id) => {
+    e.stopPropagation();
+    if (!isUserLoggedIn) {
+      showToast(false, "Please log in to favorite a question.");
+      return;
+    }
+    toggleFavorite(id);
+  };
+
+  const handleEditClick = (e, id) => {
+    e.stopPropagation();
+    if (!isUserLoggedIn) {
+      showToast(false, "Please log in to edit a question.");
+      return;
+    }
+    navigate(`/behavioral/edit/${id}`);
+  };
+
+  const handleDeleteClick = (e, id) => {
+    e.stopPropagation();
+    if (!isUserLoggedIn) {
+      showToast(false, "Please log in to delete a question.");
+      return;
+    }
+    deleteQuestionById(id);
   };
 
   return (
@@ -161,15 +198,31 @@ const BehavioralQuestionList = () => {
       ) : (
         <div className={`question-list ${view}`}>
           {filteredQuestions.map((q) => (
-            <BehavioralQuestionCard
+            <div
               key={q._id}
-              _id={q._id}
-              question={q.question}
-              isFavorite={q.isFavorite}
-              onEdit={() => editQuestion(q)}
-              onDelete={() => deleteQuestionById(q._id)}
-              toggleFavorite={() => toggleFavorite(q._id)}
-            />
+              className="card"
+              onClick={() => handleCardClick(q._id)}
+            >
+              <div className="card-header">
+                <h4>{q.question}</h4>
+              </div>
+              <div className="card-icons">
+                <div className="left-icons">
+                  <FaEdit
+                    className="edit-icon"
+                    onClick={(e) => handleEditClick(e, q._id)}
+                  />
+                  <FaTrash
+                    className="delete-icon"
+                    onClick={(e) => handleDeleteClick(e, q._id)}
+                  />
+                </div>
+                <FaHeart
+                  className={`favorite-icon ${q.isFavorite ? "active" : ""}`}
+                  onClick={(e) => handleFavoriteClick(e, q._id)}
+                />
+              </div>
+            </div>
           ))}
         </div>
       )}

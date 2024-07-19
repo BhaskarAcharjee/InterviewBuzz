@@ -30,6 +30,14 @@ const TechnicalQuestions = () => {
     setCategoryIndex((prevIndex) => (prevIndex + 1) % categories.length);
   };
 
+  const handleAddQuestion = () => {
+    navigate("/technical/create"); // Navigate to create page
+  };
+
+  const handleEditQuestion = (questionId) => {
+    navigate(`/technical/edit/${questionId}`); // Navigate to edit page
+  };
+
   return (
     <div className="technical-questions-container">
       <h1 className="technical-questions-title">Technical Questions</h1>
@@ -37,7 +45,9 @@ const TechnicalQuestions = () => {
         Keep a record of technical questions you prepared to revise later...
       </p>
       <div className="add-button-container">
-        <button className="gradient-button">Add Question</button>
+        <button className="gradient-button" onClick={handleAddQuestion}>
+          Add Question
+        </button>
       </div>
 
       <TabSwitch
@@ -71,8 +81,8 @@ const TechnicalQuestions = () => {
                       ].name.toLowerCase()}/${question.type}/${idx}`
                     )
                   }
-                  onEdit={() => console.log(`Edit experience ${idx}`)}
-                  onDelete={() => console.log(`Delete experience ${idx}`)}
+                  onEdit={() => handleEditQuestion(question._id)}
+                  onDelete={() => console.log(`Delete question ${idx}`)}
                 />
               ))}
           </div>

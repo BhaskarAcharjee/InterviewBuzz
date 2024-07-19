@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -8,9 +8,7 @@ import {
 import Sidebar from "./components/Sidebar/Sidebar";
 import Home from "./pages/Home/Home";
 import BehavioralQuestionList from "./pages/BehavioralQuestions/BehavioralQuestionList";
-import BehavioralQuestionCreate from "./pages/BehavioralQuestions/BehavioralQuestionCreate";
 import BehavioralQuestionDetail from "./pages/BehavioralQuestions/BehavioralQuestionDetail";
-import BehavioralQuestionEdit from "./pages/BehavioralQuestions/BehavioralQuestionEdit";
 import ProjectQuestions from "./pages/ProjectQuestions/ProjectQuestions";
 import TechnicalQuestions from "./pages/TechnicalQuestions/TechnicalQuestions";
 import Flashcards from "./pages/Flashcards/Flashcards";
@@ -21,12 +19,14 @@ import ProfilePage from "./pages/Profile/ProfilePage";
 import Auth from "./pages/Auth/Auth";
 import PageNotFound from "./pages/PageNotFound/PageNotFound";
 import "./App.css";
-import LaunchPage2 from "./pages/LandingPage/LandingPage";
+import LandingPage from "./pages/LandingPage/LandingPage";
 import ProjectDetail from "./pages/ProjectQuestions/ProjectDetail";
 import { QuestionsProvider } from "./context/QuestionsContext";
 import TechnicalQuestionDetail from "./pages/TechnicalQuestions/TechnicalQuestionDetail";
 import InterviewExperienceDetail from "./pages/InterviewExperiences/InterviewExperienceDetail";
 import DreamCompanyDetail from "./pages/DreamCompany/DreamCompanyDetail";
+import QuestionForm from "./components/QuestionForm/QuestionForm";
+import BehavioralQuestionUpdate from "./pages/BehavioralQuestions/BehavioralQuestionUpdate";
 
 const App = () => {
   return (
@@ -48,12 +48,12 @@ const MainContent = () => {
       {showSidebar && <Sidebar />}
       <main className="main-content">
         <Routes>
-          <Route path="/" element={<LaunchPage2 />} />
+          <Route path="/" element={<LandingPage />} />
           <Route path="/home" element={<Home />} />
           <Route path="/behavioral" element={<BehavioralQuestionList />} />
           <Route
             path="/behavioral/create"
-            element={<BehavioralQuestionCreate />}
+            element={<BehavioralQuestionUpdate />}
           />
           <Route
             path="/behavioral/:id"
@@ -61,7 +61,7 @@ const MainContent = () => {
           />
           <Route
             path="/behavioral/edit/:id"
-            element={<BehavioralQuestionEdit />}
+            element={<BehavioralQuestionUpdate />}
           />
           <Route path="/projects" element={<ProjectQuestions />} />
           <Route path="/projects/:id" element={<ProjectDetail />} />
@@ -70,6 +70,8 @@ const MainContent = () => {
             path="/technical/:categoryId/:type/:questionId"
             element={<TechnicalQuestionDetail />}
           />
+          <Route path="/technical/create" element={<QuestionForm />} />
+          <Route path="/technical/edit/:id" element={<QuestionForm />} />
           <Route path="/flashcards" element={<Flashcards />} />
           <Route path="/dream-company" element={<DreamCompanyList />} />
           <Route path="/dream-company/:id" element={<DreamCompanyDetail />} />

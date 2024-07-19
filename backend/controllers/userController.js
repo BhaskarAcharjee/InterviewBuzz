@@ -1,4 +1,4 @@
-const User = require("../models/User");
+const User = require("../models/user");
 const jwt = require("jsonwebtoken");
 
 // JWT secret key
@@ -63,6 +63,18 @@ exports.login = async (req, res) => {
     });
   } catch (err) {
     console.error("Login error:", err);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+
+// Get candidate count
+exports.getCandidateCount = async (req, res) => {
+  try {
+    const count = await User.countDocuments();
+    res.json({ count });
+  } catch (err) {
+    console.error("Error fetching candidate count:", err);
     res.status(500).json({ message: "Server error" });
   }
 };
