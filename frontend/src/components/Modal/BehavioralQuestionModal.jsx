@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import CommonModal from "./CommonModal";
+import { showToast } from "../../utils/showToast";
 
 const BehavioralQuestionModal = ({ isOpen, onClose, onImport }) => {
   const [importText, setImportText] = useState("");
@@ -35,6 +36,7 @@ const BehavioralQuestionModal = ({ isOpen, onClose, onImport }) => {
     setImportText("");
     setError(""); // Clear the error message upon successful submission
     onClose();
+    showToast(true, "Questions Imported Sucessfully");
   };
 
   return (

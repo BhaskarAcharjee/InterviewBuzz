@@ -204,7 +204,7 @@ html {
 Button Style
 -------------------------------- */
 /* <!-- HTML !--> */
-/* <button class="gradient-button" role="button">Button</button> */
+/* <button className="gradient-button" role="button">Button</button> */
 
 /* CSS */
 .gradient-button {
@@ -260,7 +260,7 @@ Button Style
 }
 
 /* <!-- HTML !-->
-<button class="design-button" role="button">Button</button> */
+<button className="design-button" role="button">Button</button> */
 
 /* CSS */
 .design-button {

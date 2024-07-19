@@ -21,10 +21,12 @@ import ProfilePage from "./pages/Profile/ProfilePage";
 import Auth from "./pages/Auth/Auth";
 import PageNotFound from "./pages/PageNotFound/PageNotFound";
 import "./App.css";
-import LaunchPage2 from "./pages/Hero/LaunchPage2";
+import LaunchPage2 from "./pages/LandingPage/LandingPage";
 import ProjectDetail from "./pages/ProjectQuestions/ProjectDetail";
 import { QuestionsProvider } from "./context/QuestionsContext";
 import TechnicalQuestionDetail from "./pages/TechnicalQuestions/TechnicalQuestionDetail";
+import InterviewExperienceDetail from "./pages/InterviewExperiences/InterviewExperienceDetail";
+import DreamCompanyDetail from "./pages/DreamCompany/DreamCompanyDetail";
 
 const App = () => {
   return (
@@ -70,9 +72,14 @@ const MainContent = () => {
           />
           <Route path="/flashcards" element={<Flashcards />} />
           <Route path="/dream-company" element={<DreamCompanyList />} />
+          <Route path="/dream-company/:id" element={<DreamCompanyDetail />} />
           <Route
             path="/interview-experiences"
             element={<InterviewExperiences />}
+          />
+          <Route
+            path="/interview-experiences/:id"
+            element={<InterviewExperienceDetail />}
           />
           <Route path="/resume-builder" element={<ResumeBuilder />} />
           <Route path="/profile" element={<ProfilePage />} />

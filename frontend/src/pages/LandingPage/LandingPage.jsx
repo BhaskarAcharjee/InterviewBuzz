@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./LaunchPage2.css";
+import "./LandingPage.css";
 import text_logo from "../../assets/images/Interview_text_logo.png";
 import hero_img from "../../assets/images/hero.png";
 import Footer from "../../components/Footer/Footer";

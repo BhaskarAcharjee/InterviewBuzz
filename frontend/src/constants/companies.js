@@ -2,14 +2,24 @@ export const sampleDreamCompanies = [
   {
     _id: "1",
     name: "Google",
-    description:
-      "Google is an internet search engine that uses a proprietary algorithm to find and rank relevant web pages based on search terms",
+    description: "Internet search engine company",
+    targetJobRole: "Software Engineer",
+    upcomingInterviews: "Yes",
+    appliedStatus: "Applied",
+    questions: [
+      {
+        question: "What is a search algorithm?",
+        answer: "An algorithm to search data efficiently.",
+      },
+    ],
   },
   {
     _id: "2",
     name: "Microsoft",
-    description:
-      "Microsoft is an American multinational technology company that develops and sells software, services, and hardware devices",
+    description: "Technology company",
+    targetJobRole: "Data Scientist",
+    upcomingInterviews: "No",
+    appliedStatus: "Not Applied",
+    questions: [],
   },
-  // Add more sample data as needed
 ];

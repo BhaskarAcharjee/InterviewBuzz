@@ -110,6 +110,7 @@ const DreamCompanyList = () => {
                 title="Dream Company"
                 question={dreamCompany.name}
                 answer={dreamCompany.description}
+                onClick={() => navigate(`/dream-company/${dreamCompany._id}`)}
                 onEdit={() => handleEditClick(dreamCompany)}
                 onDelete={() => handleDelete(dreamCompany._id)}
               />

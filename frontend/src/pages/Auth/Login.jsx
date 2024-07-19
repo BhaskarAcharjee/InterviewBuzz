@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { login } from "../../services/auth";
 import "./Auth.css";
+import { showToast } from "../../utils/showToast";
 
 const Login = ({ switchToSignUp }) => {
   const [email, setEmail] = useState("");
@@ -17,7 +18,7 @@ const Login = ({ switchToSignUp }) => {
       navigate("/home");
     } catch (error) {
       console.error("Error logging in:", error);
-      alert("Invalid email or password");
+      showToast(false, "Invalid email or password");
     }
   };
 

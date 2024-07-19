@@ -2,6 +2,8 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { FaHeart, FaEdit, FaTrash } from "react-icons/fa";
 import "./BehavioralQuestions.css";
+import { isLoggedIn } from "../../services/auth";
+import { showToast } from "../../utils/showToast";
 
 const BehavioralQuestionCard = ({
   _id,
@@ -11,6 +13,7 @@ const BehavioralQuestionCard = ({
   onDelete,
 }) => {
   const navigate = useNavigate();
+  const isUserLoggedIn = isLoggedIn(); // Check if user is logged in
 
   const handleCardClick = () => {
     navigate(`/behavioral/${_id}`);
@@ -18,16 +21,28 @@ const BehavioralQuestionCard = ({
 
   const handleFavoriteClick = (e) => {
     e.stopPropagation();
+    if (!isUserLoggedIn) {
+      showToast(false, "Please log in to favourite a question.");
+      return;
+    }
     toggleFavorite();
   };
 
   const handleEditClick = (e) => {
     e.stopPropagation();
+    if (!isUserLoggedIn) {
+      showToast(false, "Please log in to edit a question.");
+      return;
+    }
     navigate(`/behavioral/edit/${_id}`);
   };
 
   const handleDeleteClick = (e) => {
     e.stopPropagation();
+    if (!isUserLoggedIn) {
+      showToast(false, "Please log in to delete a question.");
+      return;
+    }
     onDelete(_id);
   };
 

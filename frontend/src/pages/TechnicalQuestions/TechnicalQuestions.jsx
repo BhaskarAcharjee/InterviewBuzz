@@ -71,6 +71,8 @@ const TechnicalQuestions = () => {
                       ].name.toLowerCase()}/${question.type}/${idx}`
                     )
                   }
+                  onEdit={() => console.log(`Edit experience ${idx}`)}
+                  onDelete={() => console.log(`Delete experience ${idx}`)}
                 />
               ))}
           </div>

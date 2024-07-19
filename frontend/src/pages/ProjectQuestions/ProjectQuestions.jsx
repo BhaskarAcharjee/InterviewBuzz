@@ -74,7 +74,7 @@ const ProjectQuestions = () => {
           >
             <h4 className="project-name">{project.projectName}</h4>
             <p className="project-description">{project.shortDescription}</p>
-            <div class="projcard-tagbox">
+            <div className="projcard-tagbox">
               {project.techStacks.map((stack, idx) => (
                 <span className="projcard-tag" key={idx}>
                   {stack}

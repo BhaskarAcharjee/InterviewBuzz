@@ -1,30 +1,32 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import MDEditor from "@uiw/react-md-editor";
-import { getQuestions } from "../../services/api";
-import "./BehavioralQuestions.css";
-import { GrPrevious } from "react-icons/gr";
-import { GrNext } from "react-icons/gr";
+import { GrPrevious, GrNext } from "react-icons/gr";
 import Loader from "../../components/Loader/Loader";
 import { QuestionsContext } from "../../context/QuestionsContext";
+import { sampleQuestions } from "../../constants/behavioral";
+import { isLoggedIn } from "../../services/auth";
+import "./BehavioralQuestions.css";
 
 const BehavioralQuestionDetail = () => {
   const { id } = useParams();
   const { questions, isBehavioralLoading } = useContext(QuestionsContext);
   const navigate = useNavigate();
-  const question = questions.find((q) => q._id === id);
+  const isUserLoggedIn = isLoggedIn(); // Check if user is logged in
 
-  const questionIndex = questions.findIndex((q) => q._id === id);
+  const dataSource = isUserLoggedIn ? questions : sampleQuestions;
+  const question = dataSource.find((q) => q._id === id);
+  const questionIndex = dataSource.findIndex((q) => q._id === id);
 
   const handleNext = () => {
-    const nextQuestionId = questions[questionIndex + 1]?._id;
+    const nextQuestionId = dataSource[questionIndex + 1]?._id;
     if (nextQuestionId) {
       navigate(`/behavioral/${nextQuestionId}`);
     }
   };
 
   const handlePrev = () => {
-    const prevQuestionId = questions[questionIndex - 1]?._id;
+    const prevQuestionId = dataSource[questionIndex - 1]?._id;
     if (prevQuestionId) {
       navigate(`/behavioral/${prevQuestionId}`);
     }
@@ -71,7 +73,7 @@ const BehavioralQuestionDetail = () => {
         <button
           className="nav-btn"
           onClick={handleNext}
-          disabled={questionIndex === questions.length - 1}
+          disabled={questionIndex === dataSource.length - 1}
         >
           <GrNext />
         </button>

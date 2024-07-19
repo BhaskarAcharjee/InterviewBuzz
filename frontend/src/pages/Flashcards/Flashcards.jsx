@@ -158,6 +158,7 @@ const Flashcards = () => {
                     question={flashcard.question}
                     answer={flashcard.answer}
                     onEdit={() => openEditModal(idx)}
+                    onDelete={() => console.log(`Delete experience ${idx}`)}
                   />
                 ) : (
                   activeTab.label === "Quiz" &&

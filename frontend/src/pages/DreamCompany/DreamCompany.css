@@ -16,3 +16,40 @@
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
 }
+
+/* Detail Page */
+.dream-company-detail-container {
+  padding: 20px;
+}
+
+.header {
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 20px;
+}
+
+.header h1 {
+  margin: 0;
+  padding: 0;
+}
+
+.header p {
+  color: #666;
+}
+
+.tab-content {
+  padding: 10px;
+}
+
+.referrer {
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.referrer p {
+  margin: 5px 0;
+}
+
+.referrer button {
+  margin-right: 5px;
+}

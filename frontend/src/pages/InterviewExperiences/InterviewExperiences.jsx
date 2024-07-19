@@ -2,8 +2,10 @@ import React from "react";
 import "./InterviewExperiences.css";
 import { experiences } from "../../constants/interview";
 import Card from "../../components/Card/Card";
+import { useNavigate } from "react-router-dom";
 
 const InterviewExperiences = () => {
+  const navigate = useNavigate();
   return (
     <div className="interview-experiences-container">
       <h1 className="interview-experiences-title">Interview Experiences</h1>
@@ -22,6 +24,7 @@ const InterviewExperiences = () => {
             title={exp.date}
             question={exp.position}
             answer={exp.experience}
+            onClick={() => navigate(`/interview-experiences/${index}`)}
             onEdit={() => console.log(`Edit experience ${index}`)}
             onDelete={() => console.log(`Delete experience ${index}`)}
           />

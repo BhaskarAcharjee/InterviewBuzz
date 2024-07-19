@@ -3,6 +3,7 @@ import "./Home.css";
 import Calender from "../../components/Calender/Calender";
 import { sampleInterviews } from "../../constants/schedule";
 import { isLoggedIn } from "../../services/auth";
+import { showToast } from "../../utils/showToast";
 
 const Home = () => {
   const [schedule, setSchedule] = useState({
@@ -28,7 +29,7 @@ const Home = () => {
 
   const handleAddInterview = () => {
     if (!schedule.date) {
-      alert("Please select a date");
+      showToast(false, "Please select a date");
       return;
     }
     setInterviews([...interviews, schedule]);

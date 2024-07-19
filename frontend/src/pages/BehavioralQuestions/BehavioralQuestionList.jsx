@@ -1,4 +1,3 @@
-// BehavioralQuestionList.js
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import BehavioralQuestionCard from "./BehavioralQuestionCard";
@@ -53,9 +52,9 @@ const BehavioralQuestionList = () => {
     setFilter(option.value);
   };
 
-  const filteredQuestions = questions.filter(
-    (q) => filter === "all" || (filter === "favorites" && q.isFavorite)
-  );
+  const filteredQuestions = (
+    isUserLoggedIn ? questions : sampleQuestions
+  ).filter((q) => filter === "all" || (filter === "favorites" && q.isFavorite));
 
   const prepareExportContent = () => {
     const formattedContent = filteredQuestions
@@ -113,13 +112,12 @@ const BehavioralQuestionList = () => {
   };
 
   const toggleFavorite = async (id) => {
-    const question = questions.find((q) => q._id === id);
+    const question = (isUserLoggedIn ? questions : sampleQuestions).find(
+      (q) => q._id === id
+    );
     const updatedQuestion = { ...question, isFavorite: !question.isFavorite };
     await editQuestion(updatedQuestion);
   };
-
-  // Conditionally render sample data for unauthorized users
-  const renderQuestions = isUserLoggedIn ? filteredQuestions : sampleQuestions;
 
   return (
     <div className="behavioral-questions-container">
@@ -152,7 +150,7 @@ const BehavioralQuestionList = () => {
         </button>
       </div>
 
-      {renderQuestions.length === 0 ? (
+      {filteredQuestions.length === 0 ? (
         <div className="no-questions">
           {isBehavioralLoading ? (
             <Loader />
@@ -162,7 +160,7 @@ const BehavioralQuestionList = () => {
         </div>
       ) : (
         <div className={`question-list ${view}`}>
-          {renderQuestions.map((q) => (
+          {filteredQuestions.map((q) => (
             <BehavioralQuestionCard
               key={q._id}
               _id={q._id}
